@@ -6,14 +6,14 @@ import moment from "moment";
 export interface ChatBotProps {
   brandName: string;
   botApiUrl: string;
-  click:()=>void
+  click: () => void;
 }
 
 const ChatBot = ({ brandName, botApiUrl, click }: ChatBotProps) => {
   const [inputValue, setInputValue] = useState("");
   const [chatLog, setChatLog] = useState([
     {
-      message: "Hello! I'm your chatbot assistant!",
+      message: "Welcome! I'm your chatbot assistant!",
       type: "bot",
       time: moment().format("HH:mm:ss"),
     },
@@ -21,9 +21,8 @@ const ChatBot = ({ brandName, botApiUrl, click }: ChatBotProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const messageEl = useRef<HTMLDivElement>(null!);
   useEffect(() => {
-    const handleNodeInserted = (event: Event) => {
-    };
-    if (messageEl.current) {
+    const handleNodeInserted = (event: Event) => {};
+    if (messageEl) {
       messageEl.current.addEventListener("DOMNodeInserted", (event: Event) => {
         const target = event.currentTarget as HTMLDivElement;
         target.scroll({ top: target.scrollHeight, behavior: "smooth" });
@@ -77,15 +76,20 @@ const ChatBot = ({ brandName, botApiUrl, click }: ChatBotProps) => {
 
   return (
     <div
-      className={`absolute md:w-40 w-full ms:min-h-full md:h-25 lg:h-25 md:bottom-24 sm:bottom-0 md:right-5 lg:right-10 rounded-xl shadow-md`}
+      className={`absolute md:w-40 w-full h-auto md:h-25 lg:h-25 md:bottom-24  sm:bottom-0 md:right-5 lg:right-10 sm: rounded-0 md: rounded-2xl lg: rounded-xl bg-stone-5 xl:rounded-2xl shadow-md`}
     >
-      <div className="flex rounded-t-lg w-full py-2 bg-gray-900 rounded-y-xl">
+      <div className="flex sm:-rounded-t-0 md:rounded-t-xl lg:rounded-t-xl lg:rounded-y-2xl w-full py-4 bg-gray-900 ">
         <h1 className="text-white px-5 2xl">{brandName}</h1>
-        <button onClick={click} className=" absolute text-2xl mb-2 text-white text-white w-fit px-5 right-0 top-0">x</button>
+        <button
+          onClick={click}
+          className=" absolute text-xl mb-2 text-white text-white w-fit px-5 right-0 top-0"
+        >
+          x
+        </button>
       </div>
       <div className="mb-20 ">
         <div
-          className="flex flex-col h-15 space-y-4 w-full overflow-y-scroll overflow-x-hidden  mb-14"
+          className="flex flex-col h-[32rem] md:h-[30rem] lg:h-[35rem] xl:h-[35rem] space-y-4 w-full overflow-y-scroll overflow-x-hidden  mb-14"
           ref={messageEl}
         >
           {chatLog.map((message, index) => (
@@ -96,20 +100,17 @@ const ChatBot = ({ brandName, botApiUrl, click }: ChatBotProps) => {
               }`}
             >
               <div>
-                {" "}
                 <div
                   className={`${
                     message.type === "user"
-                      ? "bg-black text-left text-white mx-2 ml-4 rounded-t-lg rounded-bl-lg"
-                      : "bg-customBlue text-left rounded-t-lg mx-2 mr-4 rounded-br-lg"
+                      ? "bg-black text-left text-white mx-2 ml-4 rounded-t-xl rounded-bl-xl"
+                      : "bg-customBlue text-left rounded-t-xl mx-2 mr-4 rounded-br-xl"
                   } px-4  py-1 break-keep text-black max-w-sm`}
                 >
-                  {message.type === "user"
-                    ? message.message
-                    : message.message}
+                  {message.type === "user" ? message.message : message.message}
                 </div>
-                <div className="text-center text-gray-300 mx-2 ml-4 rounded-t-lg rounded-bl-lg">
-                  {message.time}
+                <div className="text-center text-gray-300 mx-2 ml-4 rounded-t-xl rounded-bl-xl">
+                  {/* {message.time} */}
                 </div>
               </div>
             </div>
@@ -117,7 +118,7 @@ const ChatBot = ({ brandName, botApiUrl, click }: ChatBotProps) => {
 
           {isLoading && (
             <div key={chatLog.length} className="flex justify-start">
-              <div className="bg-customBlue text-left rounded-t-lg mx-2 p-3 mr-4 rounded-br-lg">
+              <div className="bg-customBlue text-left rounded-t-xl mx-2 p-3 mr-4 rounded-br-xl">
                 <TypingAnimation />
               </div>
             </div>
@@ -126,13 +127,13 @@ const ChatBot = ({ brandName, botApiUrl, click }: ChatBotProps) => {
       </div>
       <form
         onSubmit={handleSubmit}
-        className="absolute mb-3 w-full flex-none p-2 bottom-0 border-1  border-t-slate-50"
+        className="absolute mb-3 w-full flex-none p-3 bottom-0 border-1  border-t-2 border-t-gray-100"
       >
-        <div className="flex rounded-lg">
+        <div className="flex rounded-lg ">
           <input
             type="text"
             className="flex-grow px-4 py-2 bg-transparent text-gray-700 focus:outline-none"
-            placeholder="Type your message..."
+            placeholder="Type Here..."
             value={inputValue}
             required
             onChange={(e) => setInputValue(e.target.value)}
