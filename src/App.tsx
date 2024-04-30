@@ -1,46 +1,81 @@
-import React, { useState, useEffect } from "react";
-import ChatBot from "./components/ChatBot";
-import Button from "./components/Button";
-import "./App.css";
+import React, {useState, useRef} from "react";
 
-const App = (): JSX.Element => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [screenSize, setScreenSize] = useState(window.innerWidth);
+import ChotBot from "./bot_window/Chotbot";
 
-  const handleResize = () => {
-    setScreenSize(window.innerWidth);
-  };
+import PortalPopup from "./bot_window/PortalPopup";
 
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
+import { IoCloseSharp } from "react-icons/io5";
+import { IoChatbubbleOutline } from "react-icons/io5";
+import {useInit} from "./hooks/requests";
+import {useLoading, useSystemError} from "./hooks/universalHooks";
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+import Spinner from "react-activity/dist/Spinner";
+import "react-activity/dist/Spinner.css";
 
-  const toggleDisplay = (): void => {
-    setIsOpen(!isOpen);
-  };
+function App() {
+  const [open, setOpen] = useState<boolean>(false);
+
+  const updateOpen = () => setOpen(prev => !prev);
+
+  const intercomRef = useRef<HTMLButtonElement>(null);
+
+  // HOOKS
+  const { loading, updateLoading } = useLoading();
+
+  const { systemError, updateSystemError } = useSystemError();
+
+  const chatRequestArgs = { updateLoading, updateSystemError, systemError };
+
+  const { init } = useInit(chatRequestArgs);
+
+
+  const buttonIcon = () => {
+    console.log("Set open to", open)
+    if ( open ) {
+      return <IoCloseSharp color={"white"} style={{cursor: "pointer"}} size={30}/>
+    }else if ( !open ) {
+      return <IoChatbubbleOutline style={{cursor: "pointer"}} color={"white"} size={30} />
+    } else if ( loading ) {
+      return <Spinner style={{cursor: "pointer"}} color={"white"} animating={loading} size={30}/>
+    }
+  }
+
+  const handleOpenClick = async () => {
+    updateOpen();
+    if (!open) {
+      await init();
+    }
+  }
+
+  const chatBot = () => {
+    if ( open ) {
+      return(
+        <PortalPopup
+          placement="Bottom right"
+          relativeLayerRef={intercomRef}
+          onOutsideClick={handleOpenClick}
+          bottom={300} >
+          <ChotBot updateOpen={updateOpen} systemError={systemError} init={init} loading={loading}/>
+        </PortalPopup>
+      )
+    }
+  }
 
   return (
-    <div className="App">
-      <div>
-        <div>
-          {isOpen ? (
-            <ChatBot
-              brandName="CHATBOT TEST"
-              botApiUrl="https://chatbot-server-rmcs.onrender.com/api/v1/agent/text-input"
-              click={toggleDisplay}
-            />
-          ) : null}
-        </div>
-        <div className={`${isOpen && screenSize < 960 ? "hidden" : ""}`}>
-          <Button click={toggleDisplay} isOpen={isOpen} />
-        </div>
-      </div>
-    </div>
-  );
-};
+    <>
+      <button
+        className="cursor-pointer [border:none] p-3 bg-main-colour rounded-81xl flex flex-row items-center justify-center"
+        style={{ zIndex: "1000", bottom: "60px", right:"20px", position: "fixed"}}
+        onClick={handleOpenClick} >
+        {
+          buttonIcon()
+        }
 
+      </button>
+      {
+        chatBot()
+      }
+    </>
+  );
+}
 export default App;

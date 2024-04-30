@@ -1,21 +1,42 @@
 {
-  "name": "client_bot",
+  "name": "chatbot",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.13.4",
+    "@reduxjs/toolkit": "^2.2.3",
+    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.95",
-    "@types/react": "^18.2.74",
-    "@types/react-dom": "^18.2.24",
-    "chatbot-react-rollup": "^0.1.9",
+    "@types/jest": "^29.5.0",
+    "@types/node": "^16.11.14",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "antd": "^4.17.4",
+    "axios": "^1.6.8",
     "react": "^18.2.0",
+    "react-activity": "^2.1.3",
     "react-dom": "^18.2.0",
+    "react-icons": "^5.0.1",
+    "react-redux": "^9.1.1",
+    "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.1",
+    "redux-persist": "^6.0.0",
     "typescript": "^4.9.5",
+    "vercel": "^34.1.5",
     "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "@types/react-helmet": "^6.1.11",
+    "@types/react-lottie": "^1.2.10",
+    "@types/react-syntax-highlighter": "^15.5.11",
+    "autoprefixer": "^10.4.8",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^4.9.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -24,10 +45,7 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "root": true
   },
   "browserslist": {
     "production": [
