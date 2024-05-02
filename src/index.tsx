@@ -3,26 +3,28 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
+import root from "react-shadow";
+
 import {
   CssBaseline,
   ThemeProvider,
   createTheme,
   StyledEngineProvider,
 } from "@mui/material";
-import "./global.css";
+import "./index.css";
+
 import {PersistGate} from "redux-persist/integration/react";
 import {Provider} from "react-redux";
-import {persistor, store} from "./redux/store/configureStore";
+import { persistor, store } from "./redux/store";
 
 const muiTheme = createTheme({ palette: { mode: "dark" } });
 
 const container = document.getElementById("root");
 
-const root = createRoot(container!);
+const rootContainer = createRoot(container!);
 
-
-root.render(
-  <BrowserRouter>
+rootContainer.render(
+  <root.div>
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={muiTheme}>
 
@@ -35,7 +37,7 @@ root.render(
 
       </ThemeProvider>
     </StyledEngineProvider>
-  </BrowserRouter>
+  </root.div>
 );
 //  <JoyThemeProvider> </JoyThemeProvider>
 // If you want to start measuring performance in your app, pass a function

@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import {Conversation} from "../../../interface/SessionObjectInterfaces";
+import {createSlice} from "@reduxjs/toolkit";
+import {Conversation} from "../interface/SessionObjectInterfaces";
 
 interface log {
   conversation: Conversation[];

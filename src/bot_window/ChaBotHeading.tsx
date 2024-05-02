@@ -1,24 +1,27 @@
-import {InfoDataTypes} from "../interface/SessionObjectInterfaces";
 
 import React, {memo} from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { IoMdRefresh } from "react-icons/io";
 import {useDispatch} from "react-redux";
 import axios from "axios";
-import { conversationActions } from "../redux/app/slices/authSlice";
+import {conversationActions} from "../redux/slice";
+import {InfoDataTypes} from "../interface/SessionObjectInterfaces";
 import {getFromSessionStorage} from "../message_functions/save_and_get";
+
 
 interface ChatBotHeadingTypes {
   updateOpen: () => void;
-  init: (value:object) => void
+  init: () => Promise<void>;
 }
 
-const BASE_URL: string = process.env.REACT_APP_BASE_EDNPOINT!;
-const START_OVER: string = process.env.REACT_APP_START_OVER_URL!;
+const BASE_URL: string = "http://wired66.pythonanywhere.com/";
+
+const START_OVER: string = "start-over/";
 
 const refreshUrl: string = `${BASE_URL + START_OVER}`;
 
 const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
+
   {
     updateOpen,
     init
@@ -30,7 +33,7 @@ const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
   const deleteMessages = async () => {
     console.log("deleteMessages gets renderd...");
     dispatch(conversationActions.ClearMessages());
-    init;
+    await init;
     const infoData: InfoDataTypes | null = getFromSessionStorage("infoData");
     if ( infoData && infoData.clientId)
       try {

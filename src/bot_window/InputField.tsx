@@ -1,80 +1,37 @@
-import React, {memo, useRef} from "react";
+
+
+import React, {memo, RefObject} from "react";
 import {IoSend} from "react-icons/io5";
 import Input from 'antd/es/input';
-import {ChatSenderObjectTypes, Conversation} from "../interface/SessionObjectInterfaces";
-import {getTime} from "../message_functions/getter";
-import {conversationActions} from "../redux/app/slices/authSlice";
-import {getFromSessionStorage} from "../message_functions/save_and_get";
-import {useInput, useLoading} from "../hooks/universalHooks";
-import {useDispatch} from "react-redux";
-import {useChatRequest} from "../hooks/requests";
+import {ChatSenderObjectTypes} from "../interface/SessionObjectInterfaces";
+
 
 const { TextArea } = Input;
+
 interface FieldProps {
-  loading: boolean;
-  updateError: (value: string) => void;
-  handleChatRequest: (value: ChatSenderObjectTypes) => Promise<void>
+  sysLoading: boolean;
+  input: string;
+  chatRequestProcess: (postObject: ChatSenderObjectTypes) => Promise<void>;
+  updateInput: (value:string, textareaRef:RefObject<HTMLTextAreaElement>) => void;
+  textareaRef: RefObject<HTMLTextAreaElement>;
+  error: string;
 }
 
 
 const InputField: React.FC<FieldProps> = (
   {
-    loading,
-    updateError,
-    handleChatRequest
+    sysLoading,
+    textareaRef,
+    updateInput,
+    chatRequestProcess,
+    input,
+    error
   }
 ) => {
-  const { input, updateInput } = useInput();
-  const { loading, updateLoading } = useLoading();
 
-  const chatArgs = {updateError, updateLoading};
-
-  const { handleChatRequest } = useChatRequest(chatArgs);
-  const dispatch = useDispatch();
-
-  const getUserMessage = (): Conversation => {
-    console.log("getUserMessage gets rendered...");
-    return {
-      text: input,
-      time: getTime(),
-      publisher: "USER"
-    }
+  const getDisabled = (): boolean => {
+    return sysLoading || error.length > 0;
   }
-
-
-  const chatRequestProcess = async () => {
-    console.log("chatRequestProcess gets called...");
-    if ( !loading && input.trim().length > 0 ) {
-      const userMessage = getUserMessage();
-      console.log("ADD SER MESSAGE TO STORE:", userMessage);
-      dispatch(conversationActions.AddMessage({ newMessage: userMessage }));
-
-      console.log("CLEAR INPUT")
-      updateInput("");
-
-      const sessionData = getFromSessionStorage("infoData");
-      console.log("GETTING DATA:", sessionData)
-      if (sessionData && sessionData.botId && sessionData.clientId && sessionData.chatsLeft > 0) {
-        const senderObject: ChatSenderObjectTypes = {
-          question: input,
-          data: sessionData.botId,
-          client_id: sessionData.clientId
-        }
-
-        await handleChatRequest(senderObject);
-
-      } else {
-        console.log("No data stored")
-        updateError("111");
-
-      }
-    }
-  }
-
-
-  console.log("START TEXT AREA WILL BE RENDERED");
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-  console.log("ref defined");
 
   return(
     <div className="self-stretch bg-reply-bg h-[66px] flex flex-col items-start justify-start p-5 box-border" >
@@ -87,6 +44,7 @@ const InputField: React.FC<FieldProps> = (
              font-chat-operator-quick-reply
              justify-center py-2 px-4 outline-none text-stamp-text resize-none absolute bottom-[-30px] w-[340px] bg-white z-30"
           autoSize
+          disabled={getDisabled()}
           value={input}
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => updateInput(e.target.value, textareaRef)}
         />

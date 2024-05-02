@@ -1,5 +1,5 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import conversationSlice from "../app/slices/authSlice";
+import conversationSlice from "./slice";
 
 const rootReducers = combineReducers({
   conversationSlice,

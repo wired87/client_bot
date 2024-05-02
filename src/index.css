@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.border-l {
+  border-left: 1px solid #e2e8f0 !important;
+}

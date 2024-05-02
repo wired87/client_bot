@@ -1,16 +1,22 @@
+
 import React, {memo, useCallback, useEffect, useRef} from "react";
+
 import ResponseMessage from "./ResponseMessage";
 import UserMessage from "./UserMessage";
 import LoadingMessage from "./LoadingMessage";
+
 import {Alert} from "@mui/material";
-import {useSelector} from "react-redux";
-import {scrollToBottom} from "../../message_functions/helper";
+import Spinner from "react-activity/dist/Spinner";
+import "react-activity/dist/Spinner.css";
 import {Conversation} from "../../interface/SessionObjectInterfaces";
+import {scrollToBottom} from "../../message_functions/helper";
+import {useSelector} from "react-redux";
 
 interface MessagesTypes {
   error: string;
   systemError: string;
   loading: boolean;
+  sysLoading: boolean;
 }
 
 const Messages: React.FC<MessagesTypes> = (
@@ -19,6 +25,7 @@ const Messages: React.FC<MessagesTypes> = (
     error,
     systemError,
     loading,
+    sysLoading
   }
 
 ) => {
@@ -77,6 +84,14 @@ const Messages: React.FC<MessagesTypes> = (
     }
   }
 
+  const systemErrorContent = () => {
+    if ( sysLoading ) {
+      return(
+        <Spinner color={"black"} animating={loading} size={30}/>
+      )
+    }
+  }
+
 
   return(
     <div
@@ -86,6 +101,7 @@ const Messages: React.FC<MessagesTypes> = (
       <div className="absolute top-[20px] left-[20px] w-[383px] flex flex-col items-end justify-end gap-[16px]">
         <div
              className="self-stretch flex flex-col items-end justify-end">
+
           {
             getSystemErrorMessage()
           }
@@ -97,6 +113,9 @@ const Messages: React.FC<MessagesTypes> = (
           }
           {
             getErrorMessage()
+          }
+          {
+            systemErrorContent()
           }
         </div>
       </div>

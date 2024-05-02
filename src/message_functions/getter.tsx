@@ -1,5 +1,6 @@
 import {InfoDataTypes} from "../interface/SessionObjectInterfaces";
 
+
 export const getTime = (): string => {
   console.log("getTime  gets created...");
   const now = new Date();

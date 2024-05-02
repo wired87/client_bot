@@ -5,18 +5,72 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1ae6c76-09c0-457d-8b9f-8c142864b25a" name="Changes" comment="init">
+      <change afterPath="$PROJECT_DIR$/.npmignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/redux/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.prettierignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.prettierrc" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reportWebVitals.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/reportWebVitals.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/production_assets/.vercel/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/production_assets/.vercel/project.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/production_assets/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/production_assets/vercel.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/chat_bubble.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/chat_close.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/img/send.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/ChaBotHeading.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/ChaBotHeading.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/Chotbot.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/Chotbot.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/InputField.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/InputField.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/PortalPopup.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/PortalPopup.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/messages/LoadingMessage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/messages/LoadingMessage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/messages/Messages.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/messages/Messages.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Button.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TypingAnimation.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/global.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/requests.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/requests.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/message_functions/getter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/message_functions/getter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/message_functions/helper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/message_functions/helper.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/app/slices/authSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/slice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/store/configureStore.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/store/rootReducers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/rootReducers.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript JSX File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;wired87&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="1ae566ff-beb5-43b0-8f46-52bf6715c366" />
+        <option name="url" value="https://github.com/wired87/client_bot.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -36,7 +90,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;ft-chatbot&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/wired/OneDrive/Desktop/Projects/client_bot/build&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/wired/OneDrive/Desktop/Projects/client_bot/src&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -45,21 +99,23 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\wired\\OneDrive\\Desktop\\Projects\\client_bot\\node_modules\\prettier&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\wired\\OneDrive\\Desktop\\Projects\\client_bot\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\wired\OneDrive\Desktop\Projects\client_bot\src" />
       <recent name="C:\Users\wired\OneDrive\Desktop\Projects\client_bot\build" />
       <recent name="C:\Users\wired\OneDrive\Desktop\Projects\client_bot" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\wired\OneDrive\Desktop\Projects\client_bot" />
+      <recent name="C:\Users\wired\OneDrive\Desktop\Projects\client_bot\build\static" />
       <recent name="C:\Users\wired\OneDrive\Desktop\Projects\client_bot\src\redux" />
-      <recent name="C:\Users\wired\OneDrive\Desktop\Projects\client_bot\src\redux\app" />
       <recent name="C:\Users\wired\OneDrive\Desktop\Projects\client_bot\src" />
-      <recent name="C:\Users\wired\OneDrive\Desktop\Projects\client_bot\src\bot_window\messages" />
+      <recent name="C:\Users\wired\OneDrive\Desktop\Projects\client_bot" />
+      <recent name="C:\Users\wired\OneDrive\Desktop\Projects\client_bot\src\redux\app" />
     </key>
   </component>
   <component name="RunManager" selected="npm.npm start">
@@ -89,6 +145,9 @@
       <workItem from="1714506307602" duration="3650000" />
       <workItem from="1714510085754" duration="390000" />
       <workItem from="1714510580211" duration="38000" />
+      <workItem from="1714585781782" duration="720000" />
+      <workItem from="1714638669006" duration="13651000" />
+      <workItem from="1714662785400" duration="6451000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />

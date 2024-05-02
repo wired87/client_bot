@@ -1,15 +1,18 @@
+
+
 import axios from "axios";
 
 import {useDispatch, useSelector} from "react-redux";
 import {ChatSenderObjectTypes, Conversation, InfoDataTypes} from "../interface/SessionObjectInterfaces";
 import {getBotIdProcess, getTime} from "../message_functions/getter";
-import {conversationActions} from "../redux/app/slices/authSlice";
+import {conversationActions} from "../redux/slice";
 import {getFromSessionStorage, saveToSessionStorage} from "../message_functions/save_and_get";
 
 
-const BASE_URL: string = process.env.REACT_APP_BASE_EDNPOINT!;
-const CHAT_URL: string = process.env.REACT_APP_CHAT_URL!;
-const INIT_CHAT_URL: string = process.env.REACT_APP_INIT_CHAT_URL!;
+
+const BASE_URL: string = "http://wired66.pythonanywhere.com/";
+const CHAT_URL: string = "chat";
+const INIT_CHAT_URL: string = "init/";
 
 const chatUrl: string = `${BASE_URL + CHAT_URL}`;
 const initUrl: string = `${BASE_URL + INIT_CHAT_URL}`;
@@ -129,6 +132,7 @@ export const useInit = (
     if ( !botId ) {
       console.log("No Bot id could be set...");
       updateSystemError("There was an authentication error. Please try again.");
+      updateLoading(false);
     } else {
       if ( !infoData || !infoData.chatsLeft || !infoData.clientId ) {
         console.log("Data missing, init the request...");
