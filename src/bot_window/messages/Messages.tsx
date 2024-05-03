@@ -1,11 +1,11 @@
 
-import React, {memo, useCallback, useEffect, useRef} from "react";
+import React, {memo, useEffect, useRef} from "react";
 
 import ResponseMessage from "./ResponseMessage";
 import UserMessage from "./UserMessage";
 import LoadingMessage from "./LoadingMessage";
 
-import {Alert} from "@mui/material";
+import Alert from '@mui/material/Alert';
 import Spinner from "react-activity/dist/Spinner";
 import "react-activity/dist/Spinner.css";
 import {Conversation} from "../../interface/SessionObjectInterfaces";
@@ -39,7 +39,7 @@ const Messages: React.FC<MessagesTypes> = (
   }, [conversation, loading]);
 
 
-  const getMessageList = useCallback(() => {
+  const getMessageList = () => {
     console.log("getMessageList gets rendered");
     if ( conversation &&
       conversation.length > 0 &&
@@ -55,7 +55,7 @@ const Messages: React.FC<MessagesTypes> = (
         return null;
       });
     }
-  }, [conversation]);
+  }
 
 
   const getLoadingMessage = () => {
@@ -69,6 +69,7 @@ const Messages: React.FC<MessagesTypes> = (
   }
 
   const getErrorMessage = () => {
+    console.log("getErrorMessage  gets rendered");
     if ( error.length > 0 ) {
       return(
         <Alert severity="error">{ error }</Alert>
@@ -77,6 +78,7 @@ const Messages: React.FC<MessagesTypes> = (
   }
 
   const getSystemErrorMessage = () => {
+    console.log("getErrorMessage  gets rendered");
     if ( systemError.length > 0 ) {
       return(
         <Alert severity="error" className={"w-full"}>{ systemError }</Alert>
@@ -85,6 +87,7 @@ const Messages: React.FC<MessagesTypes> = (
   }
 
   const systemErrorContent = () => {
+    console.log("systemErrorContent  gets rendered");
     if ( sysLoading ) {
       return(
         <Spinner color={"black"} animating={loading} size={30}/>
@@ -92,6 +95,8 @@ const Messages: React.FC<MessagesTypes> = (
     }
   }
 
+  console.log("MAIN RETURN Messages   gets rendered");
+  console.log({ ResponseMessage, UserMessage, LoadingMessage, Alert });
 
   return(
     <div
@@ -122,5 +127,5 @@ const Messages: React.FC<MessagesTypes> = (
     </div>
   );
 }
-
+console.log("FINISHED   MAIN RETURN Messages   gets rendered");
 export default memo(Messages);

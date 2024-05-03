@@ -14,11 +14,8 @@ interface ChatBotHeadingTypes {
   init: () => Promise<void>;
 }
 
-const BASE_URL: string = "http://wired66.pythonanywhere.com/";
+const refreshUrl: string = "https://wired66.pythonanywhere.com/client/start-over/";
 
-const START_OVER: string = "start-over/";
-
-const refreshUrl: string = `${BASE_URL + START_OVER}`;
 
 const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
 
@@ -58,7 +55,7 @@ const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
     }
 
   return(
-    <div className="self-stretch bg-main-colour flex flex-row items-center justify-start max-h-[70px] p-5 gap-[30px]">
+    <div className="self-stretch bg-black flex flex-row items-center justify-start max-h-[70px] p-5 gap-[30px]">
       <div className="w-2 relative leading-[18px] font-black hidden"></div>
       <div className="flex flex-row items-center justify-start gap-[14px] text-left font-chat-operator-quick-reply">
         <div className="flex flex-row items-center justify-start">

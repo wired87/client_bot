@@ -1,7 +1,5 @@
 
 
-
-
 import React, { useState, useRef, useEffect } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { IoChatbubbleOutline } from "react-icons/io5";
@@ -11,9 +9,6 @@ import {useLoading, useSystemError} from "./hooks/universalHooks";
 import {useInit} from "./hooks/requests";
 import ChatBot from "./bot_window/Chotbot";
 import PortalPopup from "./bot_window/PortalPopup";
-
-
-
 
 export default function App() {
   const [open, setOpen] = useState(false);
@@ -48,30 +43,32 @@ export default function App() {
   }, [loading]);
 
   const chatBot = () => {
-    if (open) {
-      return (
-        <PortalPopup placement="Bottom right" relativeLayerRef={intercomRef} onOutsideClick={handleOpenClick} bottom={300}>
-          <ChatBot init={init} sysLoading={loading} systemError={systemError} updateOpen={updateOpen}/>
-        </PortalPopup>
-      );
+    if ( open ) {
+      return(
+        <ChatBot init={init} sysLoading={loading} systemError={systemError} updateOpen={updateOpen}/>
+      )
     }
-  };
+    return <></>
+  }
 
   return (
-    <>
-      <button
+    <PortalPopup placement="Bottom right" relativeLayerRef={intercomRef} onOutsideClick={handleOpenClick} bottom={300}>
+
+    <button
         className="cursor-pointer border-none p-4 bg-main-colour rounded-81xl flex  items-center justify-center"
         style={
         { zIndex: "10001", bottom: "60px",
           right: "20px", position: "fixed",
-          backgroundColor: "#09165f", borderWidth: 0,
+          backgroundColor: "#000000", borderWidth: 0,
           borderRadius: 50, padding: 10
         }}
         onClick={handleOpenClick}
       >
         {buttonIcon()}
       </button>
-      {chatBot()}
-    </>
+      {
+        chatBot()
+      }
+    </PortalPopup>
   );
 }

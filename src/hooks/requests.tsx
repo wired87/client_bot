@@ -10,8 +10,8 @@ import {getFromSessionStorage, saveToSessionStorage} from "../message_functions/
 
 
 
-const BASE_URL: string = "http://wired66.pythonanywhere.com/";
-const CHAT_URL: string = "chat";
+const BASE_URL: string = "https://wired66.pythonanywhere.com/client/";
+const CHAT_URL: string = "chat/";
 const INIT_CHAT_URL: string = "init/";
 
 const chatUrl: string = `${BASE_URL + CHAT_URL}`;
@@ -156,7 +156,6 @@ export const useInit = (
               clientId: res.data.client_id,
               botId: botId
             }
-
             saveToSessionStorage(responseObject, "infoData");
           } else {
             updateSystemError(res.data.message);

@@ -141,17 +141,30 @@ type PortalProps = {
   containerId?: string;
 };
 
-export const Portal: FunctionComponent<PortalProps> = ({
-                                                         children,
-                                                         containerId = "portals",
-                                                       }) => {
-  let portalsDiv = document.getElementById(containerId);
-  if (!portalsDiv) {
-    portalsDiv = document.createElement("div");
-    portalsDiv.setAttribute("id", containerId);
-    document.body.appendChild(portalsDiv);
-  }
 
-  return createPortal(children, portalsDiv);
+export const Portal: FunctionComponent<PortalProps> = ({ children, containerId = 'portals' }) => {
+  const [portalsDiv, setPortalsDiv] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    let div = document.getElementById(containerId);
+    if (!div) {
+      div = document.createElement('div');
+      div.setAttribute('id', containerId);
+      document.body.appendChild(div);
+    }
+    setPortalsDiv(div);
+
+    // Cleanup the portal div when it's no longer needed
+    return () => {
+      if (div && div.parentNode) {
+        div.parentNode.removeChild(div);
+      }
+    };
+  }, [containerId]);
+
+  return portalsDiv ? createPortal(children, portalsDiv) : null;
 };
 export default PortalPopup;
+
+
+

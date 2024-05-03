@@ -14,14 +14,21 @@ export const getTime = (): string => {
 }
 
 
-export const getBotId = () => {
+export const getBotId = (): string | null => {
   console.log("getBotId   gets created...");
   const scripts = document.querySelectorAll('script');
   for (let i = 0; i < scripts.length; i++) {
     const script = scripts[i];
-    console.log("Script found: ", script);
-    if (script.src && script.src.includes('main.02.js')) {
-      return script.getAttribute('data-bot-id');
+    console.log("Script found: ", script, "\n");
+    try {
+      console.log( "SCRIPT SOURCE:", script.src);
+      if (script.src && script.src.includes('client_bundle999666.js')) {
+        const botDataId: string | null = script.getAttribute('data-bot-id');
+        console.log("botDataId:", botDataId);
+        return botDataId;
+      }
+    } catch (e) {
+      console.log("Error occurred:", e)
     }
   }
   console.log("Script data attr missing or not valid...");

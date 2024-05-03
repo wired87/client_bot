@@ -11,6 +11,7 @@ const UserMessage: React.FC<UserMessageTypes> = (
     time
   }
 ) => {
+  console.log("Render the Response message...");
   return(
     <div className="flex flex-col items-end justify-end gap-[6px] text-reply-bg">
       <div className="rounded-md bg-main-colour overflow-hidden flex flex-row items-center justify-end py-4 px-[19px] box-border max-w-[300px]">

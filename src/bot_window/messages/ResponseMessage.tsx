@@ -12,7 +12,7 @@ const ResponseMessage: React.FC<ResponseMessageTypes> = (
     time
   }
 ) => {
-  // Item unten <div className="w-[46px] rounded-[125px] box-border flex flex-col items-start justify-end ">
+  console.log("Render the Response message...");
   return(
     <div className="mb-7 self-stretch flex flex-col items-end justify-end">
       <div className="self-stretch flex flex-row items-end justify-start gap-[10px]">

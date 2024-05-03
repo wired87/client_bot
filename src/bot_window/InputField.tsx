@@ -3,7 +3,6 @@
 import React, {memo, RefObject} from "react";
 import {IoSend} from "react-icons/io5";
 import Input from 'antd/es/input';
-import {ChatSenderObjectTypes} from "../interface/SessionObjectInterfaces";
 
 
 const { TextArea } = Input;
@@ -11,9 +10,9 @@ const { TextArea } = Input;
 interface FieldProps {
   sysLoading: boolean;
   input: string;
-  chatRequestProcess: (postObject: ChatSenderObjectTypes) => Promise<void>;
-  updateInput: (value:string, textareaRef:RefObject<HTMLTextAreaElement>) => void;
-  textareaRef: RefObject<HTMLTextAreaElement>;
+  chatRequestProcess: () => Promise<void>;
+  updateInput: (value:string, textareaRef:RefObject<HTMLTextAreaElement> | undefined) => void;
+  textareaRef?: RefObject<HTMLTextAreaElement>;
   error: string;
 }
 
@@ -28,9 +27,9 @@ const InputField: React.FC<FieldProps> = (
     error
   }
 ) => {
-
+  console.log("InputField gets rendered");
   const getDisabled = (): boolean => {
-    return sysLoading || error.length > 0;
+    return sysLoading || error?.length > 0;
   }
 
   return(
@@ -64,16 +63,3 @@ const InputField: React.FC<FieldProps> = (
 console.log("FINISHED AREA WILL BE RENDERED");
 
 export default memo(InputField);
-
-
-/*
- <Textarea
-
-          placeholder={}
-          maxRows={4}
-          value={input}
-          variant={"plain"}
-
-
-        />
- */

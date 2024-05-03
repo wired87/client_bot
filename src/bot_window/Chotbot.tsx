@@ -24,14 +24,13 @@ interface ChotbotType {
 const ChatBot: React.FC<ChotbotType> = ({updateOpen, systemError, init, sysLoading}) => {
 
   const {error, updateError} = useError();
-
-
   const { input, updateInput } = useInput();
   const { loading, updateLoading } = useLoading();
 
   const chatArgs = {updateError, updateLoading};
 
   const { handleChatRequest } = useChatRequest(chatArgs);
+
   const dispatch = useDispatch();
 
   const getUserMessage = (): Conversation => {
@@ -67,11 +66,10 @@ const ChatBot: React.FC<ChotbotType> = ({updateOpen, systemError, init, sysLoadi
 
       } else {
         console.log("No data stored")
-        updateError("111");
+        updateError("Error");
       }
     }
   }
-
 
   console.log("START TEXT AREA WILL BE RENDERED");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
