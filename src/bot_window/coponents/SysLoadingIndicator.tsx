@@ -56,7 +56,6 @@ const spinnerContainerCss = css`
   align-items: center;
   width: 100%;
   height: 500px; // Specified height for container
-  background-color: red;
   position: relative;
   animation: ${rotate} ${duration}s linear infinite;
 `;
@@ -71,7 +70,7 @@ const pathCss = css`
           ${colorChange} ${duration * 4}s ease-in-out infinite;
 `;
 
-function LoadingSpinner() {
+function SysLoadingSpinner() {
   return (
     <root.section css={spinnerContainerCss} style={{display: 'flex',
       justifyContent: 'center',
@@ -95,4 +94,4 @@ function LoadingSpinner() {
 }
 
 
-export default LoadingSpinner;
+export default SysLoadingSpinner;

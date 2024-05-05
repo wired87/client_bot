@@ -29,7 +29,7 @@ const ResponseMessage: React.FC<ResponseMessageTypes> = (
         flexDirection: 'row',
         alignItems: 'flex-end',
         justifyContent: 'flex-start',
-
+        marginTop: 15
 
       }}>
 
@@ -42,7 +42,8 @@ const ResponseMessage: React.FC<ResponseMessageTypes> = (
           justifyContent: 'center',
           boxSizing: 'border-box',
           backgroundColor: "black",
-          borderRadius: 50
+          borderRadius: 50,
+          marginRight: 10
            }}>
           <h4 style={{color: "white"}}>
             BW
@@ -85,7 +86,6 @@ const ResponseMessage: React.FC<ResponseMessageTypes> = (
         </div>
       </div>
     </div>
-
   );
 }
 

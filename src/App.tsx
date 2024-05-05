@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { IoChatbubbleOutline } from "react-icons/io5";
-import { Spinner } from "react-activity";
 import {useLoading, useSystemError} from "./hooks/universalHooks";
 import {useInit} from "./hooks/requests";
 import ChatBot from "./bot_window/Chotbot";
@@ -22,8 +21,6 @@ export default function App() {
       return <IoCloseSharp color={"white"} style={{ cursor: "pointer" }} size={30} />;
     } else if (!open) {
       return <IoChatbubbleOutline style={{ cursor: "pointer" }} color={"white"} size={30} />;
-    } else if (loading) {
-      return <Spinner style={{ cursor: "pointer" }} color={"white"} animating={loading} size={30} />;
     }
     return <></>
   };
@@ -51,10 +48,10 @@ export default function App() {
         style={
           { display: "flex", justifyContent: "center", alignItems: "center",
             zIndex: 10001,
-            bottom: "50px",
+            bottom: "35px",
             right: "20px", position: "fixed",
             backgroundColor: "#000000", borderWidth: 0,
-            borderRadius: 50, padding: 10, pointerEvents: 'auto',
+            borderRadius: 50, padding: 14, pointerEvents: 'auto',
             cursor: "pointer", border: "none",
           }}
         onClick={handleOpenClick}

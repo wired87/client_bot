@@ -21,6 +21,8 @@ interface ChotbotType {
   sysLoading: boolean;
 }
 
+const poweredByUrl: string = "https://www.botworld.cloud";
+
 const ChatBot: React.FC<ChotbotType> = ({updateOpen, systemError, init, sysLoading}) => {
 
   const { error, updateError } = useError();
@@ -52,7 +54,9 @@ const ChatBot: React.FC<ChotbotType> = ({updateOpen, systemError, init, sysLoadi
   }
 
   const getInputLenBool = () => {
-    return input.trim().length > 0 || retryInput.trim().length > 0;
+    return input.trim().length > 0 ||
+      retryInput.trim().length > 0 ||
+      systemError.trim().length === 0;
   }
 
   const chatRequestProcess = async () => {
@@ -67,6 +71,7 @@ const ChatBot: React.FC<ChotbotType> = ({updateOpen, systemError, init, sysLoadi
       if (retryInput.trim().length === 0) {
         updateRetryInput(input);
       }
+
       updateInput("");
 
       const sessionData = getFromSessionStorage("infoData");
@@ -92,29 +97,32 @@ const ChatBot: React.FC<ChotbotType> = ({updateOpen, systemError, init, sysLoadi
   console.log("ref defined");
 
   return (
-    <div style={{
-      width: '420px',
-      position: "fixed",
-      bottom: 110,
-      right:30,
-      zIndex: 10002,
-      borderRadius: '18px',
-      boxShadow: '10px 10px 40px rgba(0, 0, 0, 0.08), 5px 14px 80px rgba(26, 26, 26, 0.12)',
-      height: '660px',
-      overflow: 'hidden',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'start',
-      justifyContent: 'start',
-      maxWidth: '100%',
-      maxHeight: '100%',
-      textAlign: 'center',
-      fontSize: '1.125rem',
-      color: '#333333',
-      fontFamily: 'Inter',
-      pointerEvents: "all"
-    }}>
-      <ChaBotHeading updateOpen={updateOpen} init={init}/>
+    <div
+      style={{
+        width: "400px",
+        position: "fixed",
+        bottom: 110,
+        right: 30,
+        zIndex: 10002,
+        borderRadius: "18px",
+        boxShadow:
+          "10px 10px 40px rgba(0, 0, 0, 0.08), 5px 14px 80px rgba(26, 26, 26, 0.12)",
+        height: "700px",
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "start",
+        justifyContent: "start",
+        maxWidth: "100%",
+        maxHeight: "100%",
+        textAlign: "center",
+        fontSize: "1.125rem",
+        color: "#333333",
+        fontFamily: "Inter",
+        pointerEvents: "all",
+      }}
+    >
+      <ChaBotHeading updateOpen={updateOpen} init={init} />
       <Messages
         error={error}
         systemError={systemError}
@@ -122,7 +130,7 @@ const ChatBot: React.FC<ChotbotType> = ({updateOpen, systemError, init, sysLoadi
         sysLoading={sysLoading}
         chatRequestProcess={chatRequestProcess}
       />
-      <div style={{ height: '1.2px', backgroundColor: '#F3F4F6' }}/>
+      <div style={{ height: "1.2px", backgroundColor: "#F3F4F6" }} />
       <InputField
         sysLoading={sysLoading}
         error={systemError}
@@ -131,6 +139,25 @@ const ChatBot: React.FC<ChotbotType> = ({updateOpen, systemError, init, sysLoadi
         updateInput={updateInput}
         textareaRef={textareaRef}
       />
+      <div
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          display: "flex",
+          paddingBottom: 10,
+          width: "100%",
+          backgroundColor: "white",
+        }}
+      >
+        <a
+          color={"black"}
+          style={{ fontSize: 12, color: "black" }}
+          href={poweredByUrl}
+          target="_blank"
+          rel="noopener noreferrer">
+          Powered by BotWorld.cloud
+        </a>
+      </div>
     </div>
   );
 };

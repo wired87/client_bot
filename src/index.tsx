@@ -7,9 +7,6 @@ import {PersistGate} from "redux-persist/integration/react";
 import {Provider} from "react-redux";
 import store, { persistor } from "./redux/store";
 
-import {
-  CssBaseline, ThemeProvider, createTheme, StyledEngineProvider
-} from "@mui/material";
 import "./index.css"
 
 const appContainer = document.createElement('div');
@@ -26,23 +23,15 @@ document.body.appendChild(appContainer);
 
 const rootContainer = createRoot(appContainer);
 
-const muiTheme = createTheme({ palette: { mode: "light" } });
-
 rootContainer.render(
   <root.div>
-    <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={muiTheme}>
-        <Provider store={store} >
-          <PersistGate loading={null} persistor={persistor}>
-            <CssBaseline />
-            <App />
-          </PersistGate>
-        </Provider>
-      </ThemeProvider>
-    </StyledEngineProvider>
+    <Provider store={store} >
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+      </PersistGate>
+    </Provider>
   </root.div>
 );
-
 
 
 
@@ -60,11 +49,8 @@ Rollup:
 "rollup-plugin-postcss": "^4.0.2",
 "rollup-plugin-terser": "^7.0.2",
 "rollup-plugin-node-polyfills": "^0.2.1",
-    "rollup-plugin-shim": "^1.0.0",
-     "@rollup/plugin-alias": "^5.1.0",
-
-
-
+"rollup-plugin-shim": "^1.0.0",
+"@rollup/plugin-alias": "^5.1.0",
 
 <link rel="stylesheet" href="./index.css" />
 <link rel="stylesheet" href="react-activity/dist/Spinner.css" />

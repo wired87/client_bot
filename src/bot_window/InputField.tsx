@@ -28,6 +28,12 @@ const InputField: React.FC<FieldProps> = (
     return sysLoading || error?.length > 0;
   }
 
+const getColor = () => {
+    if (input.trim().length > 0 ) {
+      return "rgba(0,0,0,1)";
+    }
+    return "rgba(0,0,0,.4)";
+}
   return(
     <div style={{
       alignSelf: 'stretch',
@@ -36,7 +42,7 @@ const InputField: React.FC<FieldProps> = (
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'flex-start',
-      justifyContent: 'center',
+      justifyContent: 'flex-start',
       padding: '3px 20px',
       boxSizing: 'border-box',
     }}>
@@ -56,16 +62,18 @@ const InputField: React.FC<FieldProps> = (
             alignItems: 'center',
             justifyContent: 'center',
             padding: '2px 4px',
-            fontSize: 'inherit',
+            fontSize: 16,
+            color: getColor(),
             width: '340px',
             backgroundColor: 'rgba(0,0,0,.01)',
-            verticalAlign: "start"
+            verticalAlign: "start",
           }}
           autoSize
-          disabled={getDisabled()}
+          disabled={getDisabled()} // getDisabled()
           value={input}
           onChange={(e) => updateInput(e.target.value, textareaRef)}
         />
+
         <button
           style={{
             cursor: 'pointer',

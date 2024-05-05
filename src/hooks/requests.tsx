@@ -147,7 +147,7 @@ export const useInit = (
 
           if (res.data?.status_code === 200) {
             console.log("DATA:", res.data);
-
+            updateSystemError("")
             if ( !conversation || conversation.length === 0 ) {
               dispatch(conversationActions.AddMessage({newMessage: initMessage}));
             }
