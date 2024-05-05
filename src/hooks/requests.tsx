@@ -20,6 +20,7 @@ const initUrl: string = `${BASE_URL + INIT_CHAT_URL}`;
 interface UseChatRequestTypes {
   updateLoading: (b:boolean) => void;
   updateError: (value: string) => void;
+  updateRetryInput: (value: string) => void;
 }
 
 interface UseInitTypes {
@@ -41,6 +42,7 @@ export const useChatRequest = (
   {
     updateLoading,
     updateError,
+    updateRetryInput
   }: UseChatRequestTypes
 ): UseChatReturnTypes  => {
   console.log("useChatRequest gets created...");
@@ -65,7 +67,7 @@ export const useChatRequest = (
         }
 
         dispatch(conversationActions.AddMessage({ newMessage: responseObject }));
-
+        updateRetryInput("");
       } else {
         updateError(res.data.message);
       }
@@ -113,7 +115,7 @@ export const useInit = (
   const getInitMessageOject = (): Conversation => {
     return {
       text: "Hallo, wie kann ich Ihnen helfen?",
-      time: getTime(),
+      time: String(getTime()),
       publisher: "AI"
     }
   }
@@ -122,7 +124,7 @@ export const useInit = (
   const init = async () => {
     console.log("Init chat...");
 
-    const initMessage = getInitMessageOject();
+    const initMessage: Conversation = getInitMessageOject();
     console.log("INIT MESSAGE:", initMessage);
 
     updateLoading(true);

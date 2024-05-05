@@ -1,9 +1,6 @@
-
-
 import React, {memo, RefObject} from "react";
 import {IoSend} from "react-icons/io5";
 import Input from 'antd/es/input';
-
 
 const { TextArea } = Input;
 
@@ -15,7 +12,6 @@ interface FieldProps {
   textareaRef?: RefObject<HTMLTextAreaElement>;
   error: string;
 }
-
 
 const InputField: React.FC<FieldProps> = (
   {
@@ -33,33 +29,86 @@ const InputField: React.FC<FieldProps> = (
   }
 
   return(
-    <div className="self-stretch bg-reply-bg h-[66px] flex flex-col items-start justify-start p-5 box-border" >
-      <div className="relative self-stretch flex flex-row items-start justify-between pt-0 px-0 pb-1" >
+    <div style={{
+      alignSelf: 'stretch',
+      backgroundColor: 'white',
+      height: '66px',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      justifyContent: 'center',
+      padding: '3px 20px',
+      boxSizing: 'border-box',
+    }}>
 
         <TextArea
+          className={"bwClientBotFont999666"}
           placeholder="Deine Frage..."
-          className="[border:none] [outline:none]
-             bg-[transparent] h-auto max-h-[120px] flex-1 overflow-y-visible  flex flex-row items-center text-start
-             font-chat-operator-quick-reply
-             justify-center py-2 px-4 outline-none text-stamp-text resize-none absolute bottom-[-30px] w-[340px] bg-white z-30"
+          style={{
+            border: 'none',
+            borderRadius: 5,
+            outline: 'none',
+            height: 'auto',
+            maxHeight: '120px',
+            flexGrow: 1,
+            overflowY: 'visible',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '2px 4px',
+            fontSize: 'inherit',
+            width: '340px',
+            backgroundColor: 'rgba(0,0,0,.01)',
+            verticalAlign: "start"
+          }}
           autoSize
           disabled={getDisabled()}
           value={input}
-          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => updateInput(e.target.value, textareaRef)}
+          onChange={(e) => updateInput(e.target.value, textareaRef)}
         />
         <button
-          className="cursor-pointer absolute right-1 [border:none] p-0 bg-[transparent] flex flex-row items-center justify-start gap-[12px]"
-          onClick={() => chatRequestProcess}
+          style={{
+            cursor: 'pointer',
+            position: 'absolute',
+            right: '12px',
+            border: 'none',
+            backgroundColor: 'white',
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '12px',
+            padding: 7,
+            borderRadius: 14,
+          }}
+          onClick={() => chatRequestProcess()}
         >
-          <div className="overflow-hidden flex flex-row items-center justify-start relative gap-[10px]">
-            <IoSend size={24}/>
-          </div>
+
+            <IoSend size={24} color={"black"} />
+
         </button>
-      </div>
     </div>
+
   )
 }
 
 console.log("FINISHED AREA WILL BE RENDERED");
 
 export default memo(InputField);
+
+
+/*
+<div style={{
+        position: 'relative',
+        alignSelf: 'stretch',
+        display: 'flex',
+        flexDirection: 'row',
+        backgroundColor: "red",
+        alignItems: 'flex-start',
+        justifyContent: 'space-between',
+        paddingTop: '0',
+        paddingLeft: '0',
+        paddingRight: '0',
+        paddingBottom: '1px'
+      }}>
+ */

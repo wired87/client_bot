@@ -1,22 +1,24 @@
-
-import React, {memo, useEffect, useRef} from "react";
+import React, { memo, useCallback, useEffect, useRef } from "react";
 
 import ResponseMessage from "./ResponseMessage";
 import UserMessage from "./UserMessage";
-import LoadingMessage from "./LoadingMessage";
 
-import Alert from '@mui/material/Alert';
-import Spinner from "react-activity/dist/Spinner";
-import "react-activity/dist/Spinner.css";
 import {Conversation} from "../../interface/SessionObjectInterfaces";
 import {scrollToBottom} from "../../message_functions/helper";
 import {useSelector} from "react-redux";
+import { Spinner } from "react-activity";
+import { Alert } from "@mui/material";
+import StatusMessage from "./StatusMessage";
+import MessageLoadingAnimation from "../coponents/MessageLoading";
+import ErrorMessageContent from "../coponents/ErrorMessageContent";
+
 
 interface MessagesTypes {
   error: string;
   systemError: string;
   loading: boolean;
   sysLoading: boolean;
+  chatRequestProcess: () => Promise<void>;
 }
 
 const Messages: React.FC<MessagesTypes> = (
@@ -25,7 +27,8 @@ const Messages: React.FC<MessagesTypes> = (
     error,
     systemError,
     loading,
-    sysLoading
+    sysLoading,
+    chatRequestProcess
   }
 
 ) => {
@@ -39,7 +42,7 @@ const Messages: React.FC<MessagesTypes> = (
   }, [conversation, loading]);
 
 
-  const getMessageList = () => {
+  const getMessageList = useCallback(() => {
     console.log("getMessageList gets rendered");
     if ( conversation &&
       conversation.length > 0 &&
@@ -48,24 +51,34 @@ const Messages: React.FC<MessagesTypes> = (
         ))) {
       return conversation.map((item: Conversation, index: number) => {
         if (item.publisher === "AI") {
-          return <ResponseMessage key={index} text={item.text} time={item.time} />;
+          return <ResponseMessage key={index} text={item.text} />;
         } else if (item.publisher === "USER") {
           return <UserMessage key={index} text={item.text} time={item.time} />;
+        } else if ( error.length > 0 ) {
+          return (
+            <StatusMessage
+              children={
+                <ErrorMessageContent
+                  retry={chatRequestProcess}
+                  error={ error }
+                />
+              }
+            />
+          );
         }
-        return null;
+        return <></>
       });
     }
-  }
+  }, [error, conversation]);
 
 
   const getLoadingMessage = () => {
     console.log("getLoadingMessage  gets rendered");
     if ( loading ) {
       console.log("getLoadingMessage  gets rendered true");
-      return(
-        <LoadingMessage />
-      )
+      return <StatusMessage children={<MessageLoadingAnimation />} />;
     }
+    return <></>
   }
 
   const getErrorMessage = () => {
@@ -75,57 +88,74 @@ const Messages: React.FC<MessagesTypes> = (
         <Alert severity="error">{ error }</Alert>
       )
     }
+    return <></>
   }
 
   const getSystemErrorMessage = () => {
     console.log("getErrorMessage  gets rendered");
     if ( systemError.length > 0 ) {
       return(
-        <Alert severity="error" className={"w-full"}>{ systemError }</Alert>
+        <Alert severity="error" >{ systemError }</Alert>
       )
     }
+    return <></>
   }
 
-  const systemErrorContent = () => {
+  const sysLoadingComp = () => {
     console.log("systemErrorContent  gets rendered");
     if ( sysLoading ) {
       return(
-        <Spinner color={"black"} animating={loading} size={30}/>
+        <Spinner color={"black"} animating={sysLoading} size={30} />
       )
     }
+    return <></>
   }
 
   console.log("MAIN RETURN Messages   gets rendered");
-  console.log({ ResponseMessage, UserMessage, LoadingMessage, Alert });
 
   return(
-    <div
-      ref={scrollContainerRef}
-      className="overflow-y-auto  self-stretch flex-1 relative bg-reply-bg overflow-hidden text-left text-mini
-      text-operator-message-text font-chat-operator-quick-reply">
-      <div className="absolute top-[20px] left-[20px] w-[383px] flex flex-col items-end justify-end gap-[16px]">
-        <div
-             className="self-stretch flex flex-col items-end justify-end">
-
-          {
-            getSystemErrorMessage()
-          }
-          {
-            getMessageList()
-          }
-          {
-            getLoadingMessage()
-          }
-          {
-            getErrorMessage()
-          }
-          {
-            systemErrorContent()
-          }
+      <div
+        ref={scrollContainerRef}
+        style={{
+          overflowY: 'auto',
+          alignSelf: 'stretch',
+          flexGrow: 1,
+          position: 'relative',
+          backgroundColor: 'white',
+          overflow: 'hidden',
+          textAlign: 'left',
+          fontSize: 'mini',
+          color: 'operator-message-text',
+        }}
+      >
+        <div style={{
+          position: 'absolute',
+          top: '20px',
+          left: '20px',
+          width: '383px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'end',
+          justifyContent: 'end',
+          gap: '16px'
+        }}>
+          <div style={{
+            alignSelf: 'stretch',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'end',
+            justifyContent: 'end'
+          }}>
+            {getMessageList()}
+            {getLoadingMessage()}
+            {getErrorMessage()}
+            {sysLoadingComp()}
+            {getSystemErrorMessage()}
+          </div>
         </div>
       </div>
-    </div>
   );
 }
 console.log("FINISHED   MAIN RETURN Messages   gets rendered");
 export default memo(Messages);
+

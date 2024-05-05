@@ -7,9 +7,13 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 module.exports = {
   mode: 'production', // or 'development' or 'none'
   entry: glob.sync('./src/index.tsx'),
+
   output: {
     filename: 'client_bundle999666.js',
     path: path.resolve(__dirname, 'dist'),
+    library: 'BWClient',
+    libraryTarget: 'umd',  // UMD Format
+    umdNamedDefine: true
   },
 
   module: {
@@ -19,7 +23,8 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader',
-          'postcss-loader'
+          'postcss-loader',
+
         ]
       },
       {
@@ -37,9 +42,13 @@ module.exports = {
   },
   optimization: {
     minimize: true,
-    minimizer: [new TerserPlugin(), new CssMinimizerPlugin()]
+    minimizer: [
+      new TerserPlugin(),
+      new CssMinimizerPlugin()
+    ]
   }
 };
+
 /*
 .sort((a, b) => {
     // Sortiere so, dass CSS-Dateien zuerst kommen

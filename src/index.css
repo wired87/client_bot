@@ -1,8 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 .border-l {
   border-left: 1px solid #e2e8f0 !important;
+}
+@font-face {
+  font-family: 'MainBwClientFOnt999666';
+  src: url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap") format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.bwClientBotFont999666 {
+  font-family: 'MainBwClientFOnt999666', serif;
 }

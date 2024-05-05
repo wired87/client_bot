@@ -1,4 +1,3 @@
-
 import React, {memo} from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { IoMdRefresh } from "react-icons/io";
@@ -30,7 +29,7 @@ const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
   const deleteMessages = async () => {
     console.log("deleteMessages gets renderd...");
     dispatch(conversationActions.ClearMessages());
-    await init;
+    init;
     const infoData: InfoDataTypes | null = getFromSessionStorage("infoData");
     if ( infoData && infoData.clientId)
       try {
@@ -55,31 +54,99 @@ const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
     }
 
   return(
-    <div className="self-stretch bg-black flex flex-row items-center justify-start max-h-[70px] p-5 gap-[30px]">
-      <div className="w-2 relative leading-[18px] font-black hidden"></div>
-      <div className="flex flex-row items-center justify-start gap-[14px] text-left font-chat-operator-quick-reply">
-        <div className="flex flex-row items-center justify-start">
-          <div className="w-[46px] rounded-[125px] box-border flex flex-col items-start justify-end ">
-            <h4>
-              BW
-            </h4>
+    <>
+      <div className={"bwClientBotFont999666"} style={{
+        alignSelf: 'stretch',
+        backgroundColor: 'black',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        maxHeight: '70px',
+        padding: '0 20px',
+        gap: '30px'
+      }} >
+        <div style={{
+          width: '2px',
+          position: 'relative',
+          lineHeight: '18px',
+          fontWeight: '900',
+          display: 'none'
+        }}>
+          
+        </div>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'flex-start',
+          gap: '14px',
+          textAlign: 'left',
+        }}>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'flex-start'
+          }}>
+            <div style={{
+              width: '46px',
+              borderRadius: '125px',
+              boxSizing: 'border-box',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              justifyContent: 'flex-end'
+            }}>
+              <h4  className={"bwClientBotFont999666"} style={{ color: 'white' }}>
+                BW
+              </h4>
+            </div>
           </div>
         </div>
+        <div style={{
+          flexGrow: 1,
+          display: 'flex',
+          gap: '3px',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'flex-end'
+        }}>
+          <button
+            style={{
+              cursor: 'pointer',
+              borderRadius: '50%',
+              border: 'none',
+              padding: '1px',
+              backgroundColor: 'transparent',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            onClick={deleteMessages}
+            title="Start over"
+          >
+            <IoMdRefresh color="white" size={25} />
+          </button>
+          <button
+            style={{
+              cursor: 'pointer',
+              borderRadius: '50%',
+              border: 'none',
+              padding: '1px',
+              backgroundColor: 'transparent',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+            onClick={updateOpen}
+          >
+            <IoCloseSharp color="white" size={25} />
+          </button>
+        </div>
       </div>
-      <div className="flex-1 flex gap-3 flex-row items-center justify-end">
-        <button
-          className="cursor-pointer rounded-full [border:none] hover:bg-gray-100 p-px bg-[transparent] flex items-center justify-center"
-          onClick={deleteMessages}
-          title={"Start over"} >
-          <IoMdRefresh color={"white"} size={25} />
-        </button>
-        <button
-          className="cursor-pointer rounded-full  [border:none] p-px bg-[transparent] flex items-center justify-center"
-          onClick={updateOpen}>
-          <IoCloseSharp color={"white"} size={25}/>
-        </button>
-      </div>
-    </div>
+    </>
+
   )
 }
 

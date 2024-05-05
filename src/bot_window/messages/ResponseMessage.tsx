@@ -3,38 +3,89 @@ import React, {memo} from "react";
 
 interface ResponseMessageTypes {
   text: string;
-  time: string;
 }
 
 const ResponseMessage: React.FC<ResponseMessageTypes> = (
   {
     text,
-    time
   }
 ) => {
   console.log("Render the Response message...");
   return(
-    <div className="mb-7 self-stretch flex flex-col items-end justify-end">
-      <div className="self-stretch flex flex-row items-end justify-start gap-[10px]">
-        <div className="w-8 flex flex-col items-start justify-start pt-0 px-0 pb-[23px] box-border">
-          <h4>
+    <div style={{
+      marginBottom: '1.75rem',
+      alignSelf: 'stretch',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      justifyContent: 'flex-start',
+
+
+    }}>
+      <div style={{
+
+        alignSelf: 'stretch',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'flex-end',
+        justifyContent: 'flex-start',
+
+
+      }}>
+
+        <div style={{
+          width: '2.2rem',
+          height: '2.2rem',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxSizing: 'border-box',
+          backgroundColor: "black",
+          borderRadius: 50
+           }}>
+          <h4 style={{color: "white"}}>
             BW
           </h4>
         </div>
-        <div className="flex flex-col items-start justify-end gap-[6px]">
-          <div className="rounded-3xs bg-operator-message-bg flex flex-col items-start justify-start py-4 px-[18px] box-border max-w-[300px]">
-            <div className="w-full relative leading-[140%] inline-block max-w-[260px]">
-              <p className="m-0">
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          justifyContent: 'flex-end',
+          gap: '6px'
+        }}>
+          <div style={{
+            borderRadius: '0.375rem',
+            backgroundColor: "#f8f4fc",
+            overflow: 'hidden',
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: "8px 17px",
+            boxSizing: 'border-box',
+            maxWidth: '300px'
+          }}>
+            <div style={{
+              fontSize: 15,
+              height:"auto",
+              position: 'relative',
+              lineHeight: '140%',
+              maxWidth: '260px',
+              wordWrap: 'break-word',
+            }}>
+              <p style={{
+                margin: '0'
+              }}>
                 {text}
               </p>
             </div>
           </div>
-          <div className="relative text-smi leading-[120%] text-stamp-text">
-            {time}
-          </div>
         </div>
       </div>
     </div>
+
   );
 }
 

@@ -1,19 +1,15 @@
-
-
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { IoChatbubbleOutline } from "react-icons/io5";
-import Spinner from "react-activity/dist/Spinner";
-import "react-activity/dist/Spinner.css";
+import { Spinner } from "react-activity";
 import {useLoading, useSystemError} from "./hooks/universalHooks";
 import {useInit} from "./hooks/requests";
 import ChatBot from "./bot_window/Chotbot";
-import PortalPopup from "./bot_window/PortalPopup";
+
 
 export default function App() {
-  const [open, setOpen] = useState(false);
-  const updateOpen = () => setOpen(prev => !prev);
-  const intercomRef = useRef<HTMLButtonElement>(null);
+  const [open, setOpen] = useState<boolean>(false);
+  const updateOpen = () => setOpen((prevState) => !prevState);
 
   // HOOKS
   const { loading, updateLoading } = useLoading();
@@ -29,20 +25,18 @@ export default function App() {
     } else if (loading) {
       return <Spinner style={{ cursor: "pointer" }} color={"white"} animating={loading} size={30} />;
     }
+    return <></>
   };
 
   const handleOpenClick = async () => {
-    setOpen((prev) => !prev);
+    updateOpen();
     if (!open) {
       await init();
     }
   };
 
-  useEffect(() => {
-    console.log("Loading:", loading);
-  }, [loading]);
 
-  const chatBot = () => {
+  const chatBot = ( ) => {
     if ( open ) {
       return(
         <ChatBot init={init} sysLoading={loading} systemError={systemError} updateOpen={updateOpen}/>
@@ -52,23 +46,31 @@ export default function App() {
   }
 
   return (
-    <PortalPopup placement="Bottom right" relativeLayerRef={intercomRef} onOutsideClick={handleOpenClick} bottom={300}>
-
-    <button
-        className="cursor-pointer border-none p-4 bg-main-colour rounded-81xl flex  items-center justify-center"
+    <>
+      <button
         style={
-        { zIndex: "10001", bottom: "60px",
-          right: "20px", position: "fixed",
-          backgroundColor: "#000000", borderWidth: 0,
-          borderRadius: 50, padding: 10
-        }}
+          { display: "flex", justifyContent: "center", alignItems: "center",
+            zIndex: 10001,
+            bottom: "50px",
+            right: "20px", position: "fixed",
+            backgroundColor: "#000000", borderWidth: 0,
+            borderRadius: 50, padding: 10, pointerEvents: 'auto',
+            cursor: "pointer", border: "none",
+          }}
         onClick={handleOpenClick}
       >
         {buttonIcon()}
       </button>
-      {
-        chatBot()
-      }
-    </PortalPopup>
+        {
+          chatBot()
+        }
+    </>
   );
 }
+
+
+/*
+    <PortalPopup open={open} placement="Bottom right" relativeLayerRef={intercomRef} onOutsideClick={handleOpenClick} bottom={300}>
+    </PortalPopup>
+
+ */

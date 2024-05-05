@@ -8,11 +8,30 @@ const persistConfig = {
   storage,
 };
 
-// Persisting the main root reducer
-const persistRed = persistReducer(persistConfig, rootReducers);
+const persistedReducer = persistReducer(persistConfig, rootReducers);
 
-export const store = configureStore({
-  reducer: persistRed,
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ['knownNonSerializableAction'],
+        // Function to check if a value is serializable
+        isSerializable: (value: any) => {
+          // Customize the serializability check as needed
+          if (typeof value === 'function') {
+            console.error("Value serializable")
+            return true;
+          }
+          console.log(`Value ${value} not serializable...`)
+          return false;
+        },
+        // Log or throw error after specified number of ignored actions
+        warnAfter: 32,
+      },
+    }),
 });
 
 export const persistor = persistStore(store);
+
+export default store;

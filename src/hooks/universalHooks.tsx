@@ -9,6 +9,15 @@ export const useLoading = () => {
 }
 
 
+export const useSysLoading = () => {
+  const [sysLoading, setSysLoading] = useState<boolean>(false);
+
+  const updateSysLoading = (b:boolean) => setSysLoading(b);
+
+  return {sysLoading, updateSysLoading};
+}
+
+
 export const useError = () => {
   const [error, setError] = useState<string>("");
 
@@ -24,6 +33,14 @@ export const useSystemError = () => {
   const updateSystemError = (value: string) => setError(value);
 
   return { systemError, updateSystemError };
+}
+
+export const useRetryInput = () => {
+  const [retryInput, setRetryInput] = useState<string>("");
+
+  const updateRetryInput = (value: string) => setRetryInput(value);
+
+  return { retryInput, updateRetryInput };
 }
 
 

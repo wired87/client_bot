@@ -13,16 +13,54 @@ const UserMessage: React.FC<UserMessageTypes> = (
 ) => {
   console.log("Render the Response message...");
   return(
-    <div className="flex flex-col items-end justify-end gap-[6px] text-reply-bg">
-      <div className="rounded-md bg-main-colour overflow-hidden flex flex-row items-center justify-end py-4 px-[19px] box-border max-w-[300px]">
-        <div className="flex-1 relative leading-[140%] inline-block max-w-[260px]">
-          {text}
+    <>
+      <link rel="stylesheet" href="../../index.css" />
+      <div
+        className={"bwClientBotFont999666"}
+        style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-end',
+        justifyContent: 'flex-end',
+        gap: '6px',
+      }}>
+        <div  style={{
+          borderRadius: '0.375rem',
+          backgroundColor: "#f8f4fc",
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'flex-end',
+          padding: "8px 17px",
+          boxSizing: 'border-box',
+          maxWidth: '300px'
+        }}>
+          <div         className={"bwClientBotFont999666"}
+                       style={{
+            color: "black", fontSize: 15,
+            position: 'relative',
+            maxWidth: '260px',
+                         wordWrap: 'break-word',
+          }}>
+
+              {text}
+
+          </div>
+        </div>
+        <div
+          className={"bwClientBotFont999666"}
+          style={{
+          position: 'relative',
+          fontSize: '16px',
+          lineHeight: '120%',
+          color: 'black'
+        }}>
+          {time}
         </div>
       </div>
-      <div className="relative text-smi leading-[120%] text-stamp-text">
-        {time}
-      </div>
-    </div>
+    </>
+
   );
 }
 
