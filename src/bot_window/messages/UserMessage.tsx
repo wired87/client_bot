@@ -24,7 +24,10 @@ const UserMessage: React.FC<UserMessageTypes> = (
         padding: "0 30px"
     }}>
       <div  style={{
-        borderRadius: '0.375rem',
+        borderTopRightRadius: 0,
+        borderBottomRightRadius: '0.375rem',
+        borderTopLeftRadius: '0.375rem',
+        borderBottomLeftRadius: '0.375rem',
         backgroundColor: "#f8f4fc",
         overflow: 'hidden',
         display: 'flex',

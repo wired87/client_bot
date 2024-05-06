@@ -5,18 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1ae6c76-09c0-457d-8b9f-8c142864b25a" name="Changes" comment="styles">
-      <change afterPath="$PROJECT_DIR$/src/bot_window/coponents/SysErrorContainer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bot_window/Chotbot.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/Chotbot.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bot_window/InputField.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/InputField.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bot_window/coponents/SysLoadingIndicator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/coponents/SysLoadingIndicator.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bot_window/messages/Messages.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/messages/Messages.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bot_window/messages/ResponseMessage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/messages/ResponseMessage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bot_window/messages/UserMessage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/messages/UserMessage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/requests.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/requests.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +140,9 @@
       <workItem from="1714809440641" duration="14550000" />
       <workItem from="1714844604207" duration="3682000" />
       <workItem from="1714848341446" duration="7613000" />
-      <workItem from="1714893982386" duration="40296000" />
+      <workItem from="1714893982386" duration="40551000" />
+      <workItem from="1714972558640" duration="30000" />
+      <workItem from="1715007105846" duration="210000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -183,7 +176,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714929614620</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="styles">
+      <option name="closed" value="true" />
+      <created>1714937324985</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1714937324985</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

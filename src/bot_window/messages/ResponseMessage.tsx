@@ -57,7 +57,11 @@ const ResponseMessage: React.FC<ResponseMessageTypes> = (
           gap: '6px'
         }}>
           <div style={{
-            borderRadius: '0.375rem',
+            borderTopRightRadius: '0.375rem',
+            borderBottomRightRadius: '0.375rem',
+            borderTopLeftRadius: '0.375rem',
+            borderBottomLeftRadius: 0,
+
             backgroundColor: "#f8f4fc",
             overflow: 'hidden',
             display: 'flex',
