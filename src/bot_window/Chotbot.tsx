@@ -1,6 +1,6 @@
 
 
-import React, {useRef} from "react";
+import React, { useCallback, useRef } from "react";
 
 import Messages from "./messages/Messages";
 import {useChatRequest} from "../hooks/requests";
@@ -31,6 +31,10 @@ const ChatBot: React.FC<ChotbotType> = ({updateOpen, systemError, init, sysLoadi
   const { retryInput, updateRetryInput } = useRetryInput();
 
   const chatArgs = { updateError, updateLoading, updateRetryInput };
+
+  const sessionData = getFromSessionStorage("infoData");
+
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const { handleChatRequest } = useChatRequest(chatArgs);
 
@@ -74,7 +78,6 @@ const ChatBot: React.FC<ChotbotType> = ({updateOpen, systemError, init, sysLoadi
 
       updateInput("");
 
-      const sessionData = getFromSessionStorage("infoData");
       console.log("GETTING DATA:", sessionData)
       if (sessionData && sessionData.botId && sessionData.clientId && sessionData.chatsLeft > 0) {
         const senderObject: ChatSenderObjectTypes = {
@@ -92,9 +95,17 @@ const ChatBot: React.FC<ChotbotType> = ({updateOpen, systemError, init, sysLoadi
     }
   }
 
-  console.log("START TEXT AREA WILL BE RENDERED");
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-  console.log("ref defined");
+  const getColor = useCallback(() => {
+    return sessionData?.config?.primaryText || "white"
+  }, [sessionData?.config?.primaryText]);
+
+  const getBackgroundColor = useCallback(() => {
+    return sessionData?.config.primary || "black"
+  }, [sessionData?.config?.primary]);
+
+  const getName = useCallback(() => {
+    return sessionData?.config?.name || "BW"
+  }, [sessionData?.config?.name])
 
   return (
     <div
@@ -120,9 +131,16 @@ const ChatBot: React.FC<ChotbotType> = ({updateOpen, systemError, init, sysLoadi
         color: "#333333",
         fontFamily: "Inter",
         pointerEvents: "all",
-      }}
-    >
-      <ChaBotHeading updateOpen={updateOpen} init={init} />
+      }} >
+
+      <ChaBotHeading
+        updateOpen={updateOpen}
+        init={init}
+        background={getBackgroundColor()}
+        color={getColor()}
+        name={getName()}
+      />
+
       <Messages
         error={error}
         systemError={systemError}
@@ -130,7 +148,9 @@ const ChatBot: React.FC<ChotbotType> = ({updateOpen, systemError, init, sysLoadi
         sysLoading={sysLoading}
         chatRequestProcess={chatRequestProcess}
       />
+
       <div style={{ height: "1.2px", backgroundColor: "#F3F4F6" }} />
+
       <InputField
         sysLoading={sysLoading}
         error={systemError}
@@ -139,6 +159,7 @@ const ChatBot: React.FC<ChotbotType> = ({updateOpen, systemError, init, sysLoadi
         updateInput={updateInput}
         textareaRef={textareaRef}
       />
+
       <div
         style={{
           justifyContent: "center",
@@ -147,8 +168,7 @@ const ChatBot: React.FC<ChotbotType> = ({updateOpen, systemError, init, sysLoadi
           paddingBottom: 10,
           width: "100%",
           backgroundColor: "white",
-        }}
-      >
+        }} >
         <a
           color={"black"}
           style={{ fontSize: 12, color: "black" }}
@@ -161,5 +181,5 @@ const ChatBot: React.FC<ChotbotType> = ({updateOpen, systemError, init, sysLoadi
     </div>
   );
 };
-console.log("Finished loading ChatBot...")
+
 export default ChatBot;

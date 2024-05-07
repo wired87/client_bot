@@ -81,27 +81,14 @@ const Messages: React.FC<MessagesTypes> = (
     return <></>
   }
 
-  const getSystemErrorMessage = () => {
-    console.log("getErrorMessage  gets rendered");
+  const getSystemErrorMessage = useCallback(() => {
     if ( systemError.length > 0 ) {
-      return(
-        <div style={{
-          justifyContent: "flex-start",
-          alignItems: "center",
-          position: "absolute",
-          top: 0,
-          left: 0,
-           }}>
-          <SysErrorContainer sysErrorMessage={systemError}/>
-        </div>
-
-      )
+      return <SysErrorContainer sysErrorMessage={systemError}/>
     }
     return <></>
-  }
+  }, [systemError]);
 
   const sysLoadingComp = () => {
-    console.log("systemErrorContent  gets rendered");
     if ( sysLoading ) {
       return(
         <SysLoadingSpinner />
@@ -110,48 +97,75 @@ const Messages: React.FC<MessagesTypes> = (
     return <></>
   }
 
-  console.log("MAIN RETURN Messages   gets rendered");
 
   return (
     <div
       ref={scrollContainerRef}
       style={{
-        overflowY: "auto",
+        overflowY: "scroll",
+        overflowX: "hidden",
         alignSelf: "stretch",
         flexGrow: 1,
-        position: "relative",
+        height: 500,
         backgroundColor: "white",
-        overflow: "hidden",
+        position: "relative",
         textAlign: "left",
         fontSize: "mini",
         color: "operator-message-text",
+        scrollbarWidth: "thin",  // Für Firefox
+        scrollbarColor: "#888 #f0f0f0"
       }}
     >
+      <style>
+        {`
+        ::-webkit-scrollbar {
+          width: 8px;  // Breite des Scrollbars
+        }
+        ::-webkit-scrollbar-track {
+          background: #f0f0f0;  // Hintergrund des Tracks
+        }
+        ::-webkit-scrollbar-thumb {
+          background: #888;  // Farbe des Scrollbar "Thumb"
+        }
+        ::-webkit-scrollbar-thumb:hover {
+          background: #555;  // Farbe beim Hover
+        }
+      `}
+      </style>
+
       <div
         style={{
           position: "absolute",
           top: "20px",
-          left: "20px",
-          width: "383px",
+          width: "100%",
           display: "flex",
           flexDirection: "column",
           alignItems: "end",
           justifyContent: "end",
-          gap: "16px",
+          alignSelf: "stretch",
+          overflowY: "auto",
         }} >
         <div
           style={{
             alignSelf: "stretch",
+            padding: "10px 10px",
             display: "flex",
             flexDirection: "column",
-            alignItems: "end",
-            justifyContent: "end",
+            alignItems: "center",
+            justifyContent: "center",
+            overflowY: "auto",
+            position: "relative"
           }} >
           {getMessageList()}
           {getLoadingMessage()}
           {sysLoadingComp()}
-          {getSystemErrorMessage()}
 
+          <SysErrorContainer sysErrorMessage={systemError}/>
+          <ResponseMessage key={33} text={"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"} />;
+          <UserMessage key={33} text={"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"} time={"now"} />;
+          <ResponseMessage key={33} text={"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"} />;
+          <UserMessage key={33} text={"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"} time={"now"}/>;
+          <ResponseMessage key={33} text={"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"} />;
         </div>
       </div>
     </div>
@@ -162,5 +176,9 @@ console.log("FINISHED   MAIN RETURN Messages   gets rendered");
 export default memo(Messages);
 
 /*
-
+<ResponseMessage key={33} text={"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"} />;
+          <UserMessage key={33} text={"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"} time={"now"} />;
+          <ResponseMessage key={33} text={"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"} />;
+          <UserMessage key={33} text={"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"} time={"now"}/>;
+          <ResponseMessage key={33} text={"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"} />;
  */

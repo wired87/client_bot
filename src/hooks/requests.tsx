@@ -3,7 +3,7 @@
 import axios from "axios";
 
 import {useDispatch, useSelector} from "react-redux";
-import {ChatSenderObjectTypes, Conversation, InfoDataTypes} from "../interface/SessionObjectInterfaces";
+import { BotConfig, ChatSenderObjectTypes, Conversation, InfoDataTypes } from "../interface/SessionObjectInterfaces";
 import {getBotIdProcess, getTime} from "../message_functions/getter";
 import {conversationActions} from "../redux/slice";
 import {getFromSessionStorage, saveToSessionStorage} from "../message_functions/save_and_get";
@@ -112,9 +112,9 @@ export const useInit = (
   const dispatch = useDispatch();
   const conversation: Conversation[] = useSelector((state: any) => state.conversationSlice.conversation);
 
-  const getInitMessageOject = (): Conversation => {
+  const getInitMessageOject = (text: string): Conversation => {
     return {
-      text: "Hallo, wie kann ich Ihnen helfen?",
+      text: text,
       time: String(getTime()),
       publisher: "AI"
     }
@@ -123,20 +123,16 @@ export const useInit = (
 
   const init = async () => {
     console.log("Init chat...");
-
-    const initMessage: Conversation = getInitMessageOject();
-    console.log("INIT MESSAGE:", initMessage);
-
     updateLoading(true);
-    // dispatch(conversationActions.ClearMessages());
+
     const infoData: InfoDataTypes | null = getFromSessionStorage("infoData");
-    const botId = getBotIdProcess(infoData); // "EkHijDnTwC-sattt" //
+    const botId = getBotIdProcess(infoData);
     if ( !botId ) {
       console.log("No Bot id could be set...");
-      updateSystemError("There was an authentication error. Please try again.");
+      updateSystemError("There was an authentication error. Please try again later.");
       updateLoading(false);
     } else {
-      if ( !infoData || !infoData.chatsLeft || !infoData.clientId ) {
+      if ( !infoData || !infoData.chatsLeft || !infoData.clientId || !infoData.config?.welcomeMessage ) {
         console.log("Data missing, init the request...");
         try {
           const res = await axios.post(
@@ -148,6 +144,12 @@ export const useInit = (
           if (res.data?.status_code === 200) {
             console.log("DATA:", res.data);
             updateSystemError("")
+
+            const config: BotConfig = res.data.config
+
+            const initMessage: Conversation = getInitMessageOject(config.welcomeMessage);
+            console.log("INIT MESSAGE:", initMessage);
+
             if ( !conversation || conversation.length === 0 ) {
               dispatch(conversationActions.AddMessage({newMessage: initMessage}));
             }
@@ -156,9 +158,12 @@ export const useInit = (
             const responseObject: InfoDataTypes = {
               chatsLeft: res.data.chats_left || 0,
               clientId: res.data.client_id,
-              botId: botId
+              botId: botId,
+              config: config
             }
+
             saveToSessionStorage(responseObject, "infoData");
+
           } else {
             updateSystemError(res.data.message);
           }
@@ -174,6 +179,10 @@ export const useInit = (
       } else {
         console.log("ALL DATA COLLECTED...")
         updateLoading(false);
+
+        const initMessage: Conversation = getInitMessageOject(infoData.config?.welcomeMessage);
+        console.log("INIT MESSAGE:", initMessage);
+
         if ( !conversation || conversation.length === 0 && systemError.length === 0 ) {
           dispatch(conversationActions.AddMessage({newMessage: initMessage}));
         }

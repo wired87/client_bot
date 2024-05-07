@@ -12,18 +12,18 @@ const SysErrorContainer: React.FC<SysErrorProps> = ({ sysErrorMessage }) => {
       paddingLeft: 20,
       alignItems: 'center',
       justifyContent: "flex-start",
-      width: 340,
+      width: 270,
       maxHeight: 60,
       borderRadius: 5,
       backgroundColor: '#fce4e4',
       gap: 7,
-      flexDirection: "row"
+      flexDirection: "row",
+
     }}>
       <GrCircleAlert color={"#cc0033"}  />
       <p style={{
         color: "black",
         fontSize: 13,
-
       }}>
         {
           sysErrorMessage

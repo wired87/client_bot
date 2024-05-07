@@ -1,4 +1,4 @@
-import React, {memo} from "react";
+import React, { memo, useCallback } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { IoMdRefresh } from "react-icons/io";
 import {useDispatch} from "react-redux";
@@ -11,6 +11,9 @@ import {getFromSessionStorage} from "../message_functions/save_and_get";
 interface ChatBotHeadingTypes {
   updateOpen: () => void;
   init: () => Promise<void>;
+  background?: string;
+  color?: string;
+  name?: string;
 }
 
 const refreshUrl: string = "https://wired66.pythonanywhere.com/client/start-over/";
@@ -20,7 +23,10 @@ const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
 
   {
     updateOpen,
-    init
+    init,
+    background,
+    color,
+    name
   }
 ) => {
   console.log("ChaBotHeading gets renderd...")
@@ -53,11 +59,12 @@ const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
       }
     }
 
+
   return(
     <>
       <div className={"bwClientBotFont999666"} style={{
         alignSelf: 'stretch',
-        backgroundColor: 'black',
+        backgroundColor: background,
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
@@ -98,8 +105,10 @@ const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
               alignItems: 'flex-start',
               justifyContent: 'flex-end'
             }}>
-              <h4  className={"bwClientBotFont999666"} style={{ color: 'white' }}>
-                BW
+              <h4  className={"bwClientBotFont999666"} style={{ color: color }}>
+                {
+                  name
+                }
               </h4>
             </div>
           </div>

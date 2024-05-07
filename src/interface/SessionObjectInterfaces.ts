@@ -3,8 +3,14 @@ export interface InfoDataTypes {
   chatsLeft: number;
   botId: string;
   clientId: string;
-  cusImg?: string;
-  cusCol?: string;
+  config?: BotConfig;
+}
+
+export interface BotConfig {
+  pubName?: string;
+  welcomeMessage: string;
+  primary: string;
+  primaryText: string;
 }
 
 export interface ChatSenderObjectTypes {

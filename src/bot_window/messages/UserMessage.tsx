@@ -18,10 +18,11 @@ const UserMessage: React.FC<UserMessageTypes> = (
       style={{
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'flex-end',
-      justifyContent: 'flex-end',
+      alignItems: 'end',
+      justifyContent: 'end',
+      alignSelf: "stretch",
       gap: '6px',
-        padding: "0 30px"
+      padding: "0 10px"
     }}>
       <div  style={{
         borderTopRightRadius: 0,

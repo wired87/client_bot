@@ -65,7 +65,7 @@ const getColor = () => {
             fontSize: 16,
             color: getColor(),
             width: '340px',
-            backgroundColor: 'rgba(0,0,0,.01)',
+            backgroundColor: 'white',
             verticalAlign: "start",
           }}
           autoSize

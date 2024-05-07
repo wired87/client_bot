@@ -58,7 +58,7 @@ const StatusMessage: React.FC<StatusMessage> = ({ children }) => {
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "center",
-              padding: "8px 20px",
+              padding: "4px 20px",
               boxSizing: "border-box",
               maxWidth: "300px",
             }}

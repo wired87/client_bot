@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { IoChatbubbleOutline } from "react-icons/io5";
 import {useLoading, useSystemError} from "./hooks/universalHooks";
@@ -24,6 +24,13 @@ export default function App() {
     }
     return <></>
   };
+
+  useEffect(() => {
+    init()
+      .then(() => console.log("Init..."))
+      .catch(e => console.log("Init failed..."))
+  }, []);
+
 
   const handleOpenClick = async () => {
     updateOpen();
