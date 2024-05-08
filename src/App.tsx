@@ -5,7 +5,6 @@ import {useLoading, useSystemError} from "./hooks/universalHooks";
 import {useInit} from "./hooks/requests";
 import ChatBot from "./bot_window/Chotbot";
 
-
 export default function App() {
   const [open, setOpen] = useState<boolean>(false);
   const updateOpen = () => setOpen((prevState) => !prevState);

@@ -159,13 +159,7 @@ const Messages: React.FC<MessagesTypes> = (
           {getMessageList()}
           {getLoadingMessage()}
           {sysLoadingComp()}
-
-          <SysErrorContainer sysErrorMessage={systemError}/>
-          <ResponseMessage key={33} text={"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"} />;
-          <UserMessage key={33} text={"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"} time={"now"} />;
-          <ResponseMessage key={33} text={"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"} />;
-          <UserMessage key={33} text={"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"} time={"now"}/>;
-          <ResponseMessage key={33} text={"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"} />;
+          {getSystemErrorMessage()}
         </div>
       </div>
     </div>

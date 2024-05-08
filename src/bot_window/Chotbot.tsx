@@ -114,8 +114,9 @@ const ChatBot: React.FC<ChotbotType> = ({updateOpen, systemError, init, sysLoadi
         position: "fixed",
         bottom: 110,
         right: 30,
-        zIndex: 10002,
+        zIndex: 1000002,
         borderRadius: "18px",
+        transform: "translateZ(0)",
         boxShadow:
           "10px 10px 40px rgba(0, 0, 0, 0.08), 5px 14px 80px rgba(26, 26, 26, 0.12)",
         height: "700px",

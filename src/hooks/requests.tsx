@@ -169,7 +169,7 @@ export const useInit = (
           }
         } catch (error: unknown) {
           if (error instanceof Error) {
-            console.error("Error during registration:", error);
+            console.error("Error during client bot init:", error);
             updateSystemError("Something Went wrong!");
           }
         } finally {
@@ -179,7 +179,7 @@ export const useInit = (
       } else {
         console.log("ALL DATA COLLECTED...")
         updateLoading(false);
-
+        console.log("INFO DATA EXIST:", infoData);
         const initMessage: Conversation = getInitMessageOject(infoData.config?.welcomeMessage);
         console.log("INIT MESSAGE:", initMessage);
 

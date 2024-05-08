@@ -6,6 +6,7 @@ import React from "react";
 import {PersistGate} from "redux-persist/integration/react";
 import {Provider} from "react-redux";
 import store, { persistor } from "./redux/store";
+import ReactDOM from "react-dom"
 
 import "./index.css"
 
@@ -27,35 +28,11 @@ rootContainer.render(
   <root.div>
     <Provider store={store} >
       <PersistGate loading={null} persistor={persistor}>
-        <App />
+        {ReactDOM.createPortal(
+          <App />,
+          document.body // Portal-Ziel ist der body des Dokuments oder ein spezifischerer Ort nach Wunsch
+        )}
       </PersistGate>
     </Provider>
   </root.div>
 );
-
-
-
-
-
-/*
-Rollup:
-"@rollup/plugin-commonjs": "^25.0.7",
-"@rollup/plugin-json": "^6.1.0",
-"@rollup/plugin-node-resolve": "^15.2.3",
-"@rollup/plugin-replace": "^5.0.5",
-"@rollup/plugin-typescript": "^11.1.6",
-"rollup": "^2.79.1",
-"rollup-plugin-delete": "^2.0.0",
-"rollup-plugin-postcss": "^4.0.2",
-"rollup-plugin-terser": "^7.0.2",
-"rollup-plugin-node-polyfills": "^0.2.1",
-"rollup-plugin-shim": "^1.0.0",
-"@rollup/plugin-alias": "^5.1.0",
-
-<link rel="stylesheet" href="./index.css" />
-<link rel="stylesheet" href="react-activity/dist/Spinner.css" />
-<link rel="stylesheet" href="react-activity/dist/Bounce.css" />
-<style type="text/css">{}</style>
-<style type="text/css">{}</style>
-<style type="text/css">{}</style>
- */
