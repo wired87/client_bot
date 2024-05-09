@@ -11,7 +11,7 @@ import MessageLoadingAnimation from "../coponents/MessageLoading";
 import ErrorMessageContent from "../coponents/ErrorMessageContent";
 import SysLoadingSpinner from "../coponents/SysLoadingIndicator";
 import SysErrorContainer from "../coponents/SysErrorContainer";
-
+import root from "react-shadow";
 
 interface MessagesTypes {
   error: string;
@@ -99,7 +99,7 @@ const Messages: React.FC<MessagesTypes> = (
 
 
   return (
-    <div
+    <root.div
       ref={scrollContainerRef}
       style={{
         overflowY: "scroll",
@@ -111,7 +111,6 @@ const Messages: React.FC<MessagesTypes> = (
         position: "relative",
         textAlign: "left",
         fontSize: "mini",
-        color: "operator-message-text",
         scrollbarWidth: "thin",  // Für Firefox
         scrollbarColor: "#888 #f0f0f0"
       }}
@@ -162,17 +161,9 @@ const Messages: React.FC<MessagesTypes> = (
           {getSystemErrorMessage()}
         </div>
       </div>
-    </div>
+    </root.div>
   );
 };
 
 console.log("FINISHED   MAIN RETURN Messages   gets rendered");
 export default memo(Messages);
-
-/*
-<ResponseMessage key={33} text={"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"} />;
-          <UserMessage key={33} text={"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"} time={"now"} />;
-          <ResponseMessage key={33} text={"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"} />;
-          <UserMessage key={33} text={"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"} time={"now"}/>;
-          <ResponseMessage key={33} text={"WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"} />;
- */

@@ -62,7 +62,7 @@ const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
 
   return(
     <>
-      <div className={"bwClientBotFont999666"} style={{
+      <div style={{
         alignSelf: 'stretch',
         backgroundColor: background,
         display: 'flex',
@@ -104,12 +104,12 @@ const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
               flexDirection: 'column',
               alignItems: 'flex-start',
               justifyContent: 'flex-end'
-            }}>
-              <h4  className={"bwClientBotFont999666"} style={{ color: color }}>
+            }} >
+              <p style={{ color: color, fontSize: 25, fontWeight: "bold" }}>
                 {
                   name
                 }
-              </h4>
+              </p>
             </div>
           </div>
         </div>

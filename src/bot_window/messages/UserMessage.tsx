@@ -14,7 +14,6 @@ const UserMessage: React.FC<UserMessageTypes> = (
   console.log("Render the Response message...");
   return(
     <div
-      className={"bwClientBotFont999666"}
       style={{
       display: 'flex',
       flexDirection: 'column',
@@ -40,28 +39,31 @@ const UserMessage: React.FC<UserMessageTypes> = (
         maxWidth: '300px'
       }}>
         <div
-          className={"bwClientBotFont999666"}
           style={{
           color: "black", fontSize: 15,
           position: 'relative',
           maxWidth: '260px',
-                       wordWrap: 'break-word',
+          wordWrap: 'break-word',
 
         }}>
-
+          <p style={{ fontSize: 14, color: "black" }}>
             {text}
+          </p>
+
 
         </div>
       </div>
       <div
-        className={"bwClientBotFont999666"}
         style={{
         position: 'relative',
         fontSize: 14,
         lineHeight: '120%',
         color: 'black'
       }}>
-        {time}
+        <p style={{ fontSize: 14, color:"black" }}>
+          {time}
+        </p>
+
       </div>
     </div>
   );

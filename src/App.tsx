@@ -53,7 +53,7 @@ export default function App() {
       <button
         style={
           { display: "flex", justifyContent: "center", alignItems: "center",
-            zIndex: 10001,
+            zIndex: 20001,
             bottom: "35px",
             right: "20px", position: "fixed",
             backgroundColor: "#000000", borderWidth: 0,
@@ -70,10 +70,3 @@ export default function App() {
     </>
   );
 }
-
-
-/*
-    <PortalPopup open={open} placement="Bottom right" relativeLayerRef={intercomRef} onOutsideClick={handleOpenClick} bottom={300}>
-    </PortalPopup>
-
- */

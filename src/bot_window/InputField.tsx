@@ -1,7 +1,7 @@
 import React, {memo, RefObject} from "react";
 import {IoSend} from "react-icons/io5";
 import Input from 'antd/es/input';
-
+import root from "react-shadow";
 const { TextArea } = Input;
 
 interface FieldProps {
@@ -48,10 +48,10 @@ const getColor = () => {
     }}>
 
         <TextArea
-          className={"bwClientBotFont999666"}
           placeholder="Deine Frage..."
           style={{
             border: 'none',
+            boxShadow: "none",
             borderRadius: 5,
             outline: 'none',
             height: 'auto',
