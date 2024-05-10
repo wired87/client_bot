@@ -3,15 +3,16 @@ const glob = require('glob');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: 'production', // or 'development' or 'none'
-  entry: glob.sync('./src/index.tsx'),
+    entry: glob.sync('./src/bot/BotRoot.tsx'),
 
   output: {
-    filename: 'client_bundle999666.js',
-    path: path.resolve(__dirname, 'dist'),
-    library: 'BWClient',
+    filename: 'iframeContent.js',
+    path: path.resolve(__dirname, 'dist_bot'),
+    library: 'botWindow',
     libraryTarget: 'umd',  // UMD Format
     umdNamedDefine: true
   },
@@ -36,6 +37,11 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: './public/bot.html', // Pfad zu deiner HTML-Vorlage
+      filename: 'bot.html', // Ausgabedatei, die im `dist_bot`-Verzeichnis erstellt wird
+      chunks: ['bot'], // Stellt sicher, dass nur das Bot-Bundle eingebunden wird
+    }),
 ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.css'],

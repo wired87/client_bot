@@ -17,6 +17,13 @@ export const useSysLoading = () => {
   return {sysLoading, updateSysLoading};
 }
 
+export const useOpen = () => {
+  const [open, setOpen] = useState<boolean>(false);
+  const updateOpen = () => setOpen((prevState) => !prevState);
+
+  return {open, updateOpen};
+}
+
 
 export const useError = () => {
   const [error, setError] = useState<string>("");
@@ -52,6 +59,16 @@ export const useInput = () => {
     if (value.length > 0 && textareaRef)
       adjustHeight(textareaRef);
   };
+
+
+
+
+
+
+
+
+
+
 
   const adjustHeight = (textareaRef: RefObject<HTMLTextAreaElement>) => {
     const textarea = textareaRef.current;

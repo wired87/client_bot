@@ -1,5 +1,4 @@
 import { createRoot } from "react-dom/client";
-import root from "react-shadow";
 import React from "react";
 
 import {PersistGate} from "redux-persist/integration/react";
@@ -30,14 +29,16 @@ document.body.appendChild(appContainer);
 const rootContainer = createRoot(appContainer);
 
 rootContainer.render(
-  <iframe style={{ flexGrow: 1, overflow: "visible", height : "200px",
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+    </PersistGate>
+  </Provider>
+
+);
+/*
+<iframe style={{ flexGrow: 1, overflow: "visible", height : "200px",
     width : "200px", opacity: 1, backgroundColor : "transparent",
     pointerEvents : "none", right : "0", bottom : "0", zIndex: 200000 }}>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <App />
-      </PersistGate>
-    </Provider>
-  </iframe>,
-);
-//
+     </iframe>,
+ */

@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { IoChatbubbleOutline } from "react-icons/io5";
-import {useLoading, useSystemError} from "./hooks/universalHooks";
-import {useInit} from "./hooks/requests";
+import useGlobals from "./hooks/useGlobals";
+import Iframe from "react-iframe";
+import { CustomIframe } from "./bot_window/CustomIframe";
 import ChatBot from "./bot_window/Chotbot";
 
 export default function App() {
-  const [open, setOpen] = useState<boolean>(false);
-  const updateOpen = () => setOpen((prevState) => !prevState);
 
-  // HOOKS
-  const { loading, updateLoading } = useLoading();
-  const { systemError, updateSystemError } = useSystemError();
-  const chatRequestArgs = { updateLoading, updateSystemError, systemError };
-  const { init } = useInit(chatRequestArgs);
+  const {init, updateOpen, open, loading, systemError} = useGlobals();
 
   const buttonIcon = () => {
     if (open) {
@@ -27,7 +22,7 @@ export default function App() {
   useEffect(() => {
     init()
       .then(() => console.log("Init..."))
-      .catch(e => console.log("Init failed..."))
+      .catch((e: unknown) => console.log("Init failed cause error:", e))
   }, []);
 
 
@@ -39,14 +34,16 @@ export default function App() {
   };
 
 
-  const chatBot = ( ) => {
-    if ( open ) {
-      return(
-        <ChatBot init={init} sysLoading={loading} systemError={systemError} updateOpen={updateOpen}/>
-      )
+    const BotContent = () =>  {
+      if ( open ) {
+        return(
+          <CustomIframe >
+            <ChatBot init={init} sysLoading={loading} systemError={systemError} updateOpen={updateOpen} />
+          </CustomIframe>
+        )
+      }
     }
-    return <></>
-  }
+
 
   return (
     <>
@@ -64,9 +61,9 @@ export default function App() {
       >
         {buttonIcon()}
       </button>
-        {
-          chatBot()
-        }
+      {
+        BotContent()
+      }
     </>
   );
 }
