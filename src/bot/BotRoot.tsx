@@ -1,7 +1,7 @@
 import { createRoot } from "react-dom/client";
 import React from "react";
 import BotApp from "./BotApp";
-
+require('./bot.tsx');
 
 const botId: string = "bot_root";
 

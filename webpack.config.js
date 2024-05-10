@@ -3,7 +3,6 @@ const glob = require('glob');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: 'production', // or 'development' or 'none'
@@ -38,7 +37,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: './public/bot.html', // Pfad zu deiner HTML-Vorlage
+      template: './public/bot/bot.html', // Pfad zu deiner HTML-Vorlage
       filename: 'bot.html', // Ausgabedatei, die im `dist_bot`-Verzeichnis erstellt wird
       chunks: ['bot'], // Stellt sicher, dass nur das Bot-Bundle eingebunden wird
     }),
