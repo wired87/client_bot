@@ -8,29 +8,31 @@ import store, { persistor } from "./redux/store";
 import "./index.css"
 import App from "./App";
 
-const appContainer = document.createElement('div');
+const appContainer = document.getElementById('preview');
+if ( appContainer ) {
+  appContainer.id = 'my-unique-app-container';
+  appContainer.style.width = "200px";
+  appContainer.style.height = "200px";
+  appContainer.style.position = "relative";
+  appContainer.style.margin = "auto";
+  appContainer.style.pointerEvents = "none";
+  appContainer.style.zIndex = "1999999";
+  appContainer.style.display = "flex";
+  appContainer.style.justifyContent = "center";
+  appContainer.style.alignItems = "center";
+  appContainer.style.opacity =  "1";
+  appContainer.style.overflow =  "visible";
 
-appContainer.id = 'my-unique-app-container';
-appContainer.style.width = "200px";
-appContainer.style.height = "200px";
-appContainer.style.position = "relative";
-appContainer.style.margin = "auto";
-appContainer.style.pointerEvents = "none";
-appContainer.style.zIndex = "1999999";
-appContainer.style.display = "flex";
-appContainer.style.justifyContent = "center";
-appContainer.style.alignItems = "center";
-appContainer.style.opacity =  "1";
-appContainer.style.overflow =  "visible";
+  document.body.appendChild(appContainer);
 
-document.body.appendChild(appContainer);
+  const rootContainer = createRoot(appContainer);
 
-const rootContainer = createRoot(appContainer);
-
-rootContainer.render(
+  rootContainer.render(
     <Provider store={store} >
       <PersistGate loading={null} persistor={persistor}>
         <App />
       </PersistGate>
     </Provider>
-);
+  );
+}
+
