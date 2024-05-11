@@ -1,7 +1,6 @@
 import React, {memo, RefObject} from "react";
 import {IoSend} from "react-icons/io5";
 import Input from 'antd/es/input';
-import root from "react-shadow";
 const { TextArea } = Input;
 
 interface FieldProps {
@@ -45,6 +44,7 @@ const getColor = () => {
       justifyContent: 'flex-start',
       padding: '3px 20px',
       boxSizing: 'border-box',
+
     }}>
 
         <TextArea
@@ -64,9 +64,11 @@ const getColor = () => {
             padding: '2px 4px',
             fontSize: 16,
             color: getColor(),
-            width: '340px',
+            width: '320px',
             backgroundColor: 'white',
             verticalAlign: "start",
+            fontFamily: "Roboto, sans-serif",
+            fontStyle: "normal",
           }}
           autoSize
           disabled={getDisabled()} // getDisabled()

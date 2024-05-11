@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { css, keyframes } from '@emotion/react';
-import root from 'react-shadow/emotion';
 
 const loadingC = keyframes`
   0%, 100% {
@@ -42,13 +41,13 @@ const line = (delay:  number) => css`
 
 function MessageLoadingAnimation() {
   return (
-    <root.section css={wrapper}>
+    <div css={wrapper}>
       <div css={spinnerStyle}>
         <div css={line(0)}></div>
         <div css={line(0.2)}></div>
         <div css={line(0.4)}></div>
       </div>
-    </root.section>
+    </div>
   );
 }
 

@@ -11,7 +11,6 @@ import MessageLoadingAnimation from "../coponents/MessageLoading";
 import ErrorMessageContent from "../coponents/ErrorMessageContent";
 import SysLoadingSpinner from "../coponents/SysLoadingIndicator";
 import SysErrorContainer from "../coponents/SysErrorContainer";
-import root from "react-shadow";
 
 interface MessagesTypes {
   error: string;
@@ -99,14 +98,14 @@ const Messages: React.FC<MessagesTypes> = (
 
 
   return (
-    <root.div
+    <div
       ref={scrollContainerRef}
       style={{
         overflowY: "scroll",
         overflowX: "hidden",
         alignSelf: "stretch",
         flexGrow: 1,
-        height: 500,
+        height: 550,
         backgroundColor: "white",
         position: "relative",
         textAlign: "left",
@@ -161,7 +160,7 @@ const Messages: React.FC<MessagesTypes> = (
           {getSystemErrorMessage()}
         </div>
       </div>
-    </root.div>
+    </div>
   );
 };
 

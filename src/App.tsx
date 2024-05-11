@@ -9,7 +9,7 @@ import { CusIfr } from "./bot_window/CusIfr";
 
 export default function App() {
 
-  const {init, updateOpen, open, loading, systemError} = useGlobals();
+  const {init, updateOpen, open, loading, updateLoading, systemError} = useGlobals();
 
 
   const buttonIcon = () => {
@@ -40,7 +40,16 @@ export default function App() {
       if ( open ) {
         console.log("Open...")
         return(
-          <CusIfr ><ChatBot init={init} sysLoading={loading} systemError={systemError} updateOpen={updateOpen}/></CusIfr>
+          <CusIfr >
+            <ChatBot
+              init={init}
+              updateLoading={ updateLoading}
+              loading={loading}
+              sysLoading={loading}
+              systemError={systemError}
+              updateOpen={updateOpen}
+            />
+          </CusIfr>
         )
       }
     }

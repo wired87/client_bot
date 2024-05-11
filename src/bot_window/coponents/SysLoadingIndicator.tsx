@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { css, keyframes } from '@emotion/react';
-import root from 'react-shadow/emotion';
 
 const offset = 187;
 const duration = 1.4; // Duration is specified in seconds
@@ -72,7 +71,7 @@ const pathCss = css`
 
 function SysLoadingSpinner() {
   return (
-    <root.section css={spinnerContainerCss} style={{display: 'flex',
+    <div css={spinnerContainerCss} style={{display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
       width: '100%',
@@ -89,7 +88,7 @@ function SysLoadingSpinner() {
           css={pathCss}
         />
       </svg>
-    </root.section>
+    </div>
   );
 }
 

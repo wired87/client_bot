@@ -17,7 +17,6 @@ appContainer.style.position = "fixed";
 appContainer.style.bottom = "0";
 appContainer.style.right = "0";
 appContainer.style.pointerEvents = "none";
-appContainer.style.backgroundColor = "red";
 appContainer.style.zIndex = "1999999";
 appContainer.style.display = "flex";
 appContainer.style.justifyContent = "center";

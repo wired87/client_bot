@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from "react";
+import React, { memo } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { IoMdRefresh } from "react-icons/io";
 import {useDispatch} from "react-redux";
@@ -69,9 +69,9 @@ const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        maxHeight: '70px',
         padding: '0 20px',
-        gap: '30px'
+        gap: '30px',
+        maxHeight: 60
       }} >
         <div style={{
           width: '2px',
@@ -105,7 +105,15 @@ const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
               alignItems: 'flex-start',
               justifyContent: 'flex-end'
             }} >
-              <p style={{ color: color, fontSize: 25, fontWeight: "bold" }}>
+              <p style={
+                {
+                  color: color,
+                  fontSize: 20,
+                  fontWeight: "bold",
+                  fontFamily: "Roboto, sans-serif",
+                  fontStyle: "normal",
+                }
+              }>
                 {
                   name
                 }

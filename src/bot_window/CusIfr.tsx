@@ -1,35 +1,116 @@
-import React, { LegacyRef, ReactNode, RefObject, useRef, useState } from "react";
-import { createPortal } from "react-dom";
-import Frame from 'react-frame-component';
+import React, { ReactNode, useEffect, useState } from "react";
+import Frame, { useFrame } from "react-frame-component";
+
+interface ElementTypes {
+  type: string;
+  href: string;
+  rel: string;
+  crossOrigin?: boolean
+}
+
+// ROBOTO FONT SRC
+const FONT_LINK_SRC: ElementTypes[] = [
+  {
+    type: "link",
+    href: "https://fonts.googleapis.com",
+    rel: "preconnect" ,
+  },
+  {
+    type: "link",
+    href: "https://fonts.gstatic.com",
+    rel: "preconnect",
+    crossOrigin: true,
+  },
+  {
+    type: "link",
+    href: "https://fonts.googleapis.com/css2?family=Roboto&display=swap",
+    rel: "stylesheet",
+  }
+];
+
+
+
+
+
 
 interface A {
   children: ReactNode
 }
+
+
 export const CusIfr: React.FC<A> = ({children}) => {
-  const [contentRef, setContentRef] = useState(null)
-  // @ts-ignore
-  const mountNode = contentRef?.contentWindow?.document?.body
+  const [contentRef, setContentRef] = useState(null);
+
+  const { document } = useFrame();
+
+  const createAssets = ( ) => {
+    FONT_LINK_SRC.map((item: ElementTypes) => {
+      const newElement = document?.createElement(item.type) as HTMLLinkElement;
+      if ( newElement ) {
+        newElement.href = item.href;
+        newElement.rel = item.rel;
+        if ( item.crossOrigin ) {
+          newElement.crossOrigin = "anonymous";
+        }
+        document?.head.appendChild(newElement);
+      }
+    })};
 
 
-  const getChatBotWidgetContent = () => {
-    return `
-        <!DOCTYPE html>
-          <html lang="en">
-          <head>
-            <meta charset="UTF-8">
-            <title>Title</title>
-          </head>
-          <body>
-            <p></p>
-          </body>
-          </html>
-        `
+  useEffect(() => {
+    if ( document ) {
+      createAssets();
+    }
+  }, [document]);
+
+
+  const getIframeHead = () => {
+    return(
+      <>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={"anonymous"} />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+      </>
+    )
   }
 
- //srcDoc={getChatBotWidgetContent()}
+
   return (
-    <Frame ref={contentRef} style={{
+    <Frame
+      head={
+        getIframeHead()
+      }
+      ref={contentRef} style={{
       width: "400px",
+      position: "fixed",
+      bottom: 110,
+      right: 30,
+      zIndex: 2000002,
+      borderRadius: "18px",
+      transform: "translateZ(0)",
+      boxShadow: "10px 10px 40px rgba(0, 0, 0, 0.08), 5px 14px 80px rgba(26, 26, 26, 0.12)",
+      height: "700px",
+      minHeight: 80,
+      overflow: "hidden",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "start",
+      justifyContent: "start",
+      maxWidth: "100%",
+      textAlign: "center",
+      fontSize: "1.125rem",
+      color: "#333333",
+      pointerEvents: "all",
+      border: "none",
+      padding:0,
+    }}>
+      {children}
+    </Frame>
+  )
+}
+
+/*
+width: "400px",
       position: "fixed",
       bottom: 110,
       right: 30,
@@ -52,8 +133,4 @@ export const CusIfr: React.FC<A> = ({children}) => {
       fontFamily: "Inter",
       pointerEvents: "all",
       border: "none"
-    }}>
-      {children}
-    </Frame>
-  )
-}
+ */

@@ -81,7 +81,9 @@ const ResponseMessage: React.FC<ResponseMessageTypes> = (
               wordWrap: 'break-word',
             }}>
               <p style={{
-                margin: '0'
+                margin: '0',
+                fontFamily: "Roboto, sans-serif",
+                fontStyle: "normal",
               }}>
                 {text}
               </p>

@@ -19,22 +19,33 @@ interface ChotbotType {
   systemError: string;
   init: () => Promise<void>;
   sysLoading: boolean;
+  updateLoading: (value: boolean) => void;
+  loading: boolean;
 }
 
 const poweredByUrl: string = "https://www.botworld.cloud";
 
-const ChatBot: React.FC<ChotbotType> = ({updateOpen, systemError, init, sysLoading}) => {
+const ChatBot: React.FC<ChotbotType> = (
+  {
+    updateOpen,
+    systemError,
+    init,
+    sysLoading,
+    updateLoading,
+    loading
+  }
+) => {
 
   const { error, updateError } = useError();
   const { input, updateInput } = useInput();
-  const { loading, updateLoading } = useLoading();
-  const { retryInput, updateRetryInput } = useRetryInput();
 
-  const chatArgs = { updateError, updateLoading, updateRetryInput };
+  const { retryInput, updateRetryInput } = useRetryInput();
 
   const sessionData = getFromSessionStorage("infoData");
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const chatArgs = { updateError, updateLoading, updateRetryInput };
 
   const { handleChatRequest } = useChatRequest(chatArgs);
 
@@ -110,7 +121,7 @@ const ChatBot: React.FC<ChotbotType> = ({updateOpen, systemError, init, sysLoadi
   return (
     <div
       style={{
-        width: "100%", height: "100%"
+        width: 400, height: 700, backgroundColor: "blue", margin: 0, position: "absolute", left: 0, top: 0
       }} >
 
       <ChaBotHeading
@@ -129,8 +140,6 @@ const ChatBot: React.FC<ChotbotType> = ({updateOpen, systemError, init, sysLoadi
         chatRequestProcess={chatRequestProcess}
       />
 
-      <div style={{ height: "1.2px", backgroundColor: "#F3F4F6" }} />
-
       <InputField
         sysLoading={sysLoading}
         error={systemError}
@@ -148,10 +157,18 @@ const ChatBot: React.FC<ChotbotType> = ({updateOpen, systemError, init, sysLoadi
           paddingBottom: 10,
           width: "100%",
           backgroundColor: "white",
+          position:"absolute",
+          bottom: 0
         }} >
         <a
           color={"black"}
-          style={{ fontSize: 12, color: "black" }}
+          style={
+          {
+            fontSize: 12,
+            color: "black",
+            fontFamily: "Roboto, sans-serif",
+            fontStyle: "normal",
+          }}
           href={poweredByUrl}
           target="_blank"
           rel="noopener noreferrer">

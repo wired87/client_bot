@@ -46,7 +46,14 @@ const UserMessage: React.FC<UserMessageTypes> = (
           wordWrap: 'break-word',
 
         }}>
-          <p style={{ fontSize: 14, color: "black" }}>
+          <p
+            style={
+            {
+              fontSize: 14,
+              color: "black",
+              fontFamily: "Roboto, sans-serif",
+              fontStyle: "normal",
+            }}>
             {text}
           </p>
 
@@ -60,7 +67,14 @@ const UserMessage: React.FC<UserMessageTypes> = (
         lineHeight: '120%',
         color: 'black'
       }}>
-        <p style={{ fontSize: 14, color:"black" }}>
+        <p
+          style={
+          {
+            fontSize: 14,
+            color:"black",
+            fontFamily: "Roboto, sans-serif",
+            fontStyle: "normal",
+          }}>
           {time}
         </p>
 

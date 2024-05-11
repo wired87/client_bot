@@ -8,11 +8,11 @@ const useGlobals = () => {
   const { loading, updateLoading } = useLoading();
 
   const { systemError, updateSystemError } = useSystemError();
+   // Args
+  const initArgs = { updateLoading, updateSystemError, systemError };
 
-  const chatRequestArgs = { updateLoading, updateSystemError, systemError };
+  const { init } = useInit(initArgs);
 
-  // evtl in komps auslagern mit werten aus kontek
-  const { init } = useInit(chatRequestArgs);
 
   return {
     systemError,
