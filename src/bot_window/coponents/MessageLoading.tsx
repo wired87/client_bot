@@ -1,4 +1,22 @@
-/** @jsxImportSource @emotion/react */
+
+
+function MessageLoadingAnimation() {
+  return (
+    <div className={"wrapper"}>
+      <div className={"spinnerStyle"}>
+        <div className={"line delay0"}></div>
+        <div className={"line delay2"}></div>
+        <div className={"line delay4"}></div>
+      </div>
+    </div>
+  );
+}
+
+export default MessageLoadingAnimation;
+
+
+/*
+/** @jsxImportSource @emotion/react
 import { css, keyframes } from '@emotion/react';
 
 const loadingC = keyframes`
@@ -22,7 +40,7 @@ const wrapper = css`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 100%;  
+  width: 100%;
   height: 20px;
   padding: 5px  15px;
   border-radius: 5px;
@@ -38,17 +56,4 @@ const line = (delay:  number) => css`
   background-color: #000000;
   animation: ${loadingC} 0.6s ${delay}s linear infinite;
 `;
-
-function MessageLoadingAnimation() {
-  return (
-    <div css={wrapper}>
-      <div css={spinnerStyle}>
-        <div css={line(0)}></div>
-        <div css={line(0.2)}></div>
-        <div css={line(0.4)}></div>
-      </div>
-    </div>
-  );
-}
-
-export default MessageLoadingAnimation;
+ */

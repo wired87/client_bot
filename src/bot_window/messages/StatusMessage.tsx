@@ -13,8 +13,7 @@ const StatusMessage: React.FC<StatusMessage> = ({ children }) => {
         flexDirection: "column",
         alignItems: "flex-start",
         justifyContent: "flex-start",
-      }}
-    >
+      }} >
       <div
         style={{
           alignSelf: "stretch",

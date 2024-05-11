@@ -1,5 +1,7 @@
-import React, { ReactNode, useEffect, useState } from "react";
-import Frame, { useFrame } from "react-frame-component";
+import React, { ReactNode} from "react";
+import Frame from "react-frame-component";
+import "./iFrame/styles.css";
+import { getLoadingDotsStyles, getStyles } from "./iFrame/styles";
 
 interface ElementTypes {
   type: string;
@@ -29,40 +31,19 @@ const FONT_LINK_SRC: ElementTypes[] = [
 ];
 
 
-
-
-
-
 interface A {
   children: ReactNode
+
 }
 
 
-export const CusIfr: React.FC<A> = ({children}) => {
-  const [contentRef, setContentRef] = useState(null);
+export const CusIfr: React.FC<A> = (
+  {
+    children,
 
-  const { document } = useFrame();
-
-  const createAssets = ( ) => {
-    FONT_LINK_SRC.map((item: ElementTypes) => {
-      const newElement = document?.createElement(item.type) as HTMLLinkElement;
-      if ( newElement ) {
-        newElement.href = item.href;
-        newElement.rel = item.rel;
-        if ( item.crossOrigin ) {
-          newElement.crossOrigin = "anonymous";
-        }
-        document?.head.appendChild(newElement);
-      }
-    })};
-
-
-  useEffect(() => {
-    if ( document ) {
-      createAssets();
-    }
-  }, [document]);
-
+  }
+  ) => {
+  //const [contentRef, setContentRef] = useState(null);
 
   const getIframeHead = () => {
     return(
@@ -70,6 +51,9 @@ export const CusIfr: React.FC<A> = ({children}) => {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin={"anonymous"} />
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+
+        {getStyles()}
+        {getLoadingDotsStyles()}
       </>
     )
   }
@@ -80,7 +64,7 @@ export const CusIfr: React.FC<A> = ({children}) => {
       head={
         getIframeHead()
       }
-      ref={contentRef} style={{
+      style={{
       width: "400px",
       position: "fixed",
       bottom: 110,
@@ -104,7 +88,9 @@ export const CusIfr: React.FC<A> = ({children}) => {
       border: "none",
       padding:0,
     }}>
-      {children}
+      {
+        children
+      }
     </Frame>
   )
 }
@@ -133,4 +119,29 @@ width: "400px",
       fontFamily: "Inter",
       pointerEvents: "all",
       border: "none"
+
+
+
+
+  const { document } = useFrame();
+
+  const createAssets = ( ) => {
+    FONT_LINK_SRC.map((item: ElementTypes) => {
+      const newElement = document?.createElement(item.type) as HTMLLinkElement;
+      if ( newElement ) {
+        newElement.href = item.href;
+        newElement.rel = item.rel;
+        if ( item.crossOrigin ) {
+          newElement.crossOrigin = "anonymous";
+        }
+        document?.head.appendChild(newElement);
+      }
+    })};
+
+
+  useEffect(() => {
+    if ( document ) {
+      createAssets();
+    }
+  }, [document]);
  */

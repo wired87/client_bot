@@ -24,7 +24,7 @@ interface UseChatRequestTypes {
 }
 
 interface UseInitTypes {
-  updateLoading: (b:boolean) => void;
+  updateSysLoading: (b:boolean) => void;
   updateSystemError: (value: string) => void;
   systemError: string;
 }

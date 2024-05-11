@@ -75,7 +75,13 @@ const Messages: React.FC<MessagesTypes> = (
     console.log("getLoadingMessage  gets rendered");
     if ( loading ) {
       console.log("getLoadingMessage  gets rendered true");
-      return <StatusMessage children={<MessageLoadingAnimation />} />;
+      return(
+        <StatusMessage
+          children={
+          <MessageLoadingAnimation />
+        }
+      />
+      )
     }
     return <></>
   }

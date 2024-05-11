@@ -4,7 +4,7 @@ import React, { useCallback, useRef } from "react";
 
 import Messages from "./messages/Messages";
 import {useChatRequest} from "../hooks/requests";
-import { useError, useInput, useLoading, useRetryInput } from "../hooks/universalHooks";
+import { useError, useInput, useRetryInput } from "../hooks/universalHooks";
 import {ChatSenderObjectTypes, Conversation} from "../interface/SessionObjectInterfaces";
 import {getTime} from "../message_functions/getter";
 import {conversationActions} from "../redux/slice";

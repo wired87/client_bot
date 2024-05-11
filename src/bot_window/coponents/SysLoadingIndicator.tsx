@@ -1,4 +1,37 @@
-/** @jsxImportSource @emotion/react */
+
+
+function SysLoadingSpinner() {
+  return (
+    <div className={"spinner-container"} style={{display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
+      height: '550px',
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      backgroundColor: "rgba(255,255,255,.1)"
+    }}>
+      <svg width="50" height="50" viewBox="0 0 50 50">
+        <circle
+          cx="25"
+          cy="25"
+          r="20"
+          fill="none"
+          strokeWidth="5"
+          className={"spinner-path"}
+        />
+      </svg>
+    </div>
+  );
+}
+
+
+export default SysLoadingSpinner;
+
+
+/*
+@jsxImportSource @emotion/react
 import { css, keyframes } from '@emotion/react';
 
 const offset = 187;
@@ -77,7 +110,10 @@ function SysLoadingSpinner() {
       width: '100%',
       height: '500px',
       backgroundColor: 'transparent',
-      position: 'relative'}}>
+      position: 'fixed',
+      top: 0,
+      left: 0
+    }}>
       <svg width="50" height="50" viewBox="0 0 50 50">
         <circle
           cx="25"
@@ -94,3 +130,5 @@ function SysLoadingSpinner() {
 
 
 export default SysLoadingSpinner;
+
+ */

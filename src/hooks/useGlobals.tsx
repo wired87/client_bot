@@ -1,4 +1,4 @@
-import { useLoading, useOpen, useSystemError } from "./universalHooks";
+import { useLoading, useOpen, useSysLoading, useSystemError } from "./universalHooks";
 import { useInit } from "./requests";
 
 const useGlobals = () => {
@@ -7,20 +7,21 @@ const useGlobals = () => {
 
   const { loading, updateLoading } = useLoading();
 
+  const {sysLoading, updateSysLoading} = useSysLoading();
+
   const { systemError, updateSystemError } = useSystemError();
    // Args
-  const initArgs = { updateLoading, updateSystemError, systemError };
+  const initArgs = { updateSysLoading, updateSystemError, systemError };
 
   const { init } = useInit(initArgs);
-
 
   return {
     systemError,
     updateSystemError,
     open,
     updateOpen,
-    loading,
-    updateLoading,
+    loading, updateLoading,
+    sysLoading, updateSysLoading,
     init,
   }
 }
