@@ -80,13 +80,11 @@ const ChatBot: React.FC<ChotbotType> = (
       const userMessage = getUserMessage();
       console.log("ADD SER MESSAGE TO STORE:", userMessage);
       dispatch(conversationActions.AddMessage({ newMessage: userMessage }));
-
       console.log("CLEAR INPUT");
 
       if (retryInput.trim().length === 0) {
         updateRetryInput(input);
       }
-
       updateInput("");
 
       console.log("GETTING DATA:", sessionData)

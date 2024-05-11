@@ -9,9 +9,8 @@ module.exports = {
     entry: glob.sync('./src/index.tsx'),
 
   output: {
-    filename: 'client_bundle999666.js',
+    filename: 'preview.js',
     path: path.resolve(__dirname, 'dist'),
-    library: 'botWindow',
     libraryTarget: 'umd',  // UMD Format
     umdNamedDefine: true
   },

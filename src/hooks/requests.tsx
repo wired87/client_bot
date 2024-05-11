@@ -163,7 +163,6 @@ export const useInit = (
             }
 
             saveToSessionStorage(responseObject, "infoData");
-
           } else {
             updateSystemError(res.data.message);
           }

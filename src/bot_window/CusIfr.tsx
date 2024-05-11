@@ -66,9 +66,7 @@ export const CusIfr: React.FC<A> = (
       }
       style={{
       width: "400px",
-      position: "fixed",
-      bottom: 110,
-      right: 30,
+      position: "relative",
       zIndex: 2000002,
       borderRadius: "18px",
       transform: "translateZ(0)",
