@@ -103,7 +103,7 @@ const messageList: Conversation[] = getFromSessionStorage("conversation");
 
 export const useInit = (
   {
-    updateLoading,
+    updateSysLoading,
     updateSystemError,
     systemError
   }: UseInitTypes
@@ -123,14 +123,14 @@ export const useInit = (
 
   const init = async () => {
     console.log("Init chat...");
-    updateLoading(true);
+    updateSysLoading(true);
 
     const infoData: InfoDataTypes | null = getFromSessionStorage("infoData");
     const botId = getBotIdProcess(infoData);
     if ( !botId ) {
       console.log("No Bot id could be set...");
       updateSystemError("There was an authentication error. Please try again later.");
-      updateLoading(false);
+      updateSysLoading(false);
     } else {
       if ( !infoData || !infoData.chatsLeft || !infoData.clientId || !infoData.config?.welcomeMessage ) {
         console.log("Data missing, init the request...");
@@ -174,11 +174,11 @@ export const useInit = (
           }
         } finally {
           console.log("Auth process finished...");
-          updateLoading(false);
+          updateSysLoading(false);
         }
       } else {
         console.log("ALL DATA COLLECTED...")
-        updateLoading(false);
+        updateSysLoading(false);
         console.log("INFO DATA EXIST:", infoData);
         const initMessage: Conversation = getInitMessageOject(infoData.config?.welcomeMessage);
         console.log("INIT MESSAGE:", initMessage);

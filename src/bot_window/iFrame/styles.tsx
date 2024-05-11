@@ -105,7 +105,7 @@ export const getLoadingDotsStyles = () => {
           padding: 5px 15px;
           border-radius: 5px;
           text-align: center;
-          background-color: #d8d8d8;
+          background-color: transparent;
         }
 
         .line {

@@ -5,18 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1ae6c76-09c0-457d-8b9f-8c142864b25a" name="Changes" comment="styles">
-      <change afterPath="$PROJECT_DIR$/src/bot_window/iFrame/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bot_window/iFrame/styles.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bot_window/Chotbot.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/Chotbot.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bot_window/CusIfr.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/CusIfr.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bot_window/coponents/MessageLoading.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/coponents/MessageLoading.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bot_window/coponents/SysLoadingIndicator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/coponents/SysLoadingIndicator.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bot_window/messages/Messages.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/messages/Messages.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bot_window/messages/StatusMessage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/messages/StatusMessage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/iFrame/styles.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/iFrame/styles.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/hooks/requests.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/requests.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/useGlobals.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useGlobals.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +154,7 @@
       <workItem from="1715327025652" duration="31674000" />
       <workItem from="1715419297466" duration="3410000" />
       <workItem from="1715422755130" duration="2544000" />
-      <workItem from="1715425337287" duration="11819000" />
+      <workItem from="1715425337287" duration="13386000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -261,7 +252,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715427630308</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="styles">
+      <option name="closed" value="true" />
+      <created>1715437734577</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1715437734577</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
