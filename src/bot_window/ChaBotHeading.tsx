@@ -14,6 +14,8 @@ interface ChatBotHeadingTypes {
   background?: string;
   color?: string;
   name?: string;
+  headingContainerRef: any;
+
 }
 
 const refreshUrl: string = "https://wired66.pythonanywhere.com/client/start-over/";
@@ -26,8 +28,10 @@ const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
     init,
     background,
     color,
-    name
+    name,
+    headingContainerRef
   }
+
 ) => {
   console.log("ChaBotHeading gets renderd...")
   const dispatch = useDispatch();
@@ -60,111 +64,121 @@ const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
     }
 
 
-  return(
+  return (
     <>
-      <div style={{
-        alignSelf: 'stretch',
-        backgroundColor: background,
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        padding: '0 20px',
-        gap: '30px',
-        maxHeight: 60
-      }} >
-        <div style={{
-          width: '2px',
-          position: 'relative',
-          lineHeight: '18px',
-          fontWeight: '900',
-          display: 'none'
-        }}>
+      <div
+        ref={headingContainerRef}
+        style={{
+          alignSelf: "stretch",
+          backgroundColor: background,
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "flex-start",
+          padding: "0 20px",
+          gap: "30px",
+          maxHeight: 60,
+        }}
+      >
+        <div
+          style={{
+            width: "2px",
+            position: "relative",
+            lineHeight: "18px",
+            fontWeight: "900",
+            display: "none",
+          }}
+        >
           
         </div>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'flex-start',
-          gap: '14px',
-          textAlign: 'left',
-        }}>
-          <div style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'flex-start'
-          }}>
-            <div style={{
-              width: '46px',
-              borderRadius: '125px',
-              boxSizing: 'border-box',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-              justifyContent: 'flex-end'
-            }} >
-              <p style={
-                {
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "flex-start",
+            gap: "14px",
+            textAlign: "left",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "flex-start",
+            }}
+          >
+            <div
+              style={{
+                width: "46px",
+                borderRadius: "125px",
+                boxSizing: "border-box",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+                justifyContent: "flex-end",
+              }}
+            >
+              <p
+                style={{
                   color: color,
                   fontSize: 20,
                   fontWeight: "bold",
                   fontFamily: "Roboto, sans-serif",
                   fontStyle: "normal",
-                }
-              }>
-                {
-                  name
-                }
+                }}
+              >
+                {name}
               </p>
             </div>
           </div>
         </div>
-        <div style={{
-          flexGrow: 1,
-          display: 'flex',
-          gap: '3px',
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'flex-end'
-        }}>
+        <div
+          style={{
+            flexGrow: 1,
+            display: "flex",
+            gap: "3px",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "flex-end",
+          }}
+        >
           <button
             style={{
-              cursor: 'pointer',
-              borderRadius: '50%',
-              border: 'none',
-              padding: '1px',
-              backgroundColor: 'transparent',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
+              cursor: "pointer",
+              borderRadius: "50%",
+              border: "none",
+              padding: "1px",
+              backgroundColor: "transparent",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
             onClick={deleteMessages}
             title="Start over"
           >
-            <IoMdRefresh color="white" size={25} />
+            <IoMdRefresh color={color} size={25} />
           </button>
           <button
             style={{
-              cursor: 'pointer',
-              borderRadius: '50%',
-              border: 'none',
-              padding: '1px',
-              backgroundColor: 'transparent',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center'
+              cursor: "pointer",
+              borderRadius: "50%",
+              border: "none",
+              padding: "1px",
+              backgroundColor: "transparent",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
             onClick={updateOpen}
           >
-            <IoCloseSharp color="white" size={25} />
+            <IoCloseSharp color={color} size={25} />
           </button>
         </div>
       </div>
     </>
-
-  )
+  );
 }
 
 export default memo(ChaBotHeading);

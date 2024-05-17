@@ -28,7 +28,7 @@ interface UseInitTypes {
   updateSystemError: (value: string) => void;
   systemError: string;
 }
-
+const defaultError: string= "Something went wrong. Please try again...";
 interface UseChatReturnTypes {
   handleChatRequest: (postObject: ChatSenderObjectTypes) => Promise<void>;
 }
@@ -45,7 +45,7 @@ export const useChatRequest = (
     updateRetryInput
   }: UseChatRequestTypes
 ): UseChatReturnTypes  => {
-  console.log("useChatRequest gets created...");
+
   const dispatch = useDispatch();
 
   const handleChatRequest = async (postObject: ChatSenderObjectTypes) => {
@@ -53,7 +53,6 @@ export const useChatRequest = (
     updateError("");
     updateLoading(true);
     try {
-
       const res = await axios.post(chatUrl, postObject);
       console.log("Auth Response:", res);
       if (res.data?.status_code === 200) {
@@ -69,19 +68,16 @@ export const useChatRequest = (
         dispatch(conversationActions.AddMessage({ newMessage: responseObject }));
         updateRetryInput("");
       } else {
-        updateError(res.data.message);
+        updateError(res.data.message || defaultError);
       }
     } catch (error) {
       console.error("Error during registration:", error);
-      updateError("Something Went wrong");
+      updateError(defaultError);
     } finally {
       console.log("Auth process finished...");
-
     }
     updateLoading(false);
   };
-
-
 
   return {
     handleChatRequest,

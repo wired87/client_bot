@@ -5,8 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1ae6c76-09c0-457d-8b9f-8c142864b25a" name="Changes" comment="styles">
+      <change afterPath="$PROJECT_DIR$/src/hooks/useWindow.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/ChaBotHeading.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/ChaBotHeading.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/Chotbot.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/Chotbot.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/CusIfr.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/CusIfr.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/InputField.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/InputField.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/coponents/ErrorMessageContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/coponents/ErrorMessageContent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/messages/Messages.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/messages/Messages.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/messages/ResponseMessage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/messages/ResponseMessage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/messages/UserMessage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/messages/UserMessage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/requests.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/requests.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/universalHooks.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/universalHooks.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/message_functions/helper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/message_functions/helper.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +34,7 @@
         <option value="JavaScript File" />
         <option value="HTML File" />
         <option value="CSS File" />
+        <option value="tsconfig.json" />
         <option value="TypeScript JSX File" />
       </list>
     </option>
@@ -90,7 +105,7 @@
       <recent name="C:\Users\wired\OneDrive\Desktop\Projects\client_bot\src\stories\bot" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build">
+  <component name="RunManager" selected="npm.npm start">
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
       <method v="2" />
     </configuration>
@@ -154,7 +169,10 @@
       <workItem from="1715419297466" duration="3410000" />
       <workItem from="1715422755130" duration="2544000" />
       <workItem from="1715425337287" duration="14205000" />
-      <workItem from="1715451492337" duration="5406000" />
+      <workItem from="1715451492337" duration="8684000" />
+      <workItem from="1715506000279" duration="5722000" />
+      <workItem from="1715513281320" duration="15431000" />
+      <workItem from="1715944905688" duration="16365000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -276,7 +294,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715459005074</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="styles">
+      <option name="closed" value="true" />
+      <created>1715460073724</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1715460073724</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

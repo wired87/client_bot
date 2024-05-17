@@ -3,15 +3,19 @@ import React, {memo} from "react";
 interface UserMessageTypes {
   text: string;
   time: string;
+  primary: string;
+  primaryText: string;
 }
 
 const UserMessage: React.FC<UserMessageTypes> = (
   {
     text,
-    time
+    time,
+    primary,
+    primaryText
   }
 ) => {
-  console.log("Render the Response message...");
+
   return(
     <div
       style={{
@@ -20,7 +24,6 @@ const UserMessage: React.FC<UserMessageTypes> = (
       alignItems: 'end',
       justifyContent: 'end',
       alignSelf: "stretch",
-      gap: '6px',
       padding: "0 10px"
     }}>
       <div  style={{
@@ -28,7 +31,7 @@ const UserMessage: React.FC<UserMessageTypes> = (
         borderBottomRightRadius: '0.375rem',
         borderTopLeftRadius: '0.375rem',
         borderBottomLeftRadius: '0.375rem',
-        backgroundColor: "#f8f4fc",
+        backgroundColor: primary,
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'row',
@@ -44,13 +47,12 @@ const UserMessage: React.FC<UserMessageTypes> = (
           position: 'relative',
           maxWidth: '260px',
           wordWrap: 'break-word',
-
         }}>
           <p
             style={
             {
               fontSize: 14,
-              color: "black",
+              color: primaryText,
               fontFamily: "Roboto, sans-serif",
               fontStyle: "normal",
             }}>
@@ -64,12 +66,15 @@ const UserMessage: React.FC<UserMessageTypes> = (
         style={{
         position: 'relative',
         fontSize: 14,
-        lineHeight: '120%',
-        color: 'black'
+        color: 'black',
+        display: "flex",
+        justifyContent: "flex-start",
+        alignItems: "flex-start"
       }}>
         <p
           style={
           {
+            position: "relative",
             fontSize: 14,
             color:"black",
             fontFamily: "Roboto, sans-serif",

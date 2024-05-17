@@ -10,7 +10,9 @@ interface FieldProps {
   updateInput: (value:string, textareaRef:RefObject<HTMLTextAreaElement> | undefined) => void;
   textareaRef?: RefObject<HTMLTextAreaElement>;
   error: string;
+  inputContainerRef?: any
 }
+const poweredByUrl: string = "https://www.botworld.cloud";
 
 const InputField: React.FC<FieldProps> = (
   {
@@ -19,7 +21,8 @@ const InputField: React.FC<FieldProps> = (
     updateInput,
     chatRequestProcess,
     input,
-    error
+    error,
+    inputContainerRef
   }
 ) => {
   console.log("InputField gets rendered");
@@ -34,7 +37,9 @@ const getColor = () => {
     return "rgba(0,0,0,.4)";
 }
   return(
-    <div style={{
+    <div
+      ref={inputContainerRef}
+      style={{
       alignSelf: 'stretch',
       backgroundColor: 'white',
       height: '66px',
@@ -44,7 +49,8 @@ const getColor = () => {
       justifyContent: 'flex-start',
       padding: '3px 20px',
       boxSizing: 'border-box',
-
+      position: "absolute",
+      bottom: 0
     }}>
 
         <TextArea
@@ -97,6 +103,31 @@ const getColor = () => {
             <IoSend size={24} color={"black"} />
 
         </button>
+      <div
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          display: "flex",
+          paddingBottom: 10,
+          width: "100%",
+          backgroundColor: "white",
+        }} >
+        <a
+          color={"black"}
+          style={
+            {
+              fontSize: 12,
+              color: "black",
+              fontFamily: "Roboto, sans-serif",
+              fontStyle: "normal",
+            }
+        }
+          href={poweredByUrl}
+          target="_blank"
+          rel="noopener noreferrer">
+          Powered by BotWorld.cloud
+        </a>
+      </div>
     </div>
 
   )

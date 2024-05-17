@@ -70,7 +70,7 @@ export const useInput = () => {
 
 
 
-  const adjustHeight = (textareaRef: RefObject<HTMLTextAreaElement>) => {
+const adjustHeight = (textareaRef: RefObject<HTMLTextAreaElement>) => {
     const textarea = textareaRef.current;
     if (!textarea) return;
 

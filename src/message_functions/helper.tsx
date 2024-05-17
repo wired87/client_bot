@@ -1,5 +1,3 @@
-
-
 import React from "react";
 
 export   const scrollToBottom = (ref: React.RefObject<HTMLDivElement>) => {

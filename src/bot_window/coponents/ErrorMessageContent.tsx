@@ -6,9 +6,13 @@ interface ErrorContent {
 }
 const ErrorMessageContent: React.FC<ErrorContent> = ({ retry, error }) => {
   return(
-    <>
-      <p style={{color: "black"}}>Es gab einen Fehler bei der Verarbeitung: { error } Bitte versuch es
-        nochmal ich gebe mein bestes deine Frage zu beantworten.
+    <div style={{flexDirection: "row", display: "flex", gap: 10}}>
+      <p style={{color: "black", fontSize: 15,
+        fontWeight: "bold",
+        fontFamily: "Roboto, sans-serif",
+        fontStyle: "normal"
+      }}>
+        {error}
       </p>
       <button
         style={{
@@ -23,9 +27,9 @@ const ErrorMessageContent: React.FC<ErrorContent> = ({ retry, error }) => {
         }}
         onClick={retry}
         title="Start over" >
-        <IoMdRefresh color="white" size={25} />
+        <IoMdRefresh color="black" size={25} />
       </button>
-    </>
+    </div>
   )
 }
 

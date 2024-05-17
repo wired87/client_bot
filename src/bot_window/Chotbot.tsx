@@ -1,6 +1,6 @@
 
 
-import React, { useCallback, useRef } from "react";
+import React, { RefObject, useCallback, useRef } from "react";
 
 import Messages from "./messages/Messages";
 import {useChatRequest} from "../hooks/requests";
@@ -21,9 +21,10 @@ interface ChotbotType {
   sysLoading: boolean;
   updateLoading: (value: boolean) => void;
   loading: boolean;
+  frameRef: RefObject<HTMLIFrameElement>;
+
 }
 
-const poweredByUrl: string = "https://www.botworld.cloud";
 
 const ChatBot: React.FC<ChotbotType> = (
   {
@@ -32,7 +33,8 @@ const ChatBot: React.FC<ChotbotType> = (
     init,
     sysLoading,
     updateLoading,
-    loading
+    loading,
+    frameRef
   }
 ) => {
 
@@ -45,9 +47,13 @@ const ChatBot: React.FC<ChotbotType> = (
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const chatArgs = { updateError, updateLoading, updateRetryInput };
+  const chatArgs = { updateLoading, updateError, updateRetryInput };
 
   const { handleChatRequest } = useChatRequest(chatArgs);
+
+  const inputContainerRef = useRef(null);
+  const headingContainerRef = useRef(null);
+
 
   const dispatch = useDispatch();
 
@@ -76,7 +82,7 @@ const ChatBot: React.FC<ChotbotType> = (
 
   const chatRequestProcess = async () => {
     console.log("chatRequestProcess gets called...");
-    if ( !loading && getInputLenBool()) {
+    if ( !loading && getInputLenBool() ) {
       const userMessage = getUserMessage();
       console.log("ADD SER MESSAGE TO STORE:", userMessage);
       dispatch(conversationActions.AddMessage({ newMessage: userMessage }));
@@ -101,6 +107,8 @@ const ChatBot: React.FC<ChotbotType> = (
         console.log("No data stored")
         updateError("Error");
       }
+    } else {
+      console.log("Action restricted...")
     }
   }
 
@@ -113,16 +121,17 @@ const ChatBot: React.FC<ChotbotType> = (
   }, [sessionData?.config?.primary]);
 
   const getName = useCallback(() => {
-    return sessionData?.config?.name || "BW"
-  }, [sessionData?.config?.name])
+    return sessionData?.config?.pubName || ""
+  }, [sessionData?.config?.pubName])
 
   return (
     <div
       style={{
-        width: 400, height: 700, backgroundColor: "blue", margin: 0, position: "absolute", left: 0, top: 0
+        width: "100%", height: "100%", margin: 0, position: "absolute", left: 0, top: 0, overflow: "hidden"
       }} >
 
       <ChaBotHeading
+        headingContainerRef={headingContainerRef}
         updateOpen={updateOpen}
         init={init}
         background={getBackgroundColor()}
@@ -131,14 +140,21 @@ const ChatBot: React.FC<ChotbotType> = (
       />
 
       <Messages
+        frameRef={frameRef}
+        inputContainerRef={inputContainerRef}
+        headingContainerRef={headingContainerRef}
         error={error}
+        primary={getBackgroundColor()}
+        primaryText={getColor()}
         systemError={systemError}
         loading={loading}
         sysLoading={sysLoading}
+        pubName={getName()}
         chatRequestProcess={chatRequestProcess}
       />
 
       <InputField
+        inputContainerRef={inputContainerRef}
         sysLoading={sysLoading}
         error={systemError}
         input={input}
@@ -147,34 +163,10 @@ const ChatBot: React.FC<ChotbotType> = (
         textareaRef={textareaRef}
       />
 
-      <div
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          display: "flex",
-          paddingBottom: 10,
-          width: "100%",
-          backgroundColor: "white",
-          position:"absolute",
-          bottom: 0
-        }} >
-        <a
-          color={"black"}
-          style={
-          {
-            fontSize: 12,
-            color: "black",
-            fontFamily: "Roboto, sans-serif",
-            fontStyle: "normal",
-          }}
-          href={poweredByUrl}
-          target="_blank"
-          rel="noopener noreferrer">
-          Powered by BotWorld.cloud
-        </a>
-      </div>
+
     </div>
   );
 };
 
 export default ChatBot;
+
