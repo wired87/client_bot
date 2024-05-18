@@ -76,7 +76,7 @@ const ChatBot: React.FC<ChotbotType> = (
 
   const getInputLenBool = () => {
     return input.trim().length > 0 ||
-      retryInput.trim().length > 0 ||
+      // retryInput.trim().length > 0 ||
       systemError.trim().length === 0;
   }
 

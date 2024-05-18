@@ -48,7 +48,7 @@ const Messages: React.FC<MessagesTypes> = (
   const conversation: Conversation[] = useSelector((state: any) => state.conversationSlice.conversation);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number>(550);
-  const { wHeight } = useWindow();
+  const { wHeight, wWidth } = useWindow();
 
   useEffect(() => {
     console.log("SCROLL...")
@@ -121,20 +121,26 @@ const Messages: React.FC<MessagesTypes> = (
   }
 
   useEffect(() => {
-    if ( frameRef?.current?.offsetHeight &&
+
+    if ( ( frameRef?.current?.offsetHeight &&
       inputContainerRef?.current?.offsetHeight &&
       headingContainerRef?.current?.offsetHeight &&
-
-      frameRef?.current?.offsetHeight <= wHeight / 10 * 8 ) {
-      setHeight(
+      frameRef?.current?.offsetHeight <= (wHeight / 10 * 8) ) ||
+      wWidth <= 640
+    ) {
+      setHeight( // @ts-ignore
         frameRef?.current?.offsetHeight - (inputContainerRef?.current?.offsetHeight + headingContainerRef?.current?.offsetHeight)
       )
     }
   }, [
     frameRef?.current?.offsetHeight,
     headingContainerRef?.current?.offsetHeight,
-    inputContainerRef?.current?.offsetHeight
+    inputContainerRef?.current?.offsetHeight,
+    wWidth
   ]);
+
+
+
 
   return (
     <div

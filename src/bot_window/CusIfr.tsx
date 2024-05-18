@@ -49,10 +49,6 @@ export const CusIfr: React.FC<A> = (
 
   const { wWidth } = useWindow();
 
-
-
-
-
   useEffect(() => {
     if (frameRef.current) {
       const actualHeight = frameRef.current.clientHeight;
