@@ -1,0 +1,4 @@
+sys loading und chat loading zusammen true bei message sent
+
+check edit bot template post (werden chnges wriksam?)
+

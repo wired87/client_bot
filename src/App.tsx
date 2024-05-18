@@ -9,7 +9,7 @@ import { CusIfr } from "./bot_window/CusIfr";
 
 export default function App() {
 
-  const {init, updateOpen, open, loading, updateLoading, systemError} = useGlobals();
+  const {init, updateOpen, open, loading, updateLoading, systemError, sysLoading} = useGlobals();
   const frameRef = useRef<HTMLIFrameElement>(null);
   const buttonIcon = () => {
     if (open) {
@@ -44,7 +44,7 @@ export default function App() {
             init={init}
             updateLoading={ updateLoading}
             loading={loading}
-            sysLoading={loading}
+            sysLoading={sysLoading}
             systemError={systemError}
             updateOpen={updateOpen}
           />

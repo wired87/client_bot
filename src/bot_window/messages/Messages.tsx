@@ -149,7 +149,7 @@ const Messages: React.FC<MessagesTypes> = (
         height: height,
         textAlign: "left",
         fontSize: "mini",
-        scrollbarWidth: "thin",  // Für Firefox
+        scrollbarWidth: "thin",  // for Firefox
         scrollbarColor: "#888 #f0f0f0"
       } } >
       <style>
@@ -184,14 +184,6 @@ const Messages: React.FC<MessagesTypes> = (
           {getLoadingMessage()}
           {sysLoadingComp()}
           {getSystemErrorMessage()}
-          <StatusMessage
-            children={
-              <ErrorMessageContent
-                retry={chatRequestProcess}
-                error={ "error" }
-              />
-            }
-          />
         </div>
       </div>
   );

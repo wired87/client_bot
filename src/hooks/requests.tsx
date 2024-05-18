@@ -105,8 +105,9 @@ export const useInit = (
   }: UseInitTypes
 ): UseInitReturnTypes  => {
   console.log("useInit gets created...");
-  const dispatch = useDispatch();
   const conversation: Conversation[] = useSelector((state: any) => state.conversationSlice.conversation);
+  const dispatch = useDispatch();
+
 
   const getInitMessageOject = (text: string): Conversation => {
     return {
@@ -120,9 +121,12 @@ export const useInit = (
   const init = async () => {
     console.log("Init chat...");
     updateSysLoading(true);
+    // Try defne it inside func because otherwise it will take every time the init conv (which has an length of 0)-> results in 2 init messages
 
     const infoData: InfoDataTypes | null = getFromSessionStorage("infoData");
+
     const botId = getBotIdProcess(infoData);
+
     if ( !botId ) {
       console.log("No Bot id could be set...");
       updateSystemError("There was an authentication error. Please try again later.");
@@ -146,7 +150,8 @@ export const useInit = (
             const initMessage: Conversation = getInitMessageOject(config.welcomeMessage);
             console.log("INIT MESSAGE:", initMessage);
 
-            if ( !conversation || conversation.length === 0 ) {
+            if ( !conversation || conversation.length === 0 || systemError.length === 0 ) {
+              console.log("Add init message...");
               dispatch(conversationActions.AddMessage({newMessage: initMessage}));
             }
 
@@ -178,7 +183,8 @@ export const useInit = (
         const initMessage: Conversation = getInitMessageOject(infoData.config?.welcomeMessage);
         console.log("INIT MESSAGE:", initMessage);
 
-        if ( !conversation || conversation.length === 0 && systemError.length === 0 ) {
+        if ( !conversation || conversation.length === 0 || systemError.length === 0 ) {
+          console.log("Add init message...");
           dispatch(conversationActions.AddMessage({newMessage: initMessage}));
         }
       }

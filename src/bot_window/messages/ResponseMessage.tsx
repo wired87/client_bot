@@ -1,5 +1,5 @@
 
-import React, {memo} from "react";
+import React, { memo, useCallback } from "react";
 
 interface ResponseMessageTypes {
   text: string;
@@ -13,12 +13,12 @@ const ResponseMessage: React.FC<ResponseMessageTypes> = (
   }
 ) => {
 
-  const getFirstLetterUppercase = (): string => {
+  const getFirstLetterUppercase = useCallback((): string => {
     if (pubName.length === 0) {
       return '';
     }
     return pubName[0].toUpperCase();
-  };
+  }, [pubName, pubName.length]);
 
   return (
     <div

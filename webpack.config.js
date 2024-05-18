@@ -9,7 +9,7 @@ module.exports = {
     entry: glob.sync('./src/index.tsx'),
 
   output: {
-    filename: 'preview.js',
+    filename: 'client_bundle999666.js',
     path: path.resolve(__dirname, 'dist'),
     libraryTarget: 'umd',  // UMD Format
     umdNamedDefine: true
@@ -23,7 +23,6 @@ module.exports = {
           'style-loader',
           'css-loader',
           'postcss-loader',
-
         ]
       },
       {

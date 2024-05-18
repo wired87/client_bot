@@ -75,11 +75,14 @@ const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "flex-start",
-          padding: "0 20px",
+          height: 55,
+          paddingRight: 15,
+          paddingLeft: 10,
           gap: "30px",
-          maxHeight: 60,
-        }}
-      >
+          maxHeight: 80,
+          zIndex: 200009,
+
+        }} >
         <div
           style={{
             width: "2px",
@@ -138,7 +141,7 @@ const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
           style={{
             flexGrow: 1,
             display: "flex",
-            gap: "3px",
+            gap: "10px",
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "flex-end",
@@ -154,11 +157,12 @@ const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
+
             }}
             onClick={deleteMessages}
             title="Start over"
           >
-            <IoMdRefresh color={color} size={25} />
+            <IoMdRefresh color={color} size={22} />
           </button>
           <button
             style={{
@@ -173,7 +177,7 @@ const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
             }}
             onClick={updateOpen}
           >
-            <IoCloseSharp color={color} size={25} />
+            <IoCloseSharp color={color} size={22} />
           </button>
         </div>
       </div>

@@ -127,7 +127,7 @@ const ChatBot: React.FC<ChotbotType> = (
   return (
     <div
       style={{
-        width: "100%", height: "100%", margin: 0, position: "absolute", left: 0, top: 0, overflow: "hidden"
+        width: "100%", height: "100%", margin: 0, position: "absolute", left: 0, top: 0, overflow: "hidden", //backgroundColor: "white"
       }} >
 
       <ChaBotHeading
@@ -162,8 +162,6 @@ const ChatBot: React.FC<ChotbotType> = (
         updateInput={updateInput}
         textareaRef={textareaRef}
       />
-
-
     </div>
   );
 };

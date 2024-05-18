@@ -20,7 +20,7 @@ export const CusIfr: React.FC<A> = (
   const [width, setWidth]  = useState<number>(400);
   const [frameStyle, setFrameStyle]  = useState<CSSProperties>(
     {
-      width: width,
+      width: 400,
       position: "fixed",
       bottom: 90,
       right: 30,
@@ -42,11 +42,14 @@ export const CusIfr: React.FC<A> = (
       color: "#333333",
       fontFamily: "Inter",
       pointerEvents: "all",
-      border: "none"
+      border: "none",
+
     }
   );
 
   const { wWidth } = useWindow();
+
+
 
 
 
@@ -65,12 +68,14 @@ export const CusIfr: React.FC<A> = (
   }, [wWidth, frameRef.current]);
 
 
+
   const handleFrameWH = () => {
-    if ( wWidth <= 440 ) {
+    if ( wWidth <= 640 ) {
       setFrameStyle(
         {
           width: wWidth,
           maxWidth: wWidth,
+          height: "100vh",
           position: "fixed",
           bottom: 0,
           right: 0,
@@ -78,7 +83,7 @@ export const CusIfr: React.FC<A> = (
           borderRadius: 0,
           transform: "translateZ(0)",
           boxShadow: "10px 10px 40px rgba(0, 0, 0, 0.08), 5px 14px 80px rgba(26, 26, 26, 0.12)",
-          height: "100%",
+
           overflow: "hidden",
           display: "flex",
           flexDirection: "column",
@@ -93,11 +98,10 @@ export const CusIfr: React.FC<A> = (
           border: "none"
         }
       )
-    } else if (wWidth >= 440) {
+    } else if (wWidth >= 640) {
       setFrameStyle(
         {
           width: width,
-          maxWidth: width,
           position: "fixed",
           bottom: 90,
           right: 30,
@@ -113,7 +117,7 @@ export const CusIfr: React.FC<A> = (
           flexDirection: "column",
           alignItems: "start",
           justifyContent: "start",
-
+          maxWidth: width,
           textAlign: "center",
           fontSize: "1.125rem",
           color: "#333333",

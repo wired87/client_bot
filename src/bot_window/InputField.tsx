@@ -42,6 +42,7 @@ const getColor = () => {
       style={{
       alignSelf: 'stretch',
       backgroundColor: 'white',
+        width: "100%",
       height: '66px',
       display: 'flex',
       flexDirection: 'column',
@@ -132,8 +133,6 @@ const getColor = () => {
 
   )
 }
-
-console.log("FINISHED AREA WILL BE RENDERED");
 
 export default memo(InputField);
 

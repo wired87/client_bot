@@ -11,10 +11,6 @@ export const useWindow = () => {
     setWHeight(window.innerHeight)
   }
 
-
-
-
-
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     //window.addEventListener('beforezoom', handleZoom);
