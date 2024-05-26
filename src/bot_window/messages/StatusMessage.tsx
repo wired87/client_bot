@@ -1,9 +1,20 @@
-import React, { memo, ReactNode } from "react";
+import React, { memo, ReactNode, useCallback } from "react";
 interface StatusMessage {
   children: ReactNode;
+  pubName: string;
+  imgUrl?: string;
+
 }
-const StatusMessage: React.FC<StatusMessage> = ({ children }) => {
-  console.log("StatusMessage  gets rendered");
+const StatusMessage: React.FC<StatusMessage> = ({ children, pubName, imgUrl }) => {
+
+
+  const getFirstLetterUppercase = useCallback((): string | ReactNode => {
+    if (!imgUrl) {
+      return pubName[0].toUpperCase();
+    }
+    return <img src={imgUrl} alt="_w.png" style={{}} />;
+  }, [pubName, pubName.length]);
+
   return (
     <div
       style={{
@@ -37,7 +48,9 @@ const StatusMessage: React.FC<StatusMessage> = ({ children }) => {
             borderRadius: 50,
           }}
         >
-          <h4 style={{ color: "white" }}>BW</h4>
+          {
+            getFirstLetterUppercase()
+          }
         </div>
         <div
           style={{

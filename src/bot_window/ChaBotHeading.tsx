@@ -79,7 +79,7 @@ const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
           paddingRight: 15,
           paddingLeft: 10,
           gap: "30px",
-          maxHeight: 80,
+          maxHeight: 70,
           zIndex: 200009,
 
         }} >

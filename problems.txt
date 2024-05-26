@@ -1,4 +1,8 @@
-sys loading und chat loading zusammen true bei message sent
 
 check edit bot template post (werden chnges wriksam?)
 
+while init loadingindicator  bei heading, keine nachrichten anzeigen, chat disablesn || loadingf indicator bei icon zeigen
+
+change fonfamily at icon per default + loading message auch pb oder erster bucgstABE
+
+if auth failed ( no messages ) nevertheless ( trotzdem ) set design / cusmtomizaTIOON

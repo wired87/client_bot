@@ -1,6 +1,6 @@
 
 
-import React, { RefObject, useCallback, useRef } from "react";
+import React, { ReactNode, RefObject, useCallback, useRef } from "react";
 
 import Messages from "./messages/Messages";
 import {useChatRequest} from "../hooks/requests";
@@ -124,44 +124,61 @@ const ChatBot: React.FC<ChotbotType> = (
     return sessionData?.config?.pubName || ""
   }, [sessionData?.config?.pubName])
 
+  const mainContent =(): ReactNode  => {
+    if (sysLoading) {
+      return (<></>)
+    }
+    return(
+      <>
+        <ChaBotHeading
+          headingContainerRef={headingContainerRef}
+          updateOpen={updateOpen}
+          init={init}
+          background={getBackgroundColor()}
+          color={getColor()}
+          name={getName()}
+        />
+
+        <Messages
+          frameRef={frameRef}
+          inputContainerRef={inputContainerRef}
+          headingContainerRef={headingContainerRef}
+          error={error}
+          primary={getBackgroundColor()}
+          primaryText={getColor()}
+          systemError={systemError}
+          loading={loading}
+          sysLoading={sysLoading}
+          pubName={getName()}
+          chatRequestProcess={chatRequestProcess}
+        />
+
+        <InputField
+          inputContainerRef={inputContainerRef}
+          sysLoading={sysLoading}
+          error={systemError}
+          input={input}
+          chatRequestProcess={chatRequestProcess}
+          updateInput={updateInput}
+          textareaRef={textareaRef}
+        />
+      </>
+    )
+  }
+  const getBgColor = () => {
+    return sysLoading? "sysLodingContainer" : "";
+  }
+
   return (
     <div
+      className={getBgColor()}
       style={{
         width: "100%", height: "100%", margin: 0, position: "absolute", left: 0, top: 0, overflow: "hidden", //backgroundColor: "white"
       }} >
 
-      <ChaBotHeading
-        headingContainerRef={headingContainerRef}
-        updateOpen={updateOpen}
-        init={init}
-        background={getBackgroundColor()}
-        color={getColor()}
-        name={getName()}
-      />
-
-      <Messages
-        frameRef={frameRef}
-        inputContainerRef={inputContainerRef}
-        headingContainerRef={headingContainerRef}
-        error={error}
-        primary={getBackgroundColor()}
-        primaryText={getColor()}
-        systemError={systemError}
-        loading={loading}
-        sysLoading={sysLoading}
-        pubName={getName()}
-        chatRequestProcess={chatRequestProcess}
-      />
-
-      <InputField
-        inputContainerRef={inputContainerRef}
-        sysLoading={sysLoading}
-        error={systemError}
-        input={input}
-        chatRequestProcess={chatRequestProcess}
-        updateInput={updateInput}
-        textareaRef={textareaRef}
-      />
+      {
+        mainContent()
+      }
     </div>
   );
 };

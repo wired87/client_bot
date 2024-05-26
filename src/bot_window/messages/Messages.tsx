@@ -72,11 +72,9 @@ const Messages: React.FC<MessagesTypes> = (
           return (
             <StatusMessage
               children={
-                <ErrorMessageContent
-                  retry={chatRequestProcess}
-                  error={ error }
-                />
+                <ErrorMessageContent retry={chatRequestProcess} error={error} />
               }
+              pubName={pubName}
             />
           );
         }
@@ -93,13 +91,9 @@ const Messages: React.FC<MessagesTypes> = (
     console.log("getLoadingMessage  gets rendered");
     if ( loading ) {
       console.log("getLoadingMessage  gets rendered true");
-      return(
-        <StatusMessage
-          children={
-          <MessageLoadingAnimation />
-        }
-      />
-      )
+      return (
+        <StatusMessage children={<MessageLoadingAnimation />} pubName={pubName} />
+      );
     }
     return <></>
   }

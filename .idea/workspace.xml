@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1ae6c76-09c0-457d-8b9f-8c142864b25a" name="Changes" comment="responsiveness, basic improvement">
+      <change afterPath="$PROJECT_DIR$/commands.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/problems.txt" beforeDir="false" afterPath="$PROJECT_DIR$/problems.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/ChaBotHeading.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/ChaBotHeading.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bot_window/Chotbot.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/Chotbot.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bot_window/CusIfr.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/CusIfr.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/iFrame/styles.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/iFrame/styles.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bot_window/messages/Messages.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/messages/Messages.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/messages/StatusMessage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/messages/StatusMessage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +166,14 @@
       <workItem from="1715513281320" duration="15431000" />
       <workItem from="1715944905688" duration="18971000" />
       <workItem from="1716041286766" duration="4545000" />
-      <workItem from="1716048174345" duration="1887000" />
+      <workItem from="1716048174345" duration="2516000" />
+      <workItem from="1716106060017" duration="3055000" />
+      <workItem from="1716146362656" duration="585000" />
+      <workItem from="1716230808658" duration="6000" />
+      <workItem from="1716232790248" duration="2850000" />
+      <workItem from="1716362306146" duration="1600000" />
+      <workItem from="1716475452189" duration="664000" />
+      <workItem from="1716752108455" duration="1338000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -308,7 +319,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716048329884</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="responsiveness, basic improvement">
+      <option name="closed" value="true" />
+      <created>1716050989123</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1716050989123</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -320,5 +339,17 @@
     <MESSAGE value="styles" />
     <MESSAGE value="responsiveness, basic improvement" />
     <option name="LAST_COMMIT_MESSAGE" value="responsiveness, basic improvement" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/bot_window/iFrame/styles.tsx</url>
+          <line>88</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
