@@ -12,6 +12,7 @@ import {getFromSessionStorage} from "../message_functions/save_and_get";
 import ChaBotHeading from "./ChaBotHeading";
 import InputField from "./InputField";
 import {useDispatch} from "react-redux";
+import SysLoadingSpinner from "./coponents/SysLoadingIndicator";
 
 
 interface ChotbotType {
@@ -124,9 +125,9 @@ const ChatBot: React.FC<ChotbotType> = (
     return sessionData?.config?.pubName || ""
   }, [sessionData?.config?.pubName])
 
-  const mainContent =(): ReactNode  => {
+  const mainContent = useCallback((): ReactNode  => {
     if (sysLoading) {
-      return (<></>)
+      return <SysLoadingSpinner />
     }
     return(
       <>
@@ -164,9 +165,10 @@ const ChatBot: React.FC<ChotbotType> = (
         />
       </>
     )
-  }
+  } ,[sysLoading]);
+
   const getBgColor = () => {
-    return sysLoading? "sysLodingContainer" : "";
+    return sysLoading ? "sysLodingContainer" : "";
   }
 
   return (
@@ -175,7 +177,6 @@ const ChatBot: React.FC<ChotbotType> = (
       style={{
         width: "100%", height: "100%", margin: 0, position: "absolute", left: 0, top: 0, overflow: "hidden", //backgroundColor: "white"
       }} >
-
       {
         mainContent()
       }
