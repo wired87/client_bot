@@ -7,6 +7,7 @@ import { BotConfig, ChatSenderObjectTypes, Conversation, InfoDataTypes } from ".
 import {getBotIdProcess, getTime} from "../message_functions/getter";
 import {conversationActions} from "../redux/slice";
 import {getFromSessionStorage, saveToSessionStorage} from "../message_functions/save_and_get";
+import { useCallback } from "react";
 
 
 
@@ -117,6 +118,10 @@ export const useInit = (
     }
   }
 
+  const addInitMessage = useCallback((initMessage: any) => {
+    dispatch(conversationActions.AddMessage({newMessage: initMessage}));
+  }, [])
+
 
   const init = async () => {
     console.log("Init chat...");
@@ -152,9 +157,9 @@ export const useInit = (
 
             if ( !conversation || conversation.length === 0 || systemError.length === 0 ) {
               console.log("Add init message...");
-              dispatch(conversationActions.AddMessage({newMessage: initMessage}));
-            }
 
+            }
+            addInitMessage(initMessage);
             // prepare data
             const responseObject: InfoDataTypes = {
               chatsLeft: res.data.chats_left || 0,
@@ -185,7 +190,7 @@ export const useInit = (
 
         if ( !conversation || conversation.length === 0 || systemError.length === 0 ) {
           console.log("Add init message...");
-          dispatch(conversationActions.AddMessage({newMessage: initMessage}));
+          addInitMessage(initMessage);
         }
       }
     }
