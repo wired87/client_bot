@@ -7,7 +7,7 @@ import { BotConfig, ChatSenderObjectTypes, Conversation, InfoDataTypes } from ".
 import {getBotIdProcess, getTime} from "../message_functions/getter";
 import {conversationActions} from "../redux/slice";
 import {getFromSessionStorage, saveToSessionStorage} from "../message_functions/save_and_get";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 
 
 
@@ -108,7 +108,7 @@ export const useInit = (
   console.log("useInit gets created...");
   const conversation: Conversation[] = useSelector((state: any) => state.conversationSlice.conversation);
   const dispatch = useDispatch();
-
+  const [initMessage, setInitMessage] = useState<boolean>(false);
 
   const getInitMessageOject = (text: string): Conversation => {
     return {
@@ -119,8 +119,12 @@ export const useInit = (
   }
 
   const addInitMessage = useCallback((initMessage: any) => {
-    dispatch(conversationActions.AddMessage({newMessage: initMessage}));
-  }, [])
+    if ( !conversation || conversation.length === 0 || systemError.length === 0 && !initMessage) {
+      console.log("Add init message...");
+      dispatch(conversationActions.AddMessage({newMessage: initMessage}));
+      setInitMessage(true);
+    }
+  }, [conversation,initMessage])
 
 
   const init = async () => {
@@ -155,11 +159,8 @@ export const useInit = (
             const initMessage: Conversation = getInitMessageOject(config.welcomeMessage);
             console.log("INIT MESSAGE:", initMessage);
 
-            if ( !conversation || conversation.length === 0 || systemError.length === 0 ) {
-              console.log("Add init message...");
-
-            }
             addInitMessage(initMessage);
+
             // prepare data
             const responseObject: InfoDataTypes = {
               chatsLeft: res.data.chats_left || 0,
@@ -188,10 +189,8 @@ export const useInit = (
         const initMessage: Conversation = getInitMessageOject(infoData.config?.welcomeMessage);
         console.log("INIT MESSAGE:", initMessage);
 
-        if ( !conversation || conversation.length === 0 || systemError.length === 0 ) {
-          console.log("Add init message...");
-          addInitMessage(initMessage);
-        }
+        addInitMessage(initMessage);
+
       }
     }
   };
