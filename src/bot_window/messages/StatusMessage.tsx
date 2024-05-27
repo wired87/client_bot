@@ -9,7 +9,7 @@ const StatusMessage: React.FC<StatusMessage> = ({ children, pubName, imgUrl }) =
 
 
   const getFirstLetterUppercase = useCallback((): string | ReactNode => {
-    if (!imgUrl) {
+    if (!imgUrl && pubName.length > 0 ) {
       return pubName[0].toUpperCase();
     }
     return <img src={imgUrl} alt="_w.png" style={{}} />;

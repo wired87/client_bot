@@ -125,7 +125,7 @@ const ChatBot: React.FC<ChotbotType> = (
     return sessionData?.config?.pubName || ""
   }, [sessionData?.config?.pubName])
 
-  const mainContent = useCallback((): ReactNode  => {
+  const mainContent = (): ReactNode  => {
     if (sysLoading) {
       return <SysLoadingSpinner />
     }
@@ -165,7 +165,7 @@ const ChatBot: React.FC<ChotbotType> = (
         />
       </>
     )
-  } ,[sysLoading]);
+  }
 
   const getBgColor = () => {
     return sysLoading ? "sysLodingContainer" : "";

@@ -84,7 +84,14 @@ const Messages: React.FC<MessagesTypes> = (
         )
       });
     }
-  }, [error, error.length, conversation]);
+  }, [
+    error,
+    error.length,
+    conversation,
+    pubName,
+    primary,
+    primaryText
+  ]);
 
 
   const getLoadingMessage = () => {

@@ -55,7 +55,7 @@ export const useChatRequest = (
     updateLoading(true);
     try {
       const res = await axios.post(chatUrl, postObject);
-      console.log("Auth Response:", res);
+      console.log("Chat Response:", res);
       if (res.data?.status_code === 200) {
         console.log("DATA:", res.data)
 
@@ -134,7 +134,7 @@ export const useInit = (
 
     const infoData: InfoDataTypes | null = getFromSessionStorage("infoData");
 
-    const botId = getBotIdProcess(infoData);
+    const botId = "EkHijDnTwC-hokuspokus"; // getBotIdProcess(infoData);
 
     if ( !botId ) {
       console.log("No Bot id could be set...");

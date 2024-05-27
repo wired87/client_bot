@@ -1,24 +1,26 @@
 
-import React, { memo, useCallback } from "react";
+import React, { memo, ReactNode, useCallback } from "react";
 
 interface ResponseMessageTypes {
   text: string;
   pubName: string;
+  imgUrl?: string;
 }
 
 const ResponseMessage: React.FC<ResponseMessageTypes> = (
   {
     text,
-    pubName
+    pubName,
+    imgUrl
   }
 ) => {
-
-  const getFirstLetterUppercase = useCallback((): string => {
-    if (pubName.length === 0) {
-      return '';
+  console.log("PUBNAME:", pubName);
+  const getFirstLetterUppercase = (): string | ReactNode => {
+    if (!imgUrl && pubName.length > 0 ) {
+      return pubName[0].toUpperCase();
     }
-    return pubName[0].toUpperCase();
-  }, [pubName, pubName.length]);
+    return <img src={imgUrl} alt="_w.png" style={{}} />;
+  }
 
   return (
     <div
