@@ -5,19 +5,38 @@ interface ResponseMessageTypes {
   text: string;
   pubName: string;
   imgUrl?: string;
+  dataUrl?: string
 }
 
 const ResponseMessage: React.FC<ResponseMessageTypes> = (
   {
     text,
     pubName,
-    imgUrl
+    imgUrl,
+    dataUrl
   }
 ) => {
-  console.log("PUBNAME:", pubName);
+
+  function getFirstLetter(url?: string): string | null {
+    if ( url ) {
+      const pattern = /^https:\/\/(www\.)?/;
+      const match = url.match(pattern);
+      if (match) {
+        return url.charAt(match[0].length).toUpperCase();
+      }
+    }
+    return null;
+  }
+
+
   const getFirstLetterUppercase = (): string | ReactNode => {
-    if (!imgUrl && pubName.length > 0 ) {
-      return pubName[0].toUpperCase();
+    if ( !imgUrl ) {
+      if ( pubName.length > 0) {
+        return pubName[0].toUpperCase();
+      } else {
+        return getFirstLetter(dataUrl)
+      }
+
     }
     return <img src={imgUrl} alt="_w.png" style={{}} />;
   }

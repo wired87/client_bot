@@ -122,8 +122,15 @@ const ChatBot: React.FC<ChotbotType> = (
   }, [sessionData?.config?.primary]);
 
   const getName = useCallback(() => {
-    return sessionData?.config?.pubName || ""
+    const pubName = sessionData?.config?.pubName
+    console.log("PUBNAME SRC:", pubName);
+    return pubName
   }, [sessionData?.config?.pubName])
+
+  const getDataUrl = useCallback(() => {
+    return sessionData?.dataUrl
+  }, [sessionData?.dataUrl])
+
 
   const mainContent = (): ReactNode  => {
     if (sysLoading) {
@@ -149,6 +156,7 @@ const ChatBot: React.FC<ChotbotType> = (
           primaryText={getColor()}
           systemError={systemError}
           loading={loading}
+          dataUrl={getDataUrl()}
           sysLoading={sysLoading}
           pubName={getName()}
           chatRequestProcess={chatRequestProcess}

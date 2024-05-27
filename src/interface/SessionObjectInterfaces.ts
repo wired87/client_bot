@@ -3,6 +3,7 @@ export interface InfoDataTypes {
   chatsLeft: number;
   botId: string;
   clientId: string;
+  dataUrl?: string;
   config?: BotConfig;
 }
 

@@ -25,6 +25,7 @@ interface MessagesTypes {
   inputContainerRef: any
   headingContainerRef: any;
   frameRef: RefObject<HTMLIFrameElement>;
+  dataUrl?: string;
 
 }
 
@@ -37,6 +38,7 @@ const Messages: React.FC<MessagesTypes> = (
     sysLoading,
     chatRequestProcess,
     pubName,
+    dataUrl,
     primary,
     primaryText,
     inputContainerRef,
@@ -57,7 +59,9 @@ const Messages: React.FC<MessagesTypes> = (
 
 
   const getMessageList = useCallback(() => {
-    console.log("getMessageList gets rendered");
+      console.log("Data url and pubn in getMessageList:", pubName, dataUrl);
+
+      console.log("getMessageList gets rendered");
     if ( conversation &&
       conversation.length > 0 &&
       conversation.some(item => item !== undefined &&
@@ -65,7 +69,7 @@ const Messages: React.FC<MessagesTypes> = (
         ))) {
       return conversation.map((item: Conversation, index: number) => {
         if (item.publisher === "AI") {
-          return <ResponseMessage key={index} text={item.text} pubName={pubName}/>;
+          return <ResponseMessage key={index} text={item.text} pubName={pubName} dataUrl={dataUrl}/>;
         } else if (item.publisher === "USER") {
           return <UserMessage key={index} text={item.text} time={item.time} primary={primary} primaryText={primaryText}/>;
         } else if ( error.length > 0 ) {
@@ -75,6 +79,7 @@ const Messages: React.FC<MessagesTypes> = (
                 <ErrorMessageContent retry={chatRequestProcess} error={error} />
               }
               pubName={pubName}
+              dataUrl={dataUrl}
             />
           );
         }
@@ -90,20 +95,32 @@ const Messages: React.FC<MessagesTypes> = (
     conversation,
     pubName,
     primary,
-    primaryText
-  ]);
+    primaryText,
+    dataUrl
+    ]
+  );
 
 
-  const getLoadingMessage = () => {
-    console.log("getLoadingMessage  gets rendered");
+  const getLoadingMessage = useCallback(() => {
+    console.log("Data url and pubn in getLoadingMessage:", pubName, dataUrl);
     if ( loading ) {
       console.log("getLoadingMessage  gets rendered true");
       return (
-        <StatusMessage children={<MessageLoadingAnimation />} pubName={pubName} />
+        <StatusMessage
+          children={
+            <MessageLoadingAnimation />
+          }
+          pubName={pubName}
+          dataUrl={dataUrl}
+        />
       );
     }
     return <></>
-  }
+  }, [
+    pubName,
+    dataUrl,
+    loading
+  ]);
 
   const getSystemErrorMessage = useCallback(() => {
     if ( systemError.length > 0 ) {

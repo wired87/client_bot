@@ -165,6 +165,7 @@ export const useInit = (
             const responseObject: InfoDataTypes = {
               chatsLeft: res.data.chats_left || 0,
               clientId: res.data.client_id,
+              dataUrl: res.data.data_url || "",
               botId: botId,
               config: config
             }

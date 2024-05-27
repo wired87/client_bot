@@ -1,19 +1,36 @@
-import React, { memo, ReactNode, useCallback } from "react";
+import React, { memo, ReactNode } from "react";
 interface StatusMessage {
   children: ReactNode;
   pubName: string;
   imgUrl?: string;
-
+  dataUrl?: string;
 }
-const StatusMessage: React.FC<StatusMessage> = ({ children, pubName, imgUrl }) => {
+
+const StatusMessage: React.FC<StatusMessage> = ({ children, pubName, imgUrl, dataUrl }) => {
+
+  function getFirstLetter(url?: string): string | null {
+    if ( url ) {
+      const pattern = /^https:\/\/(www\.)?/;
+      const match = url.match(pattern);
+      if (match) {
+        return url.charAt(match[0].length).toUpperCase();
+      }
+    }
+    return null; // Return null if the URL does not start with the expected prefixes
+  }
 
 
-  const getFirstLetterUppercase = useCallback((): string | ReactNode => {
-    if (!imgUrl && pubName.length > 0 ) {
-      return pubName[0].toUpperCase();
+  const getFirstLetterUppercase = (): string | ReactNode => {
+    if ( !imgUrl ) {
+      if ( pubName.length > 0) {
+        return pubName[0].toUpperCase();
+      } else {
+        return getFirstLetter(dataUrl)
+      }
+
     }
     return <img src={imgUrl} alt="_w.png" style={{}} />;
-  }, [pubName, pubName.length]);
+  }
 
   return (
     <div
@@ -48,9 +65,17 @@ const StatusMessage: React.FC<StatusMessage> = ({ children, pubName, imgUrl }) =
             borderRadius: 50,
           }}
         >
-          {
-            getFirstLetterUppercase()
-          }
+          <h4
+            style={{
+              color: "white",
+              fontFamily: "Roboto, sans-serif",
+              fontStyle: "normal",
+            }}
+          >
+            {
+              getFirstLetterUppercase()
+            }
+          </h4>
         </div>
         <div
           style={{
