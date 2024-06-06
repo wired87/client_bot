@@ -31,7 +31,6 @@ const ResponseMessage: React.FC<ResponseMessageTypes> = (
     return null;
   }
 
-
   const getFirstLetterUppercase = (): string | ReactNode => {
     if (pubName.length > 0) {
       return pubName[0].toUpperCase();
@@ -41,7 +40,6 @@ const ResponseMessage: React.FC<ResponseMessageTypes> = (
       return ""
     }
   }
-
 
   return (
     <div
