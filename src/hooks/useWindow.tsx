@@ -6,7 +6,6 @@ export const useWindow = () => {
   // const [zoom, setZoom] = useState();
 
   function handleResize() {
-    console.log("Inner width updated:", wWidth);
     setWWidth(window.innerWidth);
     setWHeight(window.innerHeight)
   }

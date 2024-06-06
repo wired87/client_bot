@@ -1,12 +1,11 @@
 import React, { memo } from "react";
-import { IoCloseSharp } from "react-icons/io5";
 import { IoMdRefresh } from "react-icons/io";
 import {useDispatch} from "react-redux";
 import axios from "axios";
 import {conversationActions} from "../redux/slice";
 import {InfoDataTypes} from "../interface/SessionObjectInterfaces";
 import {getFromSessionStorage} from "../message_functions/save_and_get";
-
+import { IoIosArrowDown } from "react-icons/io";
 
 interface ChatBotHeadingTypes {
   updateOpen: () => void;
@@ -40,7 +39,7 @@ const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
     console.log("deleteMessages gets renderd...");
     dispatch(conversationActions.ClearMessages());
     init;
-    const infoData: InfoDataTypes | null = getFromSessionStorage("infoData");
+    const infoData: InfoDataTypes | null = getFromSessionStorage("infoDataDataI");
     if ( infoData && infoData.clientId)
       try {
         const response = await axios.post(
@@ -85,58 +84,27 @@ const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
         }} >
         <div
           style={{
-            width: "2px",
-            position: "relative",
-            lineHeight: "18px",
-            fontWeight: "900",
-            display: "none",
-          }}
-        >
-          
-        </div>
-        <div
-          style={{
+            borderRadius: "125px",
+            boxSizing: "border-box",
             display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "flex-start",
-            gap: "14px",
-            textAlign: "left",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            justifyContent: "flex-end",
           }}
         >
-          <div
+          <p
             style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "flex-start",
+              color: color,
+              fontSize: 20,
+              fontWeight: "bold",
+              fontFamily: "Roboto, sans-serif",
+              fontStyle: "normal",
             }}
           >
-            <div
-              style={{
-                width: "46px",
-                borderRadius: "125px",
-                boxSizing: "border-box",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start",
-                justifyContent: "flex-end",
-              }}
-            >
-              <p
-                style={{
-                  color: color,
-                  fontSize: 20,
-                  fontWeight: "bold",
-                  fontFamily: "Roboto, sans-serif",
-                  fontStyle: "normal",
-                }}
-              >
-                {name}
-              </p>
-            </div>
-          </div>
+            {name}
+          </p>
         </div>
+
         <div
           style={{
             flexGrow: 1,
@@ -177,7 +145,7 @@ const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
             }}
             onClick={updateOpen}
           >
-            <IoCloseSharp color={color} size={22} />
+            <IoIosArrowDown color={color} size={22} />
           </button>
         </div>
       </div>

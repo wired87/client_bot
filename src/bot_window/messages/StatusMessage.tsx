@@ -1,36 +1,17 @@
 import React, { memo, ReactNode } from "react";
+import { MsgIcon } from "../coponents/MsgIcon";
 interface StatusMessage {
   children: ReactNode;
   pubName: string;
   imgUrl?: string;
   dataUrl?: string;
+  primary?: string;
 }
 
-const StatusMessage: React.FC<StatusMessage> = ({ children, pubName, imgUrl, dataUrl }) => {
+const StatusMessage: React.FC<StatusMessage> = (
+  { children, pubName, imgUrl, dataUrl, primary }
+) => {
 
-  function getFirstLetter(url?: string): string | null {
-    if ( url ) {
-      const pattern = /^https:\/\/(www\.)?/;
-      const match = url.match(pattern);
-      if (match) {
-        return url.charAt(match[0].length).toUpperCase();
-      }
-    }
-    return null; // Return null if the URL does not start with the expected prefixes
-  }
-
-
-  const getFirstLetterUppercase = (): string | ReactNode => {
-    if ( !imgUrl ) {
-      if ( pubName.length > 0) {
-        return pubName[0].toUpperCase();
-      } else {
-        return getFirstLetter(dataUrl)
-      }
-
-    }
-    return <img src={imgUrl} alt="_w.png" style={{}} />;
-  }
 
   return (
     <div
@@ -52,31 +33,12 @@ const StatusMessage: React.FC<StatusMessage> = ({ children, pubName, imgUrl, dat
           gap: "10px",
         }}
       >
-        <div
-          style={{
-            width: "2.2rem",
-            height: "2.2rem",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            boxSizing: "border-box",
-            backgroundColor: "black",
-            borderRadius: 50,
-          }}
-        >
-          <h4
-            style={{
-              color: "white",
-              fontFamily: "Roboto, sans-serif",
-              fontStyle: "normal",
-            }}
-          >
-            {
-              getFirstLetterUppercase()
-            }
-          </h4>
-        </div>
+        <MsgIcon
+          pubName={pubName}
+          dataUrl={dataUrl}
+          imgUrl={imgUrl}
+          primary={primary}
+        />
         <div
           style={{
             display: "flex",

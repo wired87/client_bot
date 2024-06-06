@@ -4,6 +4,7 @@ export interface InfoDataTypes {
   botId: string;
   clientId: string;
   dataUrl?: string;
+  userPlanInfo?: string;
   config?: BotConfig;
 }
 

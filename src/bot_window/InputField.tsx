@@ -10,7 +10,8 @@ interface FieldProps {
   updateInput: (value:string, textareaRef:RefObject<HTMLTextAreaElement> | undefined) => void;
   textareaRef?: RefObject<HTMLTextAreaElement>;
   error: string;
-  inputContainerRef?: any
+  inputContainerRef?: any,
+  planName?: string;
 }
 const poweredByUrl: string = "https://www.botworld.cloud";
 
@@ -22,7 +23,8 @@ const InputField: React.FC<FieldProps> = (
     chatRequestProcess,
     input,
     error,
-    inputContainerRef
+    inputContainerRef,
+    planName
   }
 ) => {
   console.log("InputField gets rendered");
@@ -36,6 +38,31 @@ const getColor = () => {
     }
     return "rgba(0,0,0,.4)";
 }
+
+  const getPowered = () => {
+    if (!(planName === "Premium")) {
+      return(
+        <a
+          color={"black"}
+          style={
+            {
+              fontSize: 12,
+              color: "black",
+              fontFamily: "Roboto, sans-serif",
+              fontStyle: "normal",
+            }
+          }
+          href={poweredByUrl}
+          target="_blank"
+          rel="noopener noreferrer">
+          Powered by BotWorld.cloud
+        </a>
+      )
+    }
+    return <></>
+  }
+
+
   return(
     <div
       ref={inputContainerRef}
@@ -71,11 +98,12 @@ const getColor = () => {
             padding: '2px 4px',
             fontSize: 16,
             color: getColor(),
-            width: '320px',
+            minWidth: '80%',
             backgroundColor: 'white',
             verticalAlign: "start",
             fontFamily: "Roboto, sans-serif",
             fontStyle: "normal",
+
           }}
           autoSize
           disabled={getDisabled()} // getDisabled()
@@ -113,21 +141,9 @@ const getColor = () => {
           width: "100%",
           backgroundColor: "white",
         }} >
-        <a
-          color={"black"}
-          style={
-            {
-              fontSize: 12,
-              color: "black",
-              fontFamily: "Roboto, sans-serif",
-              fontStyle: "normal",
-            }
+        {
+          getPowered()
         }
-          href={poweredByUrl}
-          target="_blank"
-          rel="noopener noreferrer">
-          Powered by BotWorld.cloud
-        </a>
       </div>
     </div>
 

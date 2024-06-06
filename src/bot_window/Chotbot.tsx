@@ -5,7 +5,7 @@ import React, { ReactNode, RefObject, useCallback, useRef } from "react";
 import Messages from "./messages/Messages";
 import {useChatRequest} from "../hooks/requests";
 import { useError, useInput, useRetryInput } from "../hooks/universalHooks";
-import {ChatSenderObjectTypes, Conversation} from "../interface/SessionObjectInterfaces";
+import { ChatSenderObjectTypes, Conversation, InfoDataTypes } from "../interface/SessionObjectInterfaces";
 import {getTime} from "../message_functions/getter";
 import {conversationActions} from "../redux/slice";
 import {getFromSessionStorage} from "../message_functions/save_and_get";
@@ -13,6 +13,7 @@ import ChaBotHeading from "./ChaBotHeading";
 import InputField from "./InputField";
 import {useDispatch} from "react-redux";
 import SysLoadingSpinner from "./coponents/SysLoadingIndicator";
+import SysErrorContainer from "./coponents/SysErrorContainer";
 
 
 interface ChotbotType {
@@ -44,7 +45,7 @@ const ChatBot: React.FC<ChotbotType> = (
 
   const { retryInput, updateRetryInput } = useRetryInput();
 
-  const sessionData = getFromSessionStorage("infoData");
+  const sessionData: InfoDataTypes | null = getFromSessionStorage("infoDataDataI");
 
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -94,14 +95,13 @@ const ChatBot: React.FC<ChotbotType> = (
       }
       updateInput("");
 
-      console.log("GETTING DATA:", sessionData)
       if (sessionData && sessionData.botId && sessionData.clientId && sessionData.chatsLeft > 0) {
         const senderObject: ChatSenderObjectTypes = {
           question: getInput(),
           data: sessionData.botId,
           client_id: sessionData.clientId
         }
-
+        console.log("Sending chat request:", senderObject)
         await handleChatRequest(senderObject);
 
       } else {
@@ -118,13 +118,11 @@ const ChatBot: React.FC<ChotbotType> = (
   }, [sessionData?.config?.primaryText]);
 
   const getBackgroundColor = useCallback(() => {
-    return sessionData?.config.primary || "black"
+    return sessionData?.config?.primary || "black"
   }, [sessionData?.config?.primary]);
 
   const getName = useCallback(() => {
-    const pubName = sessionData?.config?.pubName
-    console.log("PUBNAME SRC:", pubName);
-    return pubName
+    return sessionData?.config?.pubName || ""
   }, [sessionData?.config?.pubName])
 
   const getDataUrl = useCallback(() => {
@@ -132,9 +130,25 @@ const ChatBot: React.FC<ChotbotType> = (
   }, [sessionData?.dataUrl])
 
 
+  const getWelcome = useCallback(() => {
+    return sessionData?.config?.welcomeMessage || ""
+  }, [sessionData?.config?.welcomeMessage])
+
+
+  const getPlanName = useCallback(() => {
+    return sessionData?.userPlanInfo || ""
+  }, [sessionData?.userPlanInfo])
+
+
   const mainContent = (): ReactNode  => {
     if (sysLoading) {
       return <SysLoadingSpinner />
+    } else if ( systemError ) {
+      return <SysErrorContainer
+        sysErrorMessage={systemError}
+        init={init}
+        updateOpen={updateOpen}
+      />
     }
     return(
       <>
@@ -154,12 +168,11 @@ const ChatBot: React.FC<ChotbotType> = (
           error={error}
           primary={getBackgroundColor()}
           primaryText={getColor()}
-          systemError={systemError}
           loading={loading}
           dataUrl={getDataUrl()}
-          sysLoading={sysLoading}
           pubName={getName()}
           chatRequestProcess={chatRequestProcess}
+          welcomeMessage={getWelcome()}
         />
 
         <InputField
@@ -170,20 +183,21 @@ const ChatBot: React.FC<ChotbotType> = (
           chatRequestProcess={chatRequestProcess}
           updateInput={updateInput}
           textareaRef={textareaRef}
+          planName={getPlanName()}
         />
       </>
     )
   }
 
   const getBgColor = () => {
-    return sysLoading ? "sysLodingContainer" : "";
+    return sysLoading || systemError ? "sysLodingContainer" : "";
   }
 
   return (
     <div
       className={getBgColor()}
       style={{
-        width: "100%", height: "100%", margin: 0, position: "absolute", left: 0, top: 0, overflow: "hidden", //backgroundColor: "white"
+        width: "100%", height: "100%", margin: 0, position: "absolute", left: 0, top: 0, overflow: "hidden", // backgroundColor: "white"
       }} >
       {
         mainContent()

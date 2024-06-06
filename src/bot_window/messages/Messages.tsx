@@ -9,15 +9,11 @@ import {useSelector} from "react-redux";
 import StatusMessage from "./StatusMessage";
 import MessageLoadingAnimation from "../coponents/MessageLoading";
 import ErrorMessageContent from "../coponents/ErrorMessageContent";
-import SysLoadingSpinner from "../coponents/SysLoadingIndicator";
-import SysErrorContainer from "../coponents/SysErrorContainer";
 import { useWindow } from "../../hooks/useWindow";
 
 interface MessagesTypes {
   error: string;
-  systemError: string;
   loading: boolean;
-  sysLoading: boolean;
   chatRequestProcess: () => Promise<void>;
   pubName: string;
   primary: string;
@@ -26,16 +22,14 @@ interface MessagesTypes {
   headingContainerRef: any;
   frameRef: RefObject<HTMLIFrameElement>;
   dataUrl?: string;
-
+  welcomeMessage: string;
 }
 
 const Messages: React.FC<MessagesTypes> = (
 
   {
     error,
-    systemError,
     loading,
-    sysLoading,
     chatRequestProcess,
     pubName,
     dataUrl,
@@ -43,7 +37,8 @@ const Messages: React.FC<MessagesTypes> = (
     primaryText,
     inputContainerRef,
     frameRef,
-    headingContainerRef
+    headingContainerRef,
+    welcomeMessage
 }
 
 ) => {
@@ -59,9 +54,6 @@ const Messages: React.FC<MessagesTypes> = (
 
 
   const getMessageList = useCallback(() => {
-      console.log("Data url and pubn in getMessageList:", pubName, dataUrl);
-
-      console.log("getMessageList gets rendered");
     if ( conversation &&
       conversation.length > 0 &&
       conversation.some(item => item !== undefined &&
@@ -80,6 +72,7 @@ const Messages: React.FC<MessagesTypes> = (
               }
               pubName={pubName}
               dataUrl={dataUrl}
+              primary={primary}
             />
           );
         }
@@ -102,7 +95,6 @@ const Messages: React.FC<MessagesTypes> = (
 
 
   const getLoadingMessage = useCallback(() => {
-    console.log("Data url and pubn in getLoadingMessage:", pubName, dataUrl);
     if ( loading ) {
       console.log("getLoadingMessage  gets rendered true");
       return (
@@ -112,6 +104,7 @@ const Messages: React.FC<MessagesTypes> = (
           }
           pubName={pubName}
           dataUrl={dataUrl}
+          primary={primary}
         />
       );
     }
@@ -122,21 +115,7 @@ const Messages: React.FC<MessagesTypes> = (
     loading
   ]);
 
-  const getSystemErrorMessage = useCallback(() => {
-    if ( systemError.length > 0 ) {
-      return <SysErrorContainer sysErrorMessage={systemError}/>
-    }
-    return <></>
-  }, [systemError]);
 
-  const sysLoadingComp = () => {
-    if ( sysLoading ) {
-      return(
-        <SysLoadingSpinner />
-      )
-    }
-    return <></>
-  }
 
   useEffect(() => {
 
@@ -156,8 +135,6 @@ const Messages: React.FC<MessagesTypes> = (
     inputContainerRef?.current?.offsetHeight,
     wWidth
   ]);
-
-
 
 
   return (
@@ -204,10 +181,9 @@ const Messages: React.FC<MessagesTypes> = (
             overflowY: "auto",
             position: "relative"
           }} >
+          <ResponseMessage primary={primary} text={welcomeMessage} pubName={pubName} dataUrl={dataUrl}/>
           {getMessageList()}
           {getLoadingMessage()}
-          {sysLoadingComp()}
-          {getSystemErrorMessage()}
         </div>
       </div>
   );

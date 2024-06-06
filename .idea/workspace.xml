@@ -5,12 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c1ae6c76-09c0-457d-8b9f-8c142864b25a" name="Changes" comment="responsiveness, basic improvement">
+      <change afterPath="$PROJECT_DIR$/src/bot_window/coponents/MsgIcon.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/ChaBotHeading.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/ChaBotHeading.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bot_window/Chotbot.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/Chotbot.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/CusIfr.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/CusIfr.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/InputField.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/InputField.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/coponents/SysErrorContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/coponents/SysErrorContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/coponents/SysLoadingIndicator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/coponents/SysLoadingIndicator.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/iFrame/styles.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/iFrame/styles.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bot_window/messages/Messages.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/messages/Messages.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bot_window/messages/ResponseMessage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/messages/ResponseMessage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bot_window/messages/StatusMessage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/messages/StatusMessage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/hooks/requests.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/requests.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/useWindow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useWindow.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interface/SessionObjectInterfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface/SessionObjectInterfaces.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -174,7 +183,24 @@
       <workItem from="1716475452189" duration="664000" />
       <workItem from="1716752108455" duration="4875000" />
       <workItem from="1716803860793" duration="3959000" />
-      <workItem from="1716809851699" duration="942000" />
+      <workItem from="1716809851699" duration="2063000" />
+      <workItem from="1716812480675" duration="8000" />
+      <workItem from="1716812594300" duration="3451000" />
+      <workItem from="1716835737682" duration="3502000" />
+      <workItem from="1716839937237" duration="1801000" />
+      <workItem from="1716848041450" duration="839000" />
+      <workItem from="1717047125717" duration="631000" />
+      <workItem from="1717095556036" duration="586000" />
+      <workItem from="1717153129954" duration="11000" />
+      <workItem from="1717161271827" duration="344000" />
+      <workItem from="1717175140708" duration="249000" />
+      <workItem from="1717226729766" duration="81000" />
+      <workItem from="1717227483198" duration="3160000" />
+      <workItem from="1717247519101" duration="1355000" />
+      <workItem from="1717330716117" duration="1915000" />
+      <workItem from="1717366017839" duration="931000" />
+      <workItem from="1717583202482" duration="2966000" />
+      <workItem from="1717602712968" duration="7497000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -368,7 +394,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716805612966</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="responsiveness, basic improvement">
+      <option name="closed" value="true" />
+      <created>1716811365802</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1716811365802</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -380,5 +414,17 @@
     <MESSAGE value="styles" />
     <MESSAGE value="responsiveness, basic improvement" />
     <option name="LAST_COMMIT_MESSAGE" value="responsiveness, basic improvement" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/bot_window/CusIfr.tsx</url>
+          <line>123</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

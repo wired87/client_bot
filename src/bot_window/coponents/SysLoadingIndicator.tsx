@@ -2,16 +2,7 @@
 
 function SysLoadingSpinner() {
   return (
-    <div className={"spinner-container"} style={{display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: '100%',
-      height: '550px',
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      backgroundColor: "rgba(255,255,255,.1)"
-    }}>
+
       <svg width="50" height="50" viewBox="0 0 50 50">
         <circle
           cx="25"
@@ -22,7 +13,7 @@ function SysLoadingSpinner() {
           className={"spinner-path"}
         />
       </svg>
-    </div>
+
   );
 }
 
@@ -31,6 +22,25 @@ export default SysLoadingSpinner;
 
 
 /*
+<div className={"spinner-container"} style={{display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
+      height: '550px',
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      backgroundColor: "rgba(255,255,255,.1)"
+    }}>
+
+</div>
+
+
+
+
+
+
+
 @jsxImportSource @emotion/react
 import { css, keyframes } from '@emotion/react';
 

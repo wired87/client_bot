@@ -2,12 +2,11 @@
 
 import axios from "axios";
 
-import {useDispatch, useSelector} from "react-redux";
-import { BotConfig, ChatSenderObjectTypes, Conversation, InfoDataTypes } from "../interface/SessionObjectInterfaces";
-import {getBotIdProcess, getTime} from "../message_functions/getter";
+import {useDispatch} from "react-redux";
+import { BotConfig, ChatSenderObjectTypes, InfoDataTypes } from "../interface/SessionObjectInterfaces";
+import {getTime} from "../message_functions/getter";
 import {conversationActions} from "../redux/slice";
 import {getFromSessionStorage, saveToSessionStorage} from "../message_functions/save_and_get";
-import { useCallback, useState } from "react";
 
 
 
@@ -56,7 +55,7 @@ export const useChatRequest = (
     try {
       const res = await axios.post(chatUrl, postObject);
       console.log("Chat Response:", res);
-      if (res.data?.status_code === 200) {
+      if (res.data?.status_code && res.data?.status_code === 200) {
         console.log("DATA:", res.data)
 
         // prepare data
@@ -69,7 +68,12 @@ export const useChatRequest = (
         dispatch(conversationActions.AddMessage({ newMessage: responseObject }));
         updateRetryInput("");
       } else {
-        updateError(res.data.message || defaultError);
+        const textRes: string | undefined | null = res.data.response
+        if ( textRes && textRes.length > 0 ) {
+          updateError(res.data.response || defaultError);
+        } else {
+          updateError(defaultError)
+        }
       }
     } catch (error) {
       console.error("Error during registration:", error);
@@ -106,18 +110,18 @@ export const useInit = (
   }: UseInitTypes
 ): UseInitReturnTypes  => {
   console.log("useInit gets created...");
-  const conversation: Conversation[] = useSelector((state: any) => state.conversationSlice.conversation);
-  const dispatch = useDispatch();
-  const [initMessage, setInitMessage] = useState<boolean>(false);
 
-  const getInitMessageOject = (text: string): Conversation => {
-    return {
-      text: text,
-      time: String(getTime()),
-      publisher: "AI"
+  const sessionData = getFromSessionStorage("infoDataDataI");
+
+  const getClientId = () => {
+    if (sessionData && sessionData.clientId) {
+      console.log("Existing client id in session...")
+      return sessionData.clientId
+    } else {
+      console.log("No existing client ID found...")
     }
   }
-
+  /*
   const addInitMessage = useCallback((initMessage: any) => {
     if ( !conversation || conversation.length === 0 || systemError.length === 0 && !initMessage) {
       console.log("Add init message...");
@@ -125,16 +129,16 @@ export const useInit = (
       setInitMessage(true);
     }
   }, [conversation,initMessage])
-
+  */
 
   const init = async () => {
-    console.log("Init chat...");
+    let index = 0
+    console.log("Start Init process...");
     updateSysLoading(true);
-    // Try defne it inside func because otherwise it will take every time the init conv (which has an length of 0)-> results in 2 init messages
 
-    const infoData: InfoDataTypes | null = getFromSessionStorage("infoData");
+    const infoData: InfoDataTypes | null = getFromSessionStorage("infoDataDataI");
 
-    const botId = "EkHijDnTwC-hokuspokus"; // getBotIdProcess(infoData);
+    const botId = "12MsGpLXYg-bprmgsxhqa" // getBotIdProcess(infoData);
 
     if ( !botId ) {
       console.log("No Bot id could be set...");
@@ -143,58 +147,81 @@ export const useInit = (
     } else {
       if ( !infoData || !infoData.chatsLeft || !infoData.clientId || !infoData.config?.welcomeMessage ) {
         console.log("Data missing, init the request...");
-        try {
-          const res = await axios.post(
-            initUrl,
-            {data: botId}
-          );
-          console.log("Auth Response:", res);
-
-          if (res.data?.status_code === 200) {
-            console.log("DATA:", res.data);
-            updateSystemError("")
-
-            const config: BotConfig = res.data.config
-
-            const initMessage: Conversation = getInitMessageOject(config.welcomeMessage);
-            console.log("INIT MESSAGE:", initMessage);
-
-            addInitMessage(initMessage);
-
-            // prepare data
-            const responseObject: InfoDataTypes = {
-              chatsLeft: res.data.chats_left || 0,
-              clientId: res.data.client_id,
-              dataUrl: res.data.data_url || "",
-              botId: botId,
-              config: config
+        while (!(index === 10) || !infoData || !infoData.chatsLeft || !infoData.clientId || !infoData.config?.welcomeMessage) {
+          console.log(`init... (Try: ${index})`);
+          const success = await fetchBotConfig(botId);
+          if ( success == "FAILED" ) {
+            if ( index === 9) {
+              updateSystemError("Something went wrong");
+              break;
             }
-
-            saveToSessionStorage(responseObject, "infoData");
-          } else {
-            updateSystemError(res.data.message);
-          }
-        } catch (error: unknown) {
-          if (error instanceof Error) {
-            console.error("Error during client bot init:", error);
-            updateSystemError("Something Went wrong!");
-          }
-        } finally {
-          console.log("Auth process finished...");
-          updateSysLoading(false);
+            index ++;
+          } else break
         }
       } else {
         console.log("ALL DATA COLLECTED...")
         updateSysLoading(false);
+        await fetchBotConfig(botId)
         console.log("INFO DATA EXIST:", infoData);
-        const initMessage: Conversation = getInitMessageOject(infoData.config?.welcomeMessage);
-        console.log("INIT MESSAGE:", initMessage);
-
-        addInitMessage(initMessage);
+        // const initMessage: Conversation = getInitMessageOject(infoData.config?.welcomeMessage);
+        // console.log("INIT MESSAGE:", initMessage);
+        // addInitMessage(initMessage);
 
       }
     }
   };
+
+  const fetchBotConfig = async (
+    botId: string
+  ) => {
+    try {
+      const res = await axios.post(
+        initUrl,
+        {
+          data: botId,
+          clientId: getClientId()
+        }
+      );
+      console.log("Auth Response:", res);
+
+      if (res.data?.status_code === 200) {
+        console.log("DATA:", res.data);
+        updateSystemError("")
+
+        const config: BotConfig = res.data.config
+
+        //const initMessage: Conversation = getInitMessageOject(config.welcomeMessage);
+        // console.log("INIT MESSAGE:", initMessage);
+
+        // addInitMessage(initMessage);
+
+        // prepare data
+        const responseObject: InfoDataTypes = {
+          chatsLeft: res.data.chats_left || 0,
+          clientId: res.data.client_id,
+          dataUrl: res.data.data_url || "",
+          userPlanInfo: res.data.plan_name,
+          botId: botId,
+          config: config
+        }
+
+        saveToSessionStorage(responseObject, "infoDataDataI");
+      } else {
+        return "FAILED"
+      }
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error("Error during client bot init:", error);
+        return "FAILED"
+      }
+    } finally {
+      console.log("Auth process finished...");
+      updateSysLoading(false);
+    }
+    return "SUCCESS"
+  }
+
+
 
   return {
     init

@@ -1,11 +1,13 @@
 
-import React, { memo, ReactNode, useCallback } from "react";
+import React, { memo, ReactNode } from "react";
+import { MsgIcon } from "../coponents/MsgIcon";
 
 interface ResponseMessageTypes {
   text: string;
   pubName: string;
   imgUrl?: string;
-  dataUrl?: string
+  dataUrl?: string;
+  primary?: string;
 }
 
 const ResponseMessage: React.FC<ResponseMessageTypes> = (
@@ -13,33 +15,33 @@ const ResponseMessage: React.FC<ResponseMessageTypes> = (
     text,
     pubName,
     imgUrl,
-    dataUrl
+    dataUrl,
+    primary
   }
 ) => {
 
-  function getFirstLetter(url?: string): string | null {
-    if ( url ) {
-      const pattern = /^https:\/\/(www\.)?/;
-      const match = url.match(pattern);
-      if (match) {
-        return url.charAt(match[0].length).toUpperCase();
-      }
+  function getFirstLetter(url: string): string | null {
+    const pattern = /^https:\/\/(www\.)?/;
+    const match = url.match(pattern);
+    if (match) {
+      const firstLetter = url.charAt(match[0].length).toUpperCase()
+      console.log("FIRST LETTER RES_M:", firstLetter);
+      return firstLetter;
     }
     return null;
   }
 
 
   const getFirstLetterUppercase = (): string | ReactNode => {
-    if ( !imgUrl ) {
-      if ( pubName.length > 0) {
-        return pubName[0].toUpperCase();
-      } else {
-        return getFirstLetter(dataUrl)
-      }
-
+    if (pubName.length > 0) {
+      return pubName[0].toUpperCase();
+    } else if (dataUrl && dataUrl.length > 0) {
+      return getFirstLetter(dataUrl)
+    } else {
+      return ""
     }
-    return <img src={imgUrl} alt="_w.png" style={{}} />;
   }
+
 
   return (
     <div
@@ -62,32 +64,12 @@ const ResponseMessage: React.FC<ResponseMessageTypes> = (
           marginTop: 15,
         }}
       >
-        <div
-          style={{
-            width: "2.2rem",
-            height: "2.2rem",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            boxSizing: "border-box",
-            backgroundColor: "black",
-            borderRadius: 50,
-            marginRight: 10,
-          }}
-        >
-          <h4
-            style={{
-              color: "white",
-              fontFamily: "Roboto, sans-serif",
-              fontStyle: "normal",
-            }}
-          >
-            {
-              getFirstLetterUppercase()
-            }
-          </h4>
-        </div>
+        <MsgIcon
+          pubName={pubName}
+          dataUrl={dataUrl}
+          imgUrl={imgUrl}
+          primary={primary}
+        />
         <div
           style={{
             display: "flex",

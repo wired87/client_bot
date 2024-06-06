@@ -22,7 +22,7 @@ export default function App() {
 
   useEffect(() => {
     init()
-      .then(() => console.log("Init..."))
+      .then(() => console.log("Init finished..."))
       .catch((e: unknown) => console.log("Init failed cause error:", e))
   }, []);
 
@@ -52,7 +52,12 @@ export default function App() {
       )
     }
   }
+  /*
+  1. error message not showing
+  2. which data will be sent as bto id?
 
+
+   */
   return (
     <>
       <button

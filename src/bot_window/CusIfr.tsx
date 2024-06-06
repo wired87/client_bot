@@ -32,6 +32,7 @@ export const CusIfr: React.FC<A> = (
       maxHeight: "80vh",
       minHeight: 80,
       overflow: "hidden",
+      overflowX: "hidden",
       display: "flex",
       flexDirection: "column",
       alignItems: "start",
@@ -43,7 +44,6 @@ export const CusIfr: React.FC<A> = (
       fontFamily: "Inter",
       pointerEvents: "all",
       border: "none",
-
     }
   );
 
@@ -60,7 +60,6 @@ export const CusIfr: React.FC<A> = (
 
   useEffect(() => {
     handleFrameWH();
-    console.log("windowWidth CHANGED:", wWidth)
   }, [wWidth, frameRef.current]);
 
 
@@ -137,7 +136,6 @@ export const CusIfr: React.FC<A> = (
       </>
     )
   }
-
 
   return (
     <Frame
