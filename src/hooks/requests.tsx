@@ -7,6 +7,7 @@ import { BotConfig, ChatSenderObjectTypes, InfoDataTypes } from "../interface/Se
 import { getBotIdProcess, getTime } from "../message_functions/getter";
 import {conversationActions} from "../redux/slice";
 import {getFromSessionStorage, saveToSessionStorage} from "../message_functions/save_and_get";
+import { useCallback } from "react";
 
 
 
@@ -29,13 +30,13 @@ interface UseInitTypes {
   systemError: string;
 }
 const defaultError: string= "Something went wrong. Please try again...";
+
 interface UseChatReturnTypes {
-  handleChatRequest: (postObject: ChatSenderObjectTypes) => Promise<void>;
+  handleChatRequest: (postObject: ChatSenderObjectTypes) => Promise<void | string>;
 }
 
 interface UseInitReturnTypes {
   init: () => Promise<void>;
-
 }
 
 export const useChatRequest = (
@@ -49,7 +50,6 @@ export const useChatRequest = (
   const dispatch = useDispatch();
 
   const handleChatRequest = async (postObject: ChatSenderObjectTypes) => {
-    updateError("");
     updateLoading(true);
     try {
       const res = await axios.post(chatUrl, postObject);
@@ -67,21 +67,19 @@ export const useChatRequest = (
         dispatch(conversationActions.AddMessage({ newMessage: responseObject }));
         updateRetryInput("");
       } else {
-        const textRes: string | undefined | null = res.data.response
-        if ( textRes && textRes.length > 0 ) {
-          updateError(res.data.response || defaultError);
-        } else {
-          updateError(defaultError)
-        }
+        console.log("Chat response not o.k...")
+        updateLoading(false);
+        return res.data.response || defaultError;
       }
     } catch (error) {
       console.error("Error during registration:", error);
-      updateError(defaultError);
+      updateLoading(false);
+      return defaultError
     } finally {
-      console.log("Auth process finished...");
+      console.log("Msg process finished...");
     }
     updateLoading(false);
-  };
+  }
 
   return {
     handleChatRequest,

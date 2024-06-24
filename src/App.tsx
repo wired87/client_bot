@@ -27,14 +27,17 @@ export default function App() {
     /*init()
       .then(() => console.log("Init finished..."))
       .catch((e: unknown) => console.log("Init failed cause error:", e))*/
-      const infoData: InfoDataTypes | null = getFromSessionStorage("infoDataDataI");
-      const botId = getBotIdProcess(infoData);
-      if (botId) {
+      const botId = getBotIdProcess(null);
+      if (botId) {console.log("bot id exist")
         const responseObject: InfoDataTypes = {
           botId: botId,
         }
+
         saveToSessionStorage(responseObject, "infoDataDataI");
+      }else{
+        console.log("bot id does not exist")
       }
+
   }, []);
 
 

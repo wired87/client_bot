@@ -54,6 +54,7 @@ const Messages: React.FC<MessagesTypes> = (
 
 
   const getMessageList = useCallback(() => {
+    console.log("error messages", error)
     if ( conversation &&
       conversation.length > 0 &&
       conversation.some(item => item !== undefined &&
@@ -64,17 +65,6 @@ const Messages: React.FC<MessagesTypes> = (
           return <ResponseMessage key={index} text={item.text} pubName={pubName} dataUrl={dataUrl}/>;
         } else if (item.publisher === "USER") {
           return <UserMessage key={index} text={item.text} time={item.time} primary={primary} primaryText={primaryText}/>;
-        } else if ( error.length > 0 ) {
-          return (
-            <StatusMessage
-              children={
-                <ErrorMessageContent retry={chatRequestProcess} error={error} />
-              }
-              pubName={pubName}
-              dataUrl={dataUrl}
-              primary={primary}
-            />
-          );
         }
         return(
           <>
@@ -83,8 +73,6 @@ const Messages: React.FC<MessagesTypes> = (
       });
     }
   }, [
-    error,
-    error.length,
     conversation,
     pubName,
     primary,
@@ -93,8 +81,23 @@ const Messages: React.FC<MessagesTypes> = (
     ]
   );
 
-
-  const getLoadingMessage = useCallback(() => {
+  const errorMsg = () => {
+    if (error.length > 0) {
+      console.log("error len > o")
+      return (
+        <StatusMessage
+          children={
+            <ErrorMessageContent retry={chatRequestProcess} error={error} />
+          }
+          pubName={pubName}
+          error={true}
+          dataUrl={dataUrl}
+          primary={primary}
+        />
+      );
+    }
+  }
+  const getLoadingMessage =() => {
     if ( loading ) {
       console.log("getLoadingMessage  gets rendered true");
       return (
@@ -109,11 +112,7 @@ const Messages: React.FC<MessagesTypes> = (
       );
     }
     return <></>
-  }, [
-    pubName,
-    dataUrl,
-    loading
-  ]);
+  }
 
 
 
@@ -181,7 +180,9 @@ const Messages: React.FC<MessagesTypes> = (
             position: "relative"
           }} >
           <ResponseMessage primary={primary} text={"Hallo, wie kann ich Ihnen helfen?"} pubName={pubName} dataUrl={dataUrl}/>
+
           {getMessageList()}
+          {errorMsg()}
           {getLoadingMessage()}
         </div>
       </div>

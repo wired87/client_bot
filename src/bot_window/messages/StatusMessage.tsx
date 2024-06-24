@@ -6,10 +6,11 @@ interface StatusMessage {
   imgUrl?: string;
   dataUrl?: string;
   primary?: string;
+  error?: boolean;
 }
 
 const StatusMessage: React.FC<StatusMessage> = (
-  { children, /*pubName, imgUrl, dataUrl, primary*/ }
+  { children, error/*pubName, imgUrl, dataUrl, primary*/ }
 ) => {
 
 
@@ -22,63 +23,35 @@ const StatusMessage: React.FC<StatusMessage> = (
         flexDirection: "column",
         alignItems: "flex-start",
         justifyContent: "flex-start",
-      }}
-    >
-      <div
-        style={{
-          alignSelf: "stretch",
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "flex-end",
-          justifyContent: "flex-start",
-          gap: "10px",
-        }}
-      >
-        {/*<MsgIcon
-          pubName={pubName}
-          dataUrl={dataUrl}
-          imgUrl={imgUrl}
-          primary={primary}
-        />*/}
+      }}>
         <div
           style={{
+            borderRadius: "0.375rem",
+            backgroundColor: error? "#fdadad" : "#f8f4fc",
+            overflow: "hidden",
             display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            justifyContent: "flex-end",
-            gap: "6px",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "0 20px",
+            boxSizing: "border-box",
+            maxWidth: "300px",
           }}
         >
           <div
             style={{
-              borderRadius: "0.375rem",
-              backgroundColor: "#f8f4fc",
-              overflow: "hidden",
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-              padding: "4px 20px",
-              boxSizing: "border-box",
-              maxWidth: "300px",
+              fontSize: 15,
+              height: "auto",
+              position: "relative",
+              maxWidth: "260px",
+              wordWrap: "break-word",
             }}
           >
-            <div
-              style={{
-                fontSize: 15,
-                height: "auto",
-                position: "relative",
-                lineHeight: "140%",
-                maxWidth: "260px",
-                wordWrap: "break-word",
-              }}
-            >
-              {children}
-            </div>
+            {children}
           </div>
         </div>
       </div>
-    </div>
+
   );
 };
 

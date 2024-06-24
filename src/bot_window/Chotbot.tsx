@@ -6,7 +6,7 @@ import Messages from "./messages/Messages";
 import {useChatRequest} from "../hooks/requests";
 import { useError, useInput, useRetryInput } from "../hooks/universalHooks";
 import { ChatSenderObjectTypes, Conversation, InfoDataTypes } from "../interface/SessionObjectInterfaces";
-import {getTime} from "../message_functions/getter";
+import { getBotIdProcess, getTime } from "../message_functions/getter";
 import {conversationActions} from "../redux/slice";
 import {getFromSessionStorage} from "../message_functions/save_and_get";
 import ChaBotHeading from "./ChaBotHeading";
@@ -94,19 +94,20 @@ const ChatBot: React.FC<ChotbotType> = (
 
       updateInput("");
 
-      if (sessionData && sessionData.botId /*&& sessionData.clientId && sessionData.chatsLeft > 0*/) {
-        const senderObject: ChatSenderObjectTypes = {
-          question: getInput(),
-          data: sessionData.botId,
-          client_id: sessionData.clientId
-        }
-        console.log("Sending chat request:", senderObject)
-        await handleChatRequest(senderObject);
-
-      } else {
-        console.log("No data stored")
-        updateError("Error");
+      const senderObject: ChatSenderObjectTypes = {
+        question: getInput(),
+        data: sessionData?.botId ? sessionData.botId : getBotIdProcess(null)!,
+        //client_id: sessionData.clientId
       }
+      console.log("Sending chat request:", senderObject);
+      updateError("");
+      const error = await handleChatRequest(senderObject);
+      if (error) {
+        updateLoading(false);
+        updateError(error);
+      }
+
+
     } else {
       console.log("Action restricted...")
     }

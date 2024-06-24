@@ -27,7 +27,7 @@ const ErrorMessageContent: React.FC<ErrorContent> = ({ retry, error }) => {
         }}
         onClick={retry}
         title="Start over" >
-        <IoMdRefresh color="black" size={25} />
+        <IoMdRefresh color="black" size={22} />
       </button>
     </div>
   )

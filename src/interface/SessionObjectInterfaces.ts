@@ -16,8 +16,8 @@ export interface BotConfig {
 }
 
 export interface ChatSenderObjectTypes {
-  data: string;
-  client_id: string;
+  data?: string;
+  client_id?: string;
   question: string;
 }
 
