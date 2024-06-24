@@ -1,8 +1,8 @@
 
 export interface InfoDataTypes {
-  chatsLeft: number;
+  chatsLeft?: number;
   botId: string;
-  clientId: string;
+  clientId?: string;
   dataUrl?: string;
   userPlanInfo?: string;
   config?: BotConfig;

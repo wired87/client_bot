@@ -1,6 +1,6 @@
 
-import React, { memo, ReactNode } from "react";
-import { MsgIcon } from "../coponents/MsgIcon";
+import React, { memo } from "react";
+// import { MsgIcon } from "../coponents/MsgIcon";
 
 interface ResponseMessageTypes {
   text: string;
@@ -13,14 +13,14 @@ interface ResponseMessageTypes {
 const ResponseMessage: React.FC<ResponseMessageTypes> = (
   {
     text,
-    pubName,
+  /*pubName,
     imgUrl,
     dataUrl,
-    primary
+    primary*/
   }
 ) => {
 
-  function getFirstLetter(url: string): string | null {
+  /*function getFirstLetter(url: string): string | null {
     const pattern = /^https:\/\/(www\.)?/;
     const match = url.match(pattern);
     if (match) {
@@ -29,9 +29,9 @@ const ResponseMessage: React.FC<ResponseMessageTypes> = (
       return firstLetter;
     }
     return null;
-  }
+  }*/
 
-  const getFirstLetterUppercase = (): string | ReactNode => {
+  /*const getFirstLetterUppercase = (): string | ReactNode => {
     if (pubName.length > 0) {
       return pubName[0].toUpperCase();
     } else if (dataUrl && dataUrl.length > 0) {
@@ -39,7 +39,7 @@ const ResponseMessage: React.FC<ResponseMessageTypes> = (
     } else {
       return ""
     }
-  }
+  }*/
 
   return (
     <div
@@ -62,12 +62,12 @@ const ResponseMessage: React.FC<ResponseMessageTypes> = (
           marginTop: 15,
         }}
       >
-        <MsgIcon
+        {/*<MsgIcon
           pubName={pubName}
           dataUrl={dataUrl}
           imgUrl={imgUrl}
           primary={primary}
-        />
+        />*/}
         <div
           style={{
             display: "flex",

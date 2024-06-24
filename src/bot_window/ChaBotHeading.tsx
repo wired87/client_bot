@@ -9,7 +9,6 @@ import { IoIosArrowDown } from "react-icons/io";
 
 interface ChatBotHeadingTypes {
   updateOpen: () => void;
-  init: () => Promise<void>;
   background?: string;
   color?: string;
   name?: string;
@@ -24,7 +23,6 @@ const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
 
   {
     updateOpen,
-    init,
     background,
     color,
     name,
@@ -38,7 +36,7 @@ const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
   const deleteMessages = async () => {
     console.log("deleteMessages gets renderd...");
     dispatch(conversationActions.ClearMessages());
-    init;
+    // init;
     const infoData: InfoDataTypes | null = getFromSessionStorage("infoDataDataI");
     if ( infoData && infoData.clientId)
       try {
@@ -74,11 +72,11 @@ const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "flex-start",
-          height: 55,
+          height: 45,
           paddingRight: 15,
           paddingLeft: 10,
           gap: "30px",
-          maxHeight: 70,
+          maxHeight: 60,
           zIndex: 200009,
 
         }} >
@@ -125,23 +123,6 @@ const ChaBotHeading: React.FC<ChatBotHeadingTypes> = (
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-
-            }}
-            onClick={deleteMessages}
-            title="Start over"
-          >
-            <IoMdRefresh color={color} size={22} />
-          </button>
-          <button
-            style={{
-              cursor: "pointer",
-              borderRadius: "50%",
-              border: "none",
-              padding: "1px",
-              backgroundColor: "transparent",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
             }}
             onClick={updateOpen}
           >
@@ -157,6 +138,23 @@ export default memo(ChaBotHeading);
 
 
 /*
+<button
+            style={{
+              cursor: "pointer",
+              borderRadius: "50%",
+              border: "none",
+              padding: "1px",
+              backgroundColor: "transparent",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+
+            }}
+            onClick={deleteMessages}
+            title="Start over"
+          >
+            <IoMdRefresh color={color} size={22} />
+          </button>
   IconComponent={() => <BsThreeDotsVertical color="white" size={50} />
         <button
         className="cursor-pointer [border:none] p-px bg-[transparent] flex items-center justify-center"

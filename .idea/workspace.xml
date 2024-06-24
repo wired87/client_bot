@@ -6,8 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="c1ae6c76-09c0-457d-8b9f-8c142864b25a" name="Changes" comment="final01">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/problems.txt" beforeDir="false" afterPath="$PROJECT_DIR$/problems.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/ChaBotHeading.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/ChaBotHeading.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/Chotbot.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/Chotbot.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/coponents/SysErrorContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/coponents/SysErrorContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/messages/Messages.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/messages/Messages.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/bot_window/messages/ResponseMessage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/messages/ResponseMessage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bot_window/messages/StatusMessage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/bot_window/messages/StatusMessage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/requests.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/requests.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface/SessionObjectInterfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface/SessionObjectInterfaces.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +197,16 @@
       <workItem from="1717366017839" duration="931000" />
       <workItem from="1717583202482" duration="2966000" />
       <workItem from="1717602712968" duration="8484000" />
-      <workItem from="1717678252818" duration="115000" />
+      <workItem from="1717678252818" duration="1090000" />
+      <workItem from="1718131998853" duration="31000" />
+      <workItem from="1718132288808" duration="74000" />
+      <workItem from="1718135995645" duration="1333000" />
+      <workItem from="1718147764492" duration="586000" />
+      <workItem from="1718184103887" duration="586000" />
+      <workItem from="1718211531598" duration="2000" />
+      <workItem from="1718216667912" duration="672000" />
+      <workItem from="1718440258335" duration="643000" />
+      <workItem from="1719244070435" duration="3872000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -398,7 +416,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717658828067</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="final01">
+      <option name="closed" value="true" />
+      <created>1717678380100</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1717678380100</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -6,3 +6,9 @@ while init loadingindicator  bei heading, keine nachrichten anzeigen, chat disab
 change fonfamily at icon per default + loading message auch pb oder erster bucgstABE
 
 if auth failed ( no messages ) nevertheless ( trotzdem ) set design / cusmtomizaTIOON
+
+
+
+
+first time loading looks trash
+1. defaut screen anpassen

@@ -10,7 +10,7 @@ import { createRoot } from "react-dom/client";
 
 const appContainer = document.createElement('div');
 
-appContainer.id = 'my-unique-app-container';
+appContainer.id = 'my-unique-app-container-999666'; // added -999666
 appContainer.style.width = "200px";
 appContainer.style.height = "200px";
 appContainer.style.position = "fixed";

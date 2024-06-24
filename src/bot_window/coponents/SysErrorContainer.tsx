@@ -4,15 +4,14 @@ import { MdOutlineRefresh } from "react-icons/md";
 import { MdKeyboardArrowDown } from "react-icons/md";
 interface SysErrorProps {
   sysErrorMessage: string;
-  init: () => Promise<void>;
+  //init: () => Promise<void>;
   updateOpen: () => void;
 
 }
 
 const SysErrorContainer: React.FC<SysErrorProps> = (
-  { sysErrorMessage, init, updateOpen }
+  { sysErrorMessage, updateOpen }
 ) => {
-
 
   return (
     <div style={{
@@ -44,7 +43,15 @@ const SysErrorContainer: React.FC<SysErrorProps> = (
           sysErrorMessage
         }
       </p>
-      <MdOutlineRefresh
+      <MdKeyboardArrowDown title={"close"} size={27} onClick={updateOpen} style={{cursor: "pointer", color: "black", position: "absolute", top: 15, right: 15}}/>
+    </div>
+  );
+}
+
+
+export default SysErrorContainer;
+/*
+<MdOutlineRefresh
         style={{cursor:"pointer"}}
         size={30}
         color={"black"}
@@ -53,10 +60,4 @@ const SysErrorContainer: React.FC<SysErrorProps> = (
           .then(() => console.log("Retried init..."))
           .catch(e => console.log("Retry failed cause error:", e))
       }/>
-      <MdKeyboardArrowDown title={"close"} size={27} onClick={updateOpen} style={{cursor: "pointer", color: "black", position: "absolute", top: 15, right: 15}}/>
-    </div>
-  );
-}
-
-
-export default SysErrorContainer;
+ */

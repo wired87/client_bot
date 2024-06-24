@@ -144,7 +144,6 @@ const Messages: React.FC<MessagesTypes> = (
         overflowY: "scroll",
         overflowX: "hidden",
         flexGrow: 1,
-
         backgroundColor: "white",
         position: "relative",
         height: height,
@@ -181,7 +180,7 @@ const Messages: React.FC<MessagesTypes> = (
             overflowY: "auto",
             position: "relative"
           }} >
-          <ResponseMessage primary={primary} text={welcomeMessage} pubName={pubName} dataUrl={dataUrl}/>
+          <ResponseMessage primary={primary} text={"Hallo, wie kann ich Ihnen helfen?"} pubName={pubName} dataUrl={dataUrl}/>
           {getMessageList()}
           {getLoadingMessage()}
         </div>

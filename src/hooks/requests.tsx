@@ -4,7 +4,7 @@ import axios from "axios";
 
 import {useDispatch} from "react-redux";
 import { BotConfig, ChatSenderObjectTypes, InfoDataTypes } from "../interface/SessionObjectInterfaces";
-import {getTime} from "../message_functions/getter";
+import { getBotIdProcess, getTime } from "../message_functions/getter";
 import {conversationActions} from "../redux/slice";
 import {getFromSessionStorage, saveToSessionStorage} from "../message_functions/save_and_get";
 
@@ -49,7 +49,6 @@ export const useChatRequest = (
   const dispatch = useDispatch();
 
   const handleChatRequest = async (postObject: ChatSenderObjectTypes) => {
-
     updateError("");
     updateLoading(true);
     try {
@@ -138,7 +137,7 @@ export const useInit = (
 
     const infoData: InfoDataTypes | null = getFromSessionStorage("infoDataDataI");
 
-    const botId = "12MsGpLXYg-bprmgsxhqa" // getBotIdProcess(infoData);
+    const botId = getBotIdProcess(infoData);//  "12MsGpLXYg-uvkzcfnmrw"
 
     if ( !botId ) {
       console.log("No Bot id could be set...");

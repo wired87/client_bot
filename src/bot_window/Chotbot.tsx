@@ -19,7 +19,6 @@ import SysErrorContainer from "./coponents/SysErrorContainer";
 interface ChotbotType {
   updateOpen: () => void;
   systemError: string;
-  init: () => Promise<void>;
   sysLoading: boolean;
   updateLoading: (value: boolean) => void;
   loading: boolean;
@@ -32,7 +31,6 @@ const ChatBot: React.FC<ChotbotType> = (
   {
     updateOpen,
     systemError,
-    init,
     sysLoading,
     updateLoading,
     loading,
@@ -84,7 +82,7 @@ const ChatBot: React.FC<ChotbotType> = (
 
   const chatRequestProcess = async () => {
     console.log("chatRequestProcess gets called...");
-    if ( !loading && getInputLenBool() ) {
+    if ( !loading /*&& getInputLenBool()*/ ) {
       const userMessage = getUserMessage();
       console.log("ADD SER MESSAGE TO STORE:", userMessage);
       dispatch(conversationActions.AddMessage({ newMessage: userMessage }));
@@ -93,9 +91,10 @@ const ChatBot: React.FC<ChotbotType> = (
       if (retryInput.trim().length === 0) {
         updateRetryInput(input);
       }
+
       updateInput("");
 
-      if (sessionData && sessionData.botId && sessionData.clientId && sessionData.chatsLeft > 0) {
+      if (sessionData && sessionData.botId /*&& sessionData.clientId && sessionData.chatsLeft > 0*/) {
         const senderObject: ChatSenderObjectTypes = {
           question: getInput(),
           data: sessionData.botId,
@@ -114,15 +113,15 @@ const ChatBot: React.FC<ChotbotType> = (
   }
 
   const getColor = useCallback(() => {
-    return sessionData?.config?.primaryText || "white"
+    return "white" // sessionData?.config?.primaryText || "white"
   }, [sessionData?.config?.primaryText]);
 
   const getBackgroundColor = useCallback(() => {
-    return sessionData?.config?.primary || "black"
+    return "black" // sessionData?.config?.primary || "black"
   }, [sessionData?.config?.primary]);
 
   const getName = useCallback(() => {
-    return sessionData?.config?.pubName || ""
+    return "" // sessionData?.config?.pubName || ""
   }, [sessionData?.config?.pubName])
 
   const getDataUrl = useCallback(() => {
@@ -146,7 +145,6 @@ const ChatBot: React.FC<ChotbotType> = (
     } else if ( systemError ) {
       return <SysErrorContainer
         sysErrorMessage={systemError}
-        init={init}
         updateOpen={updateOpen}
       />
     }
@@ -155,7 +153,6 @@ const ChatBot: React.FC<ChotbotType> = (
         <ChaBotHeading
           headingContainerRef={headingContainerRef}
           updateOpen={updateOpen}
-          init={init}
           background={getBackgroundColor()}
           color={getColor()}
           name={getName()}

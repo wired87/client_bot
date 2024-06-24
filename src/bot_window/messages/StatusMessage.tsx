@@ -1,15 +1,15 @@
 import React, { memo, ReactNode } from "react";
-import { MsgIcon } from "../coponents/MsgIcon";
+//import { MsgIcon } from "../coponents/MsgIcon";
 interface StatusMessage {
   children: ReactNode;
-  pubName: string;
+  pubName?: string;
   imgUrl?: string;
   dataUrl?: string;
   primary?: string;
 }
 
 const StatusMessage: React.FC<StatusMessage> = (
-  { children, pubName, imgUrl, dataUrl, primary }
+  { children, /*pubName, imgUrl, dataUrl, primary*/ }
 ) => {
 
 
@@ -22,7 +22,8 @@ const StatusMessage: React.FC<StatusMessage> = (
         flexDirection: "column",
         alignItems: "flex-start",
         justifyContent: "flex-start",
-      }} >
+      }}
+    >
       <div
         style={{
           alignSelf: "stretch",
@@ -33,12 +34,12 @@ const StatusMessage: React.FC<StatusMessage> = (
           gap: "10px",
         }}
       >
-        <MsgIcon
+        {/*<MsgIcon
           pubName={pubName}
           dataUrl={dataUrl}
           imgUrl={imgUrl}
           primary={primary}
-        />
+        />*/}
         <div
           style={{
             display: "flex",

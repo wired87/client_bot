@@ -4,6 +4,9 @@ import { IoChatbubbleOutline } from "react-icons/io5";
 import useGlobals from "./hooks/useGlobals";
 import ChatBot from "./bot_window/Chotbot";
 import { CusIfr } from "./bot_window/CusIfr";
+import { InfoDataTypes } from "./interface/SessionObjectInterfaces";
+import { getFromSessionStorage, saveToSessionStorage } from "./message_functions/save_and_get";
+import { getBotIdProcess } from "./message_functions/getter";
 
 
 
@@ -21,17 +24,25 @@ export default function App() {
 
 
   useEffect(() => {
-    init()
+    /*init()
       .then(() => console.log("Init finished..."))
-      .catch((e: unknown) => console.log("Init failed cause error:", e))
+      .catch((e: unknown) => console.log("Init failed cause error:", e))*/
+      const infoData: InfoDataTypes | null = getFromSessionStorage("infoDataDataI");
+      const botId = getBotIdProcess(infoData);
+      if (botId) {
+        const responseObject: InfoDataTypes = {
+          botId: botId,
+        }
+        saveToSessionStorage(responseObject, "infoDataDataI");
+      }
   }, []);
 
 
   const handleOpenClick = async () => {
     updateOpen();
-    if (!open) {
+    /*if (!open) {
       await init();
-    }
+    }*/
   };
 
   const BotContent = () =>  {
@@ -41,7 +52,6 @@ export default function App() {
         <CusIfr frameRef={frameRef}>
           <ChatBot
             frameRef={frameRef}
-            init={init}
             updateLoading={ updateLoading}
             loading={loading}
             sysLoading={sysLoading}
@@ -52,6 +62,7 @@ export default function App() {
       )
     }
   }
+
   /*
   1. error message not showing
   2. which data will be sent as bto id?
